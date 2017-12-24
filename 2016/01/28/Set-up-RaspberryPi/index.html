@@ -8,34 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Set up RaspberryPi | DreamLand</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Installation最新的系统镜像可以从官网上取得，将解压后得到的 img 文件写入到 TF 卡中。
-dd 命令
-Mac 下出现了写入不结束的情况，失败。
-Linux 下写入正常，但写入后的 TF 卡无法挂载，提示重新格式化。
-
-Win32DiskImager目前仅能够通过这种方法进行写入。使用过程很简单，这里不做描述。
-Boot Configuration目前采用的环境是利用 HDMI 转">
+  <meta name="description" content="Installation最新的系统镜像可以从官网上取得，将解压后得到的 img 文件写入到 TF 卡中。 dd 命令 Mac 下出现了写入不结束的情况，失败。 Linux 下写入正常，但写入后的 TF 卡无法挂载，提示重新格式化。  Win32DiskImager目前仅能够通过这种方法进行写入。使用过程很简单，这里不做描述。 Boot Configuration目前采用的环境是利用 HDMI 转">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Set up RaspberryPi">
 <meta property="og:url" content="http://yoursite.com/2016/01/28/Set-up-RaspberryPi/index.html">
 <meta property="og:site_name" content="DreamLand">
-<meta property="og:description" content="Installation最新的系统镜像可以从官网上取得，将解压后得到的 img 文件写入到 TF 卡中。
-dd 命令
-Mac 下出现了写入不结束的情况，失败。
-Linux 下写入正常，但写入后的 TF 卡无法挂载，提示重新格式化。
-
-Win32DiskImager目前仅能够通过这种方法进行写入。使用过程很简单，这里不做描述。
-Boot Configuration目前采用的环境是利用 HDMI 转">
+<meta property="og:description" content="Installation最新的系统镜像可以从官网上取得，将解压后得到的 img 文件写入到 TF 卡中。 dd 命令 Mac 下出现了写入不结束的情况，失败。 Linux 下写入正常，但写入后的 TF 卡无法挂载，提示重新格式化。  Win32DiskImager目前仅能够通过这种方法进行写入。使用过程很简单，这里不做描述。 Boot Configuration目前采用的环境是利用 HDMI 转">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2016-01-28T06:04:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Set up RaspberryPi">
-<meta name="twitter:description" content="Installation最新的系统镜像可以从官网上取得，将解压后得到的 img 文件写入到 TF 卡中。
-dd 命令
-Mac 下出现了写入不结束的情况，失败。
-Linux 下写入正常，但写入后的 TF 卡无法挂载，提示重新格式化。
-
-Win32DiskImager目前仅能够通过这种方法进行写入。使用过程很简单，这里不做描述。
-Boot Configuration目前采用的环境是利用 HDMI 转">
+<meta name="twitter:description" content="Installation最新的系统镜像可以从官网上取得，将解压后得到的 img 文件写入到 TF 卡中。 dd 命令 Mac 下出现了写入不结束的情况，失败。 Linux 下写入正常，但写入后的 TF 卡无法挂载，提示重新格式化。  Win32DiskImager目前仅能够通过这种方法进行写入。使用过程很简单，这里不做描述。 Boot Configuration目前采用的环境是利用 HDMI 转">
   
     <link rel="alternative" href="/atom.xml" title="DreamLand" type="application/atom+xml">
   
@@ -64,7 +47,7 @@ Boot Configuration目前采用的环境是利用 HDMI 转">
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/assets/pic.jpg" class="js-avatar">
+			<img src="" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Michael Wu</a></h1>
@@ -80,14 +63,6 @@ Boot Configuration目前采用的环境是利用 HDMI 转">
 	        
 				<li><a href="/tags/随笔/">随笔</a></li>
 	        
-				<li><a href="/archives">所有文章</a></li>
-	        
-				<li><a href="/categories/Encyclopedia">杂七杂八</a></li>
-	        
-				<li><a href="/categories/Techniques">技术</a></li>
-	        
-				<li><a href="/instagram">相册</a></li>
-	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -96,6 +71,8 @@ Boot Configuration目前采用的环境是利用 HDMI 转">
     			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
     			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
     			
             
     			
@@ -106,13 +83,13 @@ Boot Configuration目前采用的环境是利用 HDMI 转">
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="https://github.com/mapleaph" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="https://weibo.com/mapleaph" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="mail" target="_blank" href="mailto:mapleaph@gmail.com" title="mail"><i class="icon-mail"></i></a>
+					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 		        
-					<a class="twitter" target="_blank" href="/twitter.com/mapleaph" title="twitter"><i class="icon-twitter"></i></a>
+					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
 			</div>
 		</nav>
@@ -130,7 +107,7 @@ Boot Configuration目前采用的环境是利用 HDMI 转">
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/assets/pic.jpg" class="js-avatar">
+				<img src="" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Michael Wu</h1>
@@ -144,45 +121,29 @@ Boot Configuration目前采用的环境是利用 HDMI 转">
 			
 				
 			
-				
-			
-				
-			
-				
-			
-				
-			
 			
 			
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="https://github.com/mapleaph" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="https://weibo.com/mapleaph" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="mail" target="_blank" href="mailto:mapleaph@gmail.com" title="mail"><i class="icon-mail"></i></a>
+						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 			        
-						<a class="twitter" target="_blank" href="/twitter.com/mapleaph" title="twitter"><i class="icon-twitter"></i></a>
+						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 				</div>
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 70%">
+				<ul style="width: 50%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/archives">所有文章</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Encyclopedia">杂七杂八</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Techniques">技术</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/instagram">相册</a></li>
+					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -249,19 +210,9 @@ Boot Configuration目前采用的环境是利用 HDMI 转">
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>TRICK or TREAT<i class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/alipay.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/wechatpay.jpg">
-                      <span class="reward-type">微信</span>
-                    </div>
                     
                   </div>
                 </span>
@@ -425,6 +376,8 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
     
       
+      
+      
     
       
       
@@ -436,13 +389,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     
       
-      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      
         
       
-      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -506,11 +461,43 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
 
     
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
 
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">80 后空巢老人</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
   	  	
     	</section>
     
