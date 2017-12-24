@@ -8,17 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Setting up a New Blog | DreamLand</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安装 Hexo请参照 Hexo 官方文档 安装 git 支持不安装的话，在部署的时候，会提示找不到 git。 1$ npm install hexo-deployer-git --save 创建并初始化 Hexo1234$ mkdir /path/to/your/blogDir$ cd /path/to/your/blogDir$ hexo init$ npm install 启动本地服务并查看1">
+  <meta name="description" content="安装 Hexo请参照 Hexo 官方文档 创建并初始化 Hexo1234$ mkdir /path/to/your/blogDir$ cd /path/to/your/blogDir$ hexo init$ npm install 启动本地服务并查看12$ hexo generate$ hexo server 接下来，打开浏览器，输入 localhost:4000，即可查看本地博客。 将本地博客部">
+<meta name="keywords" content="Hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Setting up a New Blog">
 <meta property="og:url" content="http://yoursite.com/2015/09/03/Setting-up-a-New-Blog/index.html">
 <meta property="og:site_name" content="DreamLand">
-<meta property="og:description" content="安装 Hexo请参照 Hexo 官方文档 安装 git 支持不安装的话，在部署的时候，会提示找不到 git。 1$ npm install hexo-deployer-git --save 创建并初始化 Hexo1234$ mkdir /path/to/your/blogDir$ cd /path/to/your/blogDir$ hexo init$ npm install 启动本地服务并查看1">
+<meta property="og:description" content="安装 Hexo请参照 Hexo 官方文档 创建并初始化 Hexo1234$ mkdir /path/to/your/blogDir$ cd /path/to/your/blogDir$ hexo init$ npm install 启动本地服务并查看12$ hexo generate$ hexo server 接下来，打开浏览器，输入 localhost:4000，即可查看本地博客。 将本地博客部">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2015-12-26T09:28:16.000Z">
+<meta property="og:updated_time" content="2017-12-24T05:47:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Setting up a New Blog">
-<meta name="twitter:description" content="安装 Hexo请参照 Hexo 官方文档 安装 git 支持不安装的话，在部署的时候，会提示找不到 git。 1$ npm install hexo-deployer-git --save 创建并初始化 Hexo1234$ mkdir /path/to/your/blogDir$ cd /path/to/your/blogDir$ hexo init$ npm install 启动本地服务并查看1">
+<meta name="twitter:description" content="安装 Hexo请参照 Hexo 官方文档 创建并初始化 Hexo1234$ mkdir /path/to/your/blogDir$ cd /path/to/your/blogDir$ hexo init$ npm install 启动本地服务并查看12$ hexo generate$ hexo server 接下来，打开浏览器，输入 localhost:4000，即可查看本地博客。 将本地博客部">
   
     <link rel="alternative" href="/atom.xml" title="DreamLand" type="application/atom+xml">
   
@@ -207,8 +208,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h2><p>请参照 <a href="https://hexo.io/docs/" target="_blank" rel="noopener">Hexo 官方文档</a></p>
-<h2 id="安装-git-支持"><a href="#安装-git-支持" class="headerlink" title="安装 git 支持"></a>安装 git 支持</h2><p>不安装的话，在部署的时候，会提示找不到 git。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 <h2 id="创建并初始化-Hexo"><a href="#创建并初始化-Hexo" class="headerlink" title="创建并初始化 Hexo"></a>创建并初始化 Hexo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir /path/to/your/blogDir</span><br><span class="line">$ <span class="built_in">cd</span> /path/to/your/blogDir</span><br><span class="line">$ hexo init</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
 <h2 id="启动本地服务并查看"><a href="#启动本地服务并查看" class="headerlink" title="启动本地服务并查看"></a>启动本地服务并查看</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 <p>接下来，打开浏览器，输入 localhost:4000，即可查看本地博客。</p>
@@ -254,6 +253,7 @@
 <h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="找不到-hexo-命令"><a href="#找不到-hexo-命令" class="headerlink" title="找不到 hexo 命令"></a>找不到 hexo 命令</h3><p>hexo 的安装默认不会将环境变量添加到 .bashrc 中，我们需要手动更新，否则，在重新打开 terminal 执行 hexo 时，会提示找不到命令。具体命令的位置为：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.nvm/versions/node/v4.2.4/bin</span><br></pre></td></tr></table></figure>
 <h3 id="执行-hexo-deploy-后，出现-error-deployer-not-found-git-的错误"><a href="#执行-hexo-deploy-后，出现-error-deployer-not-found-git-的错误" class="headerlink" title="执行 hexo deploy 后，出现 error deployer not found:git 的错误"></a>执行 hexo deploy 后，出现 error deployer not found:git 的错误</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<h3 id="本地的博客文章被无意中删除了怎么办"><a href="#本地的博客文章被无意中删除了怎么办" class="headerlink" title="本地的博客文章被无意中删除了怎么办"></a>本地的博客文章被无意中删除了怎么办</h3><p>首先，通过 hexo 部署的文章可以放到 github 上，但是这个库并不能用来克隆后重新部署，如果本地文章不见了，就没有办法了，所以我们需要把本地的 hexo 博客再建立一个库保存起来，以后每次发布了新文章，需要作的就是两件事，使用 hexo 发布文章，push 代码库。</p>
 
       
 
@@ -293,6 +293,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
@@ -499,6 +510,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
