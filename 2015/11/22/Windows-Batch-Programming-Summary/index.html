@@ -47,7 +47,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/assets/pic.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Michael Wu</a></h1>
@@ -63,6 +63,14 @@
 	        
 				<li><a href="/tags/随笔/">随笔</a></li>
 	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/categories/Encyclopedia">杂七杂八</a></li>
+	        
+				<li><a href="/categories/Techniques">技术</a></li>
+	        
+				<li><a href="/instagram">相册</a></li>
+	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -71,8 +79,6 @@
     			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
     			
             
-    			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
     			
             
     			
@@ -83,13 +89,13 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/mapleaph" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="weibo" target="_blank" href="https://weibo.com/mapleaph" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+					<a class="mail" target="_blank" href="mailto:mapleaph@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="twitter" target="_blank" href="https://twitter.com/mapleaph" title="twitter"><i class="icon-twitter"></i></a>
 		        
 			</div>
 		</nav>
@@ -107,7 +113,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/assets/pic.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Michael Wu</h1>
@@ -121,29 +127,45 @@
 			
 				
 			
+				
+			
+				
+			
+				
+			
+				
+			
 			
 			
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/mapleaph" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="https://weibo.com/mapleaph" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+						<a class="mail" target="_blank" href="mailto:mapleaph@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="twitter" target="_blank" href="https://twitter.com/mapleaph" title="twitter"><i class="icon-twitter"></i></a>
 			        
 				</div>
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/archives">所有文章</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/categories/Encyclopedia">杂七杂八</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/categories/Techniques">技术</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/instagram">相册</a></li>
 		        
 				</ul>
 			</nav>
@@ -187,13 +209,13 @@
 <li>taskkill /f /im xxx.exe 用于强制关闭当前所有名称为 xxx.exe 的进程</li>
 </ol>
 <h2 id="执行-xxx-bat-时不显示窗口的方法"><a href="#执行-xxx-bat-时不显示窗口的方法" class="headerlink" title="执行 xxx.bat 时不显示窗口的方法"></a>执行 xxx.bat 时不显示窗口的方法</h2><p>新建 vbs 文件，输入以下内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Set WshShell = CreateObject(&quot;WScript.Shell&quot;)</div><div class="line">WshShell.Run chr(34) &amp; &quot;xxx.bat&quot; &amp; Chr(34), 0</div><div class="line">Set WshShell = Nothing</div></pre></td></tr></table></figure>
-<h2 id="按任意键才能关闭窗口的方法"><a href="#按任意键才能关闭窗口的方法" class="headerlink" title="按任意键才能关闭窗口的方法"></a>按任意键才能关闭窗口的方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">echo Press Any Key to Continue</div><div class="line">pause&gt;nul</div><div class="line">exit</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Set WshShell = CreateObject(&quot;WScript.Shell&quot;)</span><br><span class="line">WshShell.Run chr(34) &amp; &quot;xxx.bat&quot; &amp; Chr(34), 0</span><br><span class="line">Set WshShell = Nothing</span><br></pre></td></tr></table></figure>
+<h2 id="按任意键才能关闭窗口的方法"><a href="#按任意键才能关闭窗口的方法" class="headerlink" title="按任意键才能关闭窗口的方法"></a>按任意键才能关闭窗口的方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo Press Any Key to Continue</span><br><span class="line">pause&gt;nul</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
 <h2 id="批处理文件执行出现乱码的解决方法"><a href="#批处理文件执行出现乱码的解决方法" class="headerlink" title="批处理文件执行出现乱码的解决方法"></a>批处理文件执行出现乱码的解决方法</h2><p>如果文件中包含中文，则一定要将文件用记事本按 ANSI 格式保存，如果按 UTF-8 进行保存，在执行文件的时候原本中文就会显示为乱码。</p>
 <h2 id="等待进程启动"><a href="#等待进程启动" class="headerlink" title="等待进程启动"></a>等待进程启动</h2><p>下面的代码用来检查某个名为 xxx.exe 的进程是否存在，如果不存在则等待到存在为止。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">:loop</div><div class="line">tasklist /FI &quot;IMAGENAME eq xxx.exe&quot; 2&gt;nul | find /I /N &quot;xxx.exe&quot;&gt;nul</div><div class="line">if %ERRORLEVEL% == 1 goto loop</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:loop</span><br><span class="line">tasklist /FI &quot;IMAGENAME eq xxx.exe&quot; 2&gt;nul | find /I /N &quot;xxx.exe&quot;&gt;nul</span><br><span class="line">if %ERRORLEVEL% == 1 goto loop</span><br></pre></td></tr></table></figure>
 <h2 id="读取写入文件"><a href="#读取写入文件" class="headerlink" title="读取写入文件"></a>读取写入文件</h2><p>假定有文件 test.txt 其内容为 1，我们将其改为 2，然后保存。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">set local EnableDelayedExpension</div><div class="line">set /p old=&lt; test.txt</div><div class="line">set /a new = %old% + 1</div><div class="line">echo %new% &gt; test.txt</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set local EnableDelayedExpension</span><br><span class="line">set /p old=&lt; test.txt</span><br><span class="line">set /a new = %old% + 1</span><br><span class="line">echo %new% &gt; test.txt</span><br></pre></td></tr></table></figure>
 
       
 
@@ -207,9 +229,19 @@
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>TRICK or TREAT<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wechatpay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
                     
                   </div>
                 </span>
@@ -393,8 +425,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
     
       
-      
-      
     
       
       
@@ -406,15 +436,13 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -478,43 +506,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
 
     
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-        <ul class="search-ul">
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
-            </li>
-          
-        </ul>
-  		
-    	</section>
-    
 
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">80 后空巢老人</div>
   	  	
     	</section>
     

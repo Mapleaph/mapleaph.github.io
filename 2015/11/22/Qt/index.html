@@ -47,7 +47,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/assets/pic.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Michael Wu</a></h1>
@@ -63,6 +63,14 @@
 	        
 				<li><a href="/tags/随笔/">随笔</a></li>
 	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/categories/Encyclopedia">杂七杂八</a></li>
+	        
+				<li><a href="/categories/Techniques">技术</a></li>
+	        
+				<li><a href="/instagram">相册</a></li>
+	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -71,8 +79,6 @@
     			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
     			
             
-    			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
     			
             
     			
@@ -83,13 +89,13 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/mapleaph" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="weibo" target="_blank" href="https://weibo.com/mapleaph" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+					<a class="mail" target="_blank" href="mailto:mapleaph@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="twitter" target="_blank" href="https://twitter.com/mapleaph" title="twitter"><i class="icon-twitter"></i></a>
 		        
 			</div>
 		</nav>
@@ -107,7 +113,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/assets/pic.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Michael Wu</h1>
@@ -121,29 +127,45 @@
 			
 				
 			
+				
+			
+				
+			
+				
+			
+				
+			
 			
 			
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/mapleaph" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="https://weibo.com/mapleaph" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+						<a class="mail" target="_blank" href="mailto:mapleaph@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="twitter" target="_blank" href="https://twitter.com/mapleaph" title="twitter"><i class="icon-twitter"></i></a>
 			        
 				</div>
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/archives">所有文章</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/categories/Encyclopedia">杂七杂八</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/categories/Techniques">技术</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/instagram">相册</a></li>
 		        
 				</ul>
 			</nav>
@@ -180,39 +202,39 @@
       
         <h2 id="在-Qt5-上运行-Qt4-项目"><a href="#在-Qt5-上运行-Qt4-项目" class="headerlink" title="在 Qt5 上运行 Qt4 项目"></a>在 Qt5 上运行 Qt4 项目</h2><ol>
 <li><p>在 pro 文件里，添加 widgets</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">QT += core gui widgets</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">QT += core gui widgets</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在所有指定文件中，将 #include <qtgui qapplication=""> 改为 #include <qapplication></qapplication></qtgui></p>
 </li>
 </ol>
 <h2 id="在-Ubuntu14-04-上安装和卸载-Qt5-4-1"><a href="#在-Ubuntu14-04-上安装和卸载-Qt5-4-1" class="headerlink" title="在 Ubuntu14.04 上安装和卸载 Qt5.4.1"></a>在 Ubuntu14.04 上安装和卸载 Qt5.4.1</h2><p>需要安装额外组件一下组件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install libgl1-mesa-dev g++</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install libgl1-mesa-dev g++</span><br></pre></td></tr></table></figure>
 <p>然后设置环境变量，假设 Qt 安装在 /opt/Qt5.4.1 目录下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 将下面内容写入 ~/.bash_profile 中，如果没有该文件，请自行创建或通过 /etc/skel 进行创建</span></div><div class="line"><span class="built_in">export</span> PATH=/opt/Qt5.4.1/Tools/QtCreator/bin:<span class="variable">$PATH</span></div><div class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/opt/Qt5.4.1/lib/qtcreator:<span class="variable">$LD_LIBRARY_PATH</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将下面内容写入 ~/.bash_profile 中，如果没有该文件，请自行创建或通过 /etc/skel 进行创建</span></span><br><span class="line"><span class="built_in">export</span> PATH=/opt/Qt5.4.1/Tools/QtCreator/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/opt/Qt5.4.1/lib/qtcreator:<span class="variable">$LD_LIBRARY_PATH</span></span><br></pre></td></tr></table></figure>
 <p>保存之后如果想要立即生效，请执行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">source</span> ~/.bash_profile</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">source</span> ~/.bash_profile</span><br></pre></td></tr></table></figure>
 <p>正常打开 QtCreator 后，在配置选项里面的编译器标签页，指定系统编译器位置为 /usr/bin/gcc。</p>
 <p>卸载</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> /opt/Qt5.4.1</div><div class="line">$ sudo ./MaintainanceTool</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /opt/Qt5.4.1</span><br><span class="line">$ sudo ./MaintainanceTool</span><br></pre></td></tr></table></figure>
 <h2 id="Qt-的-Slots-和-Signals"><a href="#Qt-的-Slots-和-Signals" class="headerlink" title="Qt 的 Slots 和 Signals"></a>Qt 的 Slots 和 Signals</h2><p>Slot 相当于处理函数，Signal 相当于事件。<br>如果想要通过Signal向Slot函数传递参数，则必须遵循如下原则，即：Signal 的参数列表中参数的数量一定不能比 Slot 的参数列表中参数的数量少。</p>
 <h2 id="UnicodeUTF8"><a href="#UnicodeUTF8" class="headerlink" title="UnicodeUTF8"></a>UnicodeUTF8</h2><p>如果编译时提示没有 QApplication 没有 UnicodeUTF8 成员，则直接将该成员从函数中删除即可。</p>
-<h2 id="int-转-QString"><a href="#int-转-QString" class="headerlink" title="int 转 QString"></a>int 转 QString</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">QString s;</div><div class="line">s = QString::number(<span class="number">123</span>, <span class="number">10</span>);</div></pre></td></tr></table></figure>
-<h2 id="QString-转-int"><a href="#QString-转-int" class="headerlink" title="QString 转 int"></a>QString 转 int</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">QString str=<span class="string">"stringtoint"</span>;</div><div class="line"><span class="keyword">bool</span> ok;</div><div class="line"><span class="keyword">int</span> dec = str.toInt(&amp;ok, <span class="number">10</span>); <span class="comment">//转十进制</span></div></pre></td></tr></table></figure>
+<h2 id="int-转-QString"><a href="#int-转-QString" class="headerlink" title="int 转 QString"></a>int 转 QString</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">QString s;</span><br><span class="line">s = QString::number(<span class="number">123</span>, <span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="QString-转-int"><a href="#QString-转-int" class="headerlink" title="QString 转 int"></a>QString 转 int</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">QString str=<span class="string">"stringtoint"</span>;</span><br><span class="line"><span class="keyword">bool</span> ok;</span><br><span class="line"><span class="keyword">int</span> dec = str.toInt(&amp;ok, <span class="number">10</span>); <span class="comment">//转十进制</span></span><br></pre></td></tr></table></figure>
 <h2 id="输出一组整形数据"><a href="#输出一组整形数据" class="headerlink" title="输出一组整形数据"></a>输出一组整形数据</h2><p>有 1～10 十个数据，想要将其以空格分隔，然后在文本框中输出。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">QStringList data;</div><div class="line"><span class="keyword">int</span> i;</div><div class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++) &#123;</div><div class="line">    data &lt;&lt; QString::number(i, <span class="number">10</span>);</div><div class="line">&#125;</div><div class="line">ui-&gt;lineEdit-&gt;setText(data.join(<span class="string">' '</span>));</div></pre></td></tr></table></figure>
-<h2 id="延时-1-秒钟"><a href="#延时-1-秒钟" class="headerlink" title="延时 1 秒钟"></a>延时 1 秒钟</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QTimer&gt;</span></span></div><div class="line"></div><div class="line">QEventLoop loop;</div><div class="line">QTimer::singleShot(<span class="number">1000</span>, &amp;loop, SLOT(quit()));</div><div class="line">loop.exec();</div></pre></td></tr></table></figure>
-<h2 id="Qt5-4-1-静态编译"><a href="#Qt5-4-1-静态编译" class="headerlink" title="Qt5.4.1 静态编译"></a>Qt5.4.1 静态编译</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ tar zxf qt-everywhere-opensource-src-5.4.1.tar.gz</div><div class="line">$ <span class="built_in">cd</span> qt-everywhere-opensource-src-5.4.1</div><div class="line">$ ./configure -debug-and-release -static -nomake examples -no-compile-examples -opengl desktop -openvg -openssl-linked -qt-zlib -qt-libpng -qt-libjpeg -qt-sql-sqlite -qt-xcb</div><div class="line">$ make; sudo make install</div></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">QStringList data;</span><br><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++) &#123;</span><br><span class="line">    data &lt;&lt; QString::number(i, <span class="number">10</span>);</span><br><span class="line">&#125;</span><br><span class="line">ui-&gt;lineEdit-&gt;setText(data.join(<span class="string">' '</span>));</span><br></pre></td></tr></table></figure>
+<h2 id="延时-1-秒钟"><a href="#延时-1-秒钟" class="headerlink" title="延时 1 秒钟"></a>延时 1 秒钟</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QTimer&gt;</span></span></span><br><span class="line"></span><br><span class="line">QEventLoop loop;</span><br><span class="line">QTimer::singleShot(<span class="number">1000</span>, &amp;loop, SLOT(quit()));</span><br><span class="line">loop.exec();</span><br></pre></td></tr></table></figure>
+<h2 id="Qt5-4-1-静态编译"><a href="#Qt5-4-1-静态编译" class="headerlink" title="Qt5.4.1 静态编译"></a>Qt5.4.1 静态编译</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ tar zxf qt-everywhere-opensource-src-5.4.1.tar.gz</span><br><span class="line">$ <span class="built_in">cd</span> qt-everywhere-opensource-src-5.4.1</span><br><span class="line">$ ./configure -debug-and-release -static -nomake examples -no-compile-examples -opengl desktop -openvg -openssl-linked -qt-zlib -qt-libpng -qt-libjpeg -qt-sql-sqlite -qt-xcb</span><br><span class="line">$ make; sudo make install</span><br></pre></td></tr></table></figure>
 <h2 id="添加图片"><a href="#添加图片" class="headerlink" title="添加图片"></a>添加图片</h2><p>工程文件夹右键选择 Add New…，然后选择 Qt -&gt; Qt Resource File -&gt; Choose，然后为资源指定一个文件名，如 Test，之后新建的文件会被添加在工程里面的 Resources 目录下，名为 Test.qrc。</p>
 <p>选择 Test.qrc，右边选择 Add-&gt;Add Prefix，在 Prefix 里面键入 /images（注意斜杠），然后再点击 Add-&gt;Add File，就能在工程里面添加图片了。</p>
 <p>如果添加了名为 pic.png 的图片文件，那么如何在代码中使用呢？</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function">QPixmap <span class="title">pic</span><span class="params">(<span class="string">":/images/pic.png"</span>)</span></span>;</div><div class="line">ui-&gt;someLabel-&gt;setPixmap(pic);</div></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">QPixmap <span class="title">pic</span><span class="params">(<span class="string">":/images/pic.png"</span>)</span></span>;</span><br><span class="line">ui-&gt;someLabel-&gt;setPixmap(pic);</span><br></pre></td></tr></table></figure>
 <h2 id="在-Windows-下为应用程序添加图标"><a href="#在-Windows-下为应用程序添加图标" class="headerlink" title="在 Windows 下为应用程序添加图标"></a>在 Windows 下为应用程序添加图标</h2><p>按上面的方法添加制作好的 ico 文件，然后按照 Windows 应用程序资源文件的规则添加图标文件，假定文件名为 res.rc，图标文件名为 icon.ico：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"winver.h"</span></span></div><div class="line"></div><div class="line">IDI_ICON1 ICON DISCARDABLE <span class="string">"icon.ico"</span></div><div class="line"></div><div class="line"><span class="number">1</span> VERSIONINFO</div><div class="line">    FILEVERSION <span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span></div><div class="line">    PRODUCTVERSION <span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span></div><div class="line">    FILEFLAGSMASK <span class="number">0x3f</span>L</div><div class="line">    FILEFLAGS <span class="number">0x0</span>L</div><div class="line">    FILEOS VOS_NT_WINDOWS32</div><div class="line">    FILETYPE VFT_APP</div><div class="line">    BEGIN</div><div class="line">        BLOCK <span class="string">"StringFileInfo"</span></div><div class="line">        BEGIN</div><div class="line">            BLOCK <span class="string">"000004b0"</span></div><div class="line">            BEGIN</div><div class="line">                VALUE <span class="string">"CompanyName"</span>, <span class="string">"xxx Technology Co.,Ltd."</span></div><div class="line">                VALUE <span class="string">"FileDescription"</span>, <span class="string">"Serial Board Demo"</span></div><div class="line">                VALUE <span class="string">"FileVersion"</span>, <span class="string">"1.0.0.0"</span></div><div class="line">                VALUE <span class="string">"LegalCopyright"</span>, <span class="string">"Copyright (c) 2011-2015 xxx Technology Co.,Ltd."</span></div><div class="line">                VALUE <span class="string">"InternalName"</span>, <span class="string">"1234"</span></div><div class="line">                VALUE <span class="string">"ProductName"</span>, <span class="string">"Serial Board"</span></div><div class="line">                VALUE <span class="string">"ProductVersion"</span>, <span class="string">"1.0.0.0"</span></div><div class="line">            END</div><div class="line">        END</div><div class="line"></div><div class="line">        BLOCK <span class="string">"VarFileInfo"</span></div><div class="line">        BEGIN</div><div class="line">            VALUE <span class="string">"Translation"</span>, <span class="number">0x0</span>, <span class="number">1200</span></div><div class="line">        END</div><div class="line">    END</div></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"winver.h"</span></span></span><br><span class="line"></span><br><span class="line">IDI_ICON1 ICON DISCARDABLE <span class="string">"icon.ico"</span></span><br><span class="line"></span><br><span class="line"><span class="number">1</span> VERSIONINFO</span><br><span class="line">    FILEVERSION <span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span></span><br><span class="line">    PRODUCTVERSION <span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span></span><br><span class="line">    FILEFLAGSMASK <span class="number">0x3f</span>L</span><br><span class="line">    FILEFLAGS <span class="number">0x0</span>L</span><br><span class="line">    FILEOS VOS_NT_WINDOWS32</span><br><span class="line">    FILETYPE VFT_APP</span><br><span class="line">    BEGIN</span><br><span class="line">        BLOCK <span class="string">"StringFileInfo"</span></span><br><span class="line">        BEGIN</span><br><span class="line">            BLOCK <span class="string">"000004b0"</span></span><br><span class="line">            BEGIN</span><br><span class="line">                VALUE <span class="string">"CompanyName"</span>, <span class="string">"xxx Technology Co.,Ltd."</span></span><br><span class="line">                VALUE <span class="string">"FileDescription"</span>, <span class="string">"Serial Board Demo"</span></span><br><span class="line">                VALUE <span class="string">"FileVersion"</span>, <span class="string">"1.0.0.0"</span></span><br><span class="line">                VALUE <span class="string">"LegalCopyright"</span>, <span class="string">"Copyright (c) 2011-2015 xxx Technology Co.,Ltd."</span></span><br><span class="line">                VALUE <span class="string">"InternalName"</span>, <span class="string">"1234"</span></span><br><span class="line">                VALUE <span class="string">"ProductName"</span>, <span class="string">"Serial Board"</span></span><br><span class="line">                VALUE <span class="string">"ProductVersion"</span>, <span class="string">"1.0.0.0"</span></span><br><span class="line">            END</span><br><span class="line">        END</span><br><span class="line"></span><br><span class="line">        BLOCK <span class="string">"VarFileInfo"</span></span><br><span class="line">        BEGIN</span><br><span class="line">            VALUE <span class="string">"Translation"</span>, <span class="number">0x0</span>, <span class="number">1200</span></span><br><span class="line">        END</span><br><span class="line">    END</span><br></pre></td></tr></table></figure>
 <p>最后，将该文件添加到 Qt 工程的 pro 文件中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">RC_FILE = res.rc</div></pre></td></tr></table></figure>
-<h2 id="遍历串口设备"><a href="#遍历串口设备" class="headerlink" title="遍历串口设备"></a>遍历串口设备</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QSerialPort/QSerialPortInfo&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QDebug&gt;</span></span></div><div class="line"></div><div class="line">QList&lt;QSerialPortInfo&gt; serialPortInfoList = QSerialPortInfo::availablePorts();</div><div class="line"></div><div class="line">foreach (<span class="keyword">const</span> QSerialPortInfo &amp;serialPortInfo, serialPortInfoList) &#123;</div><div class="line">    qDebug() &lt;&lt; serialPortInfo.portName();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RC_FILE = res.rc</span><br></pre></td></tr></table></figure>
+<h2 id="遍历串口设备"><a href="#遍历串口设备" class="headerlink" title="遍历串口设备"></a>遍历串口设备</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QSerialPort/QSerialPortInfo&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QDebug&gt;</span></span></span><br><span class="line"></span><br><span class="line">QList&lt;QSerialPortInfo&gt; serialPortInfoList = QSerialPortInfo::availablePorts();</span><br><span class="line"></span><br><span class="line">foreach (<span class="keyword">const</span> QSerialPortInfo &amp;serialPortInfo, serialPortInfoList) &#123;</span><br><span class="line">    qDebug() &lt;&lt; serialPortInfo.portName();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="监听串口数据"><a href="#监听串口数据" class="headerlink" title="监听串口数据"></a>监听串口数据</h2><p>在 Qt 下，不需要采取多线程来分别处理串口的发送和接收，只需要建立串口数据准备好的信号（Qt 提供），和处理串口收上来的数据的函数（用户编写）的连接即可。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">connect(port, SIGNAL(readyRead()), <span class="keyword">this</span>, SLOT(userFunc()));</div></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">connect(port, SIGNAL(readyRead()), <span class="keyword">this</span>, SLOT(userFunc()));</span><br></pre></td></tr></table></figure>
 <h2 id="子对话框"><a href="#子对话框" class="headerlink" title="子对话框"></a>子对话框</h2><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><ol>
 <li>创建新的 ui 文件；</li>
 <li>在父类中创建子类的对象；</li>
@@ -223,10 +245,10 @@
 <li>子类 emit 返回父类的信号；</li>
 <li>子类之行 QDialog::accept() 方法销毁窗口；</li>
 </ol>
-<h2 id="更新-textEdit-文字指针位置为可见"><a href="#更新-textEdit-文字指针位置为可见" class="headerlink" title="更新 textEdit 文字指针位置为可见"></a>更新 textEdit 文字指针位置为可见</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">connect(textEdit, SIGNAL(cursorPositionChanged()), <span class="keyword">this</span>, SLOT(updateVisibleArea()));</div></pre></td></tr></table></figure>
+<h2 id="更新-textEdit-文字指针位置为可见"><a href="#更新-textEdit-文字指针位置为可见" class="headerlink" title="更新 textEdit 文字指针位置为可见"></a>更新 textEdit 文字指针位置为可见</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">connect(textEdit, SIGNAL(cursorPositionChanged()), <span class="keyword">this</span>, SLOT(updateVisibleArea()));</span><br></pre></td></tr></table></figure>
 <h2 id="为-Qt4-8-5-添加-Qwt-支持"><a href="#为-Qt4-8-5-添加-Qwt-支持" class="headerlink" title="为 Qt4.8.5 添加 Qwt 支持"></a>为 Qt4.8.5 添加 Qwt 支持</h2><p>Qwt 支持 5.4.1 和 4.8.5，但目前尚未找到方法能在 5.4.1 自带的 QtCreator 下显示 Qwt 控件，而且Qwt本身使用起来相对复杂，如果只是画图形的话，建议使用下面的 QcustomPlot 控件。</p>
 <h2 id="为-Qt-添加-QtCustomPlot-支持"><a href="#为-Qt-添加-QtCustomPlot-支持" class="headerlink" title="为 Qt 添加 QtCustomPlot 支持"></a>为 Qt 添加 QtCustomPlot 支持</h2><p>从网站下载QtCustomPlot源码，解压后将 qtcustomplot.h 和 qtcustomplot.cpp 添加到工程目录下即可。</p>
-<h2 id="如何使用-Linux-系统调用"><a href="#如何使用-Linux-系统调用" class="headerlink" title="如何使用 Linux 系统调用"></a>如何使用 Linux 系统调用</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line">::open(...)</div></pre></td></tr></table></figure>
+<h2 id="如何使用-Linux-系统调用"><a href="#如何使用-Linux-系统调用" class="headerlink" title="如何使用 Linux 系统调用"></a>如何使用 Linux 系统调用</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line">::open(...)</span><br></pre></td></tr></table></figure>
 
       
 
@@ -240,9 +262,19 @@
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>TRICK or TREAT<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wechatpay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
                     
                   </div>
                 </span>
@@ -426,8 +458,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
     
       
-      
-      
     
       
       
@@ -439,15 +469,13 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -511,43 +539,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
 
     
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-        <ul class="search-ul">
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
-            </li>
-          
-        </ul>
-  		
-    	</section>
-    
 
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">80 后空巢老人</div>
   	  	
     	</section>
     

@@ -47,7 +47,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/assets/pic.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Michael Wu</a></h1>
@@ -63,6 +63,14 @@
 	        
 				<li><a href="/tags/随笔/">随笔</a></li>
 	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/categories/Encyclopedia">杂七杂八</a></li>
+	        
+				<li><a href="/categories/Techniques">技术</a></li>
+	        
+				<li><a href="/instagram">相册</a></li>
+	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -71,8 +79,6 @@
     			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
     			
             
-    			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
     			
             
     			
@@ -83,13 +89,13 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/mapleaph" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="weibo" target="_blank" href="https://weibo.com/mapleaph" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+					<a class="mail" target="_blank" href="mailto:mapleaph@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="twitter" target="_blank" href="https://twitter.com/mapleaph" title="twitter"><i class="icon-twitter"></i></a>
 		        
 			</div>
 		</nav>
@@ -107,7 +113,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/assets/pic.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Michael Wu</h1>
@@ -121,29 +127,45 @@
 			
 				
 			
+				
+			
+				
+			
+				
+			
+				
+			
 			
 			
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/mapleaph" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="https://weibo.com/mapleaph" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+						<a class="mail" target="_blank" href="mailto:mapleaph@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="twitter" target="_blank" href="https://twitter.com/mapleaph" title="twitter"><i class="icon-twitter"></i></a>
 			        
 				</div>
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/archives">所有文章</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/categories/Encyclopedia">杂七杂八</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/categories/Techniques">技术</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/instagram">相册</a></li>
 		        
 				</ul>
 			</nav>
@@ -185,14 +207,14 @@
 </ol>
 <h3 id="Win32DiskImager"><a href="#Win32DiskImager" class="headerlink" title="Win32DiskImager"></a>Win32DiskImager</h3><p>目前仅能够通过这种方法进行写入。使用过程很简单，这里不做描述。</p>
 <h2 id="Boot-Configuration"><a href="#Boot-Configuration" class="headerlink" title="Boot Configuration"></a>Boot Configuration</h2><p>目前采用的环境是利用 HDMI 转 DVI 线缆链接树梅派和显示器，但默认情况下显示器是没有输出的，需要我们先利用读卡器将 TF 卡挂载到其他系统中，然后编辑 /config.txt 文件，需要去掉几句话的注释，如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">disable_overscan=1</div><div class="line">hdmi_force_hotplug=1</div><div class="line">hdmi_group=1</div><div class="line">hdmi_mode=1</div><div class="line">hdmi_driver=2</div><div class="line">config_hdmi_boost=4</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">disable_overscan=1</span><br><span class="line">hdmi_force_hotplug=1</span><br><span class="line">hdmi_group=1</span><br><span class="line">hdmi_mode=1</span><br><span class="line">hdmi_driver=2</span><br><span class="line">config_hdmi_boost=4</span><br></pre></td></tr></table></figure>
 <p>如果你发现现实分辨率不对，那么需要更改其中的两项：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hdmi_group=2</div><div class="line">hdmi_mode=x</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hdmi_group=2</span><br><span class="line">hdmi_mode=x</span><br></pre></td></tr></table></figure>
 <p>其中 x 的值为下表中的编号：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div></pre></td><td class="code"><pre><div class="line">hdmi_mode=1 640x350 85Hz</div><div class="line">hdmi_mode=2 640x400 85Hz</div><div class="line">hdmi_mode=3 720x400 85Hz</div><div class="line">hdmi_mode=4 640x480 60Hz</div><div class="line">hdmi_mode=5 640x480 72Hz</div><div class="line">hdmi_mode=6 640x480 75Hz</div><div class="line">hdmi_mode=7 640x480 85Hz</div><div class="line">hdmi_mode=8 800x600 56Hz</div><div class="line">hdmi_mode=9 800x600 60Hz</div><div class="line">hdmi_mode=10 800x600 72Hz</div><div class="line">hdmi_mode=11 800x600 75Hz</div><div class="line">hdmi_mode=12 800x600 85Hz</div><div class="line">hdmi_mode=13 800x600 120Hz</div><div class="line">hdmi_mode=14 848x480 60Hz</div><div class="line">hdmi_mode=15 1024x768 43Hz DO NOT USE</div><div class="line">hdmi_mode=16 1024x768 60Hz</div><div class="line">hdmi_mode=17 1024x768 70Hz</div><div class="line">hdmi_mode=18 1024x768 75Hz</div><div class="line">hdmi_mode=19 1024x768 85Hz</div><div class="line">hdmi_mode=20 1024x768 120Hz</div><div class="line">hdmi_mode=21 1152x864 75Hz</div><div class="line">hdmi_mode=22 1280x768 reduced blanking</div><div class="line">hdmi_mode=23 1280x768 60Hz</div><div class="line">hdmi_mode=24 1280x768 75Hz</div><div class="line">hdmi_mode=25 1280x768 85Hz</div><div class="line">hdmi_mode=26 1280x768 120Hz reduced blanking</div><div class="line">hdmi_mode=27 1280x800 reduced blanking</div><div class="line">hdmi_mode=28 1280x800 60Hz</div><div class="line">hdmi_mode=29 1280x800 75Hz</div><div class="line">hdmi_mode=30 1280x800 85Hz</div><div class="line">hdmi_mode=31 1280x800 120Hz reduced blanking</div><div class="line">hdmi_mode=32 1280x960 60Hz</div><div class="line">hdmi_mode=33 1280x960 85Hz</div><div class="line">hdmi_mode=34 1280x960 120Hz reduced blanking</div><div class="line">hdmi_mode=35 1280x1024 60Hz</div><div class="line">hdmi_mode=36 1280x1024 75Hz</div><div class="line">hdmi_mode=37 1280x1024 85Hz</div><div class="line">hdmi_mode=38 1280x1024 120Hz reduced blanking</div><div class="line">hdmi_mode=39 1360x768 60Hz</div><div class="line">hdmi_mode=40 1360x768 120Hz reduced blanking</div><div class="line">hdmi_mode=41 1400x1050 reduced blanking</div><div class="line">hdmi_mode=42 1400x1050 60Hz</div><div class="line">hdmi_mode=43 1400x1050 75Hz</div><div class="line">hdmi_mode=44 1400x1050 85Hz</div><div class="line">hdmi_mode=45 1400x1050 120Hz reduced blanking</div><div class="line">hdmi_mode=46 1440x900 reduced blanking</div><div class="line">hdmi_mode=47 1440x900 60Hz</div><div class="line">hdmi_mode=48 1440x900 75Hz</div><div class="line">hdmi_mode=49 1440x900 85Hz</div><div class="line">hdmi_mode=50 1440x900 120Hz reduced blanking</div><div class="line">hdmi_mode=51 1600x1200 60Hz</div><div class="line">hdmi_mode=52 1600x1200 65Hz</div><div class="line">hdmi_mode=53 1600x1200 70Hz</div><div class="line">hdmi_mode=54 1600x1200 75Hz</div><div class="line">hdmi_mode=55 1600x1200 85Hz</div><div class="line">hdmi_mode=56 1600x1200 120Hz reduced blanking</div><div class="line">hdmi_mode=57 1680x1050 reduced blanking</div><div class="line">hdmi_mode=58 1680x1050 60Hz</div><div class="line">hdmi_mode=59 1680x1050 75Hz</div><div class="line">hdmi_mode=60 1680x1050 85Hz</div><div class="line">hdmi_mode=61 1680x1050 120Hz reduced blanking</div><div class="line">hdmi_mode=62 1792x1344 60Hz</div><div class="line">hdmi_mode=63 1792x1344 75Hz</div><div class="line">hdmi_mode=64 1792x1344 120Hz reduced blanking</div><div class="line">hdmi_mode=65 1856x1392 60Hz</div><div class="line">hdmi_mode=66 1856x1392 75Hz</div><div class="line">hdmi_mode=67 1856x1392 120Hz reduced blanking</div><div class="line">hdmi_mode=68 1920x1200 reduced blanking</div><div class="line">hdmi_mode=69 1920x1200 60Hz</div><div class="line">hdmi_mode=70 1920x1200 75Hz</div><div class="line">hdmi_mode=71 1920x1200 85Hz</div><div class="line">hdmi_mode=72 1920x1200 120Hz reduced blanking</div><div class="line">hdmi_mode=73 1920x1440 60Hz</div><div class="line">hdmi_mode=74 1920x1440 75Hz</div><div class="line">hdmi_mode=75 1920x1440 120Hz reduced blanking</div><div class="line">hdmi_mode=76 2560x1600 reduced blanking</div><div class="line">hdmi_mode=77 2560x1600 60Hz</div><div class="line">hdmi_mode=78 2560x1600 75Hz</div><div class="line">hdmi_mode=79 2560x1600 85Hz</div><div class="line">hdmi_mode=80 2560x1600 120Hz reduced blanking</div><div class="line">hdmi_mode=81 1366x768 60Hz</div><div class="line">hdmi_mode=82 1080p 60Hz</div><div class="line">hdmi_mode=83 1600x900 reduced blanking</div><div class="line">hdmi_mode=84 2048x1152 reduced blanking</div><div class="line">hdmi_mode=85 720p 60Hz</div><div class="line">hdmi_mode=86 1366x768 reduced blanking</div></pre></td></tr></table></figure>
-<h2 id="apt-get-Configuration"><a href="#apt-get-Configuration" class="headerlink" title="apt-get Configuration"></a>apt-get Configuration</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">change the line of /etc/apt/sources.list to</div><div class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian jessie main contrib non-free rpi</div><div class="line"></div><div class="line"><span class="keyword">then</span> comment the line of /etc/apt/sources.list.d/raspi.list</div><div class="line">deb http://archive.raspberrypi.org/debian jessie main ui</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">hdmi_mode=1 640x350 85Hz</span><br><span class="line">hdmi_mode=2 640x400 85Hz</span><br><span class="line">hdmi_mode=3 720x400 85Hz</span><br><span class="line">hdmi_mode=4 640x480 60Hz</span><br><span class="line">hdmi_mode=5 640x480 72Hz</span><br><span class="line">hdmi_mode=6 640x480 75Hz</span><br><span class="line">hdmi_mode=7 640x480 85Hz</span><br><span class="line">hdmi_mode=8 800x600 56Hz</span><br><span class="line">hdmi_mode=9 800x600 60Hz</span><br><span class="line">hdmi_mode=10 800x600 72Hz</span><br><span class="line">hdmi_mode=11 800x600 75Hz</span><br><span class="line">hdmi_mode=12 800x600 85Hz</span><br><span class="line">hdmi_mode=13 800x600 120Hz</span><br><span class="line">hdmi_mode=14 848x480 60Hz</span><br><span class="line">hdmi_mode=15 1024x768 43Hz DO NOT USE</span><br><span class="line">hdmi_mode=16 1024x768 60Hz</span><br><span class="line">hdmi_mode=17 1024x768 70Hz</span><br><span class="line">hdmi_mode=18 1024x768 75Hz</span><br><span class="line">hdmi_mode=19 1024x768 85Hz</span><br><span class="line">hdmi_mode=20 1024x768 120Hz</span><br><span class="line">hdmi_mode=21 1152x864 75Hz</span><br><span class="line">hdmi_mode=22 1280x768 reduced blanking</span><br><span class="line">hdmi_mode=23 1280x768 60Hz</span><br><span class="line">hdmi_mode=24 1280x768 75Hz</span><br><span class="line">hdmi_mode=25 1280x768 85Hz</span><br><span class="line">hdmi_mode=26 1280x768 120Hz reduced blanking</span><br><span class="line">hdmi_mode=27 1280x800 reduced blanking</span><br><span class="line">hdmi_mode=28 1280x800 60Hz</span><br><span class="line">hdmi_mode=29 1280x800 75Hz</span><br><span class="line">hdmi_mode=30 1280x800 85Hz</span><br><span class="line">hdmi_mode=31 1280x800 120Hz reduced blanking</span><br><span class="line">hdmi_mode=32 1280x960 60Hz</span><br><span class="line">hdmi_mode=33 1280x960 85Hz</span><br><span class="line">hdmi_mode=34 1280x960 120Hz reduced blanking</span><br><span class="line">hdmi_mode=35 1280x1024 60Hz</span><br><span class="line">hdmi_mode=36 1280x1024 75Hz</span><br><span class="line">hdmi_mode=37 1280x1024 85Hz</span><br><span class="line">hdmi_mode=38 1280x1024 120Hz reduced blanking</span><br><span class="line">hdmi_mode=39 1360x768 60Hz</span><br><span class="line">hdmi_mode=40 1360x768 120Hz reduced blanking</span><br><span class="line">hdmi_mode=41 1400x1050 reduced blanking</span><br><span class="line">hdmi_mode=42 1400x1050 60Hz</span><br><span class="line">hdmi_mode=43 1400x1050 75Hz</span><br><span class="line">hdmi_mode=44 1400x1050 85Hz</span><br><span class="line">hdmi_mode=45 1400x1050 120Hz reduced blanking</span><br><span class="line">hdmi_mode=46 1440x900 reduced blanking</span><br><span class="line">hdmi_mode=47 1440x900 60Hz</span><br><span class="line">hdmi_mode=48 1440x900 75Hz</span><br><span class="line">hdmi_mode=49 1440x900 85Hz</span><br><span class="line">hdmi_mode=50 1440x900 120Hz reduced blanking</span><br><span class="line">hdmi_mode=51 1600x1200 60Hz</span><br><span class="line">hdmi_mode=52 1600x1200 65Hz</span><br><span class="line">hdmi_mode=53 1600x1200 70Hz</span><br><span class="line">hdmi_mode=54 1600x1200 75Hz</span><br><span class="line">hdmi_mode=55 1600x1200 85Hz</span><br><span class="line">hdmi_mode=56 1600x1200 120Hz reduced blanking</span><br><span class="line">hdmi_mode=57 1680x1050 reduced blanking</span><br><span class="line">hdmi_mode=58 1680x1050 60Hz</span><br><span class="line">hdmi_mode=59 1680x1050 75Hz</span><br><span class="line">hdmi_mode=60 1680x1050 85Hz</span><br><span class="line">hdmi_mode=61 1680x1050 120Hz reduced blanking</span><br><span class="line">hdmi_mode=62 1792x1344 60Hz</span><br><span class="line">hdmi_mode=63 1792x1344 75Hz</span><br><span class="line">hdmi_mode=64 1792x1344 120Hz reduced blanking</span><br><span class="line">hdmi_mode=65 1856x1392 60Hz</span><br><span class="line">hdmi_mode=66 1856x1392 75Hz</span><br><span class="line">hdmi_mode=67 1856x1392 120Hz reduced blanking</span><br><span class="line">hdmi_mode=68 1920x1200 reduced blanking</span><br><span class="line">hdmi_mode=69 1920x1200 60Hz</span><br><span class="line">hdmi_mode=70 1920x1200 75Hz</span><br><span class="line">hdmi_mode=71 1920x1200 85Hz</span><br><span class="line">hdmi_mode=72 1920x1200 120Hz reduced blanking</span><br><span class="line">hdmi_mode=73 1920x1440 60Hz</span><br><span class="line">hdmi_mode=74 1920x1440 75Hz</span><br><span class="line">hdmi_mode=75 1920x1440 120Hz reduced blanking</span><br><span class="line">hdmi_mode=76 2560x1600 reduced blanking</span><br><span class="line">hdmi_mode=77 2560x1600 60Hz</span><br><span class="line">hdmi_mode=78 2560x1600 75Hz</span><br><span class="line">hdmi_mode=79 2560x1600 85Hz</span><br><span class="line">hdmi_mode=80 2560x1600 120Hz reduced blanking</span><br><span class="line">hdmi_mode=81 1366x768 60Hz</span><br><span class="line">hdmi_mode=82 1080p 60Hz</span><br><span class="line">hdmi_mode=83 1600x900 reduced blanking</span><br><span class="line">hdmi_mode=84 2048x1152 reduced blanking</span><br><span class="line">hdmi_mode=85 720p 60Hz</span><br><span class="line">hdmi_mode=86 1366x768 reduced blanking</span><br></pre></td></tr></table></figure>
+<h2 id="apt-get-Configuration"><a href="#apt-get-Configuration" class="headerlink" title="apt-get Configuration"></a>apt-get Configuration</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">change the line of /etc/apt/sources.list to</span><br><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian jessie main contrib non-free rpi</span><br><span class="line"></span><br><span class="line"><span class="keyword">then</span> comment the line of /etc/apt/sources.list.d/raspi.list</span><br><span class="line">deb http://archive.raspberrypi.org/debian jessie main ui</span><br></pre></td></tr></table></figure>
 <h2 id="Chinese-Support"><a href="#Chinese-Support" class="headerlink" title="Chinese Support"></a>Chinese Support</h2><p>Otherwise, square characters will be displayed in the web browser.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install ttf-wqy-zenhei scim-pinyin</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ttf-wqy-zenhei scim-pinyin</span><br></pre></td></tr></table></figure>
 <h2 id="Choose-the-Correct-Keyboard-Layout"><a href="#Choose-the-Correct-Keyboard-Layout" class="headerlink" title="Choose the Correct Keyboard Layout"></a>Choose the Correct Keyboard Layout</h2><p>Goto Menu -&gt; Preferences -&gt; Raspberry Pi Configuration: Localisation,</p>
 <p>Set Keyboard: choose United States, English(US).<br>Set Locale: en(English), US(USA), UTF-8.</p>
 <h2 id="Expand-the-Available-Space"><a href="#Expand-the-Available-Space" class="headerlink" title="Expand the Available Space"></a>Expand the Available Space</h2><p>Otherwise, you cannot use the whole disk space of your TF card.</p>
@@ -210,9 +232,19 @@
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>TRICK or TREAT<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wechatpay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
                     
                   </div>
                 </span>
@@ -376,8 +408,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
     
       
-      
-      
     
       
       
@@ -389,15 +419,13 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -461,43 +489,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
 
     
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-        <ul class="search-ul">
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
-            </li>
-          
-        </ul>
-  		
-    	</section>
-    
 
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">80 后空巢老人</div>
   	  	
     	</section>
     

@@ -47,7 +47,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/assets/pic.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Michael Wu</a></h1>
@@ -63,6 +63,14 @@
 	        
 				<li><a href="/tags/随笔/">随笔</a></li>
 	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/categories/Encyclopedia">杂七杂八</a></li>
+	        
+				<li><a href="/categories/Techniques">技术</a></li>
+	        
+				<li><a href="/instagram">相册</a></li>
+	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -71,8 +79,6 @@
     			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
     			
             
-    			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
     			
             
     			
@@ -83,13 +89,13 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/mapleaph" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="weibo" target="_blank" href="https://weibo.com/mapleaph" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+					<a class="mail" target="_blank" href="mailto:mapleaph@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="twitter" target="_blank" href="https://twitter.com/mapleaph" title="twitter"><i class="icon-twitter"></i></a>
 		        
 			</div>
 		</nav>
@@ -107,7 +113,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/assets/pic.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Michael Wu</h1>
@@ -121,29 +127,45 @@
 			
 				
 			
+				
+			
+				
+			
+				
+			
+				
+			
 			
 			
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/mapleaph" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="https://weibo.com/mapleaph" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+						<a class="mail" target="_blank" href="mailto:mapleaph@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="twitter" target="_blank" href="https://twitter.com/mapleaph" title="twitter"><i class="icon-twitter"></i></a>
 			        
 				</div>
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/archives">所有文章</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/categories/Encyclopedia">杂七杂八</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/categories/Techniques">技术</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/instagram">相册</a></li>
 		        
 				</ul>
 			</nav>
@@ -178,34 +200,34 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="安装-Ruby-on-Rails"><a href="#安装-Ruby-on-Rails" class="headerlink" title="安装 Ruby on Rails"></a>安装 Ruby on Rails</h2><h3 id="安装-RVM"><a href="#安装-RVM" class="headerlink" title="安装 RVM"></a>安装 RVM</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># for single user, it will be installed under ~/.rvm</span></div><div class="line">$ curl -L get.rvm.io | bash <span class="_">-s</span> stable</div><div class="line"><span class="comment"># for all users, it will be installed under /usr/local/rvm</span></div><div class="line">$ sudo curl -L get.vm.io | bash <span class="_">-s</span> stable</div></pre></td></tr></table></figure>
-<h3 id="安装-Ruby"><a href="#安装-Ruby" class="headerlink" title="安装 Ruby"></a>安装 Ruby</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ rvm install ruby</div><div class="line"><span class="comment"># check the ruby version</span></div><div class="line">$ ruby -v</div></pre></td></tr></table></figure>
-<h3 id="安装-Rails"><a href="#安装-Rails" class="headerlink" title="安装 Rails"></a>安装 Rails</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># list all the download sources</span></div><div class="line">$ gem <span class="built_in">source</span> <span class="_">-l</span></div><div class="line"><span class="comment"># remove the origin sources</span></div><div class="line">$ gem <span class="built_in">source</span> -r https://rubygems.org/</div><div class="line">$ gem <span class="built_in">source</span> <span class="_">-a</span> https://ruby.taobao.org/</div><div class="line">$ gem install rails</div></pre></td></tr></table></figure>
-<h2 id="安装-Apache2"><a href="#安装-Apache2" class="headerlink" title="安装 Apache2"></a>安装 Apache2</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install apache2</div></pre></td></tr></table></figure>
-<h2 id="安装-MySQL-PhpMyAdmin"><a href="#安装-MySQL-PhpMyAdmin" class="headerlink" title="安装 MySQL, PhpMyAdmin"></a>安装 MySQL, PhpMyAdmin</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install mysql-client mysql-server phpmyadmin</div></pre></td></tr></table></figure>
-<h2 id="安装-PHP"><a href="#安装-PHP" class="headerlink" title="安装 PHP"></a>安装 PHP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install libapache2-mod-php5</div></pre></td></tr></table></figure>
+        <h2 id="安装-Ruby-on-Rails"><a href="#安装-Ruby-on-Rails" class="headerlink" title="安装 Ruby on Rails"></a>安装 Ruby on Rails</h2><h3 id="安装-RVM"><a href="#安装-RVM" class="headerlink" title="安装 RVM"></a>安装 RVM</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># for single user, it will be installed under ~/.rvm</span></span><br><span class="line">$ curl -L get.rvm.io | bash -s stable</span><br><span class="line"><span class="comment"># for all users, it will be installed under /usr/local/rvm</span></span><br><span class="line">$ sudo curl -L get.vm.io | bash -s stable</span><br></pre></td></tr></table></figure>
+<h3 id="安装-Ruby"><a href="#安装-Ruby" class="headerlink" title="安装 Ruby"></a>安装 Ruby</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ rvm install ruby</span><br><span class="line"><span class="comment"># check the ruby version</span></span><br><span class="line">$ ruby -v</span><br></pre></td></tr></table></figure>
+<h3 id="安装-Rails"><a href="#安装-Rails" class="headerlink" title="安装 Rails"></a>安装 Rails</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># list all the download sources</span></span><br><span class="line">$ gem <span class="built_in">source</span> -l</span><br><span class="line"><span class="comment"># remove the origin sources</span></span><br><span class="line">$ gem <span class="built_in">source</span> -r https://rubygems.org/</span><br><span class="line">$ gem <span class="built_in">source</span> -a https://ruby.taobao.org/</span><br><span class="line">$ gem install rails</span><br></pre></td></tr></table></figure>
+<h2 id="安装-Apache2"><a href="#安装-Apache2" class="headerlink" title="安装 Apache2"></a>安装 Apache2</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install apache2</span><br></pre></td></tr></table></figure>
+<h2 id="安装-MySQL-PhpMyAdmin"><a href="#安装-MySQL-PhpMyAdmin" class="headerlink" title="安装 MySQL, PhpMyAdmin"></a>安装 MySQL, PhpMyAdmin</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install mysql-client mysql-server phpmyadmin</span><br></pre></td></tr></table></figure>
+<h2 id="安装-PHP"><a href="#安装-PHP" class="headerlink" title="安装 PHP"></a>安装 PHP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install libapache2-mod-php5</span><br></pre></td></tr></table></figure>
 <h2 id="安装-Redmine"><a href="#安装-Redmine" class="headerlink" title="安装 Redmine"></a>安装 Redmine</h2><p>Download the source from www.redmine.org and extract the file to /var/www/html/redmine.<br><strong>Make sure that the redmine directory belongs to group www-data.</strong><br><strong>The own of the redmine directory should in the group of www-data.</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> /var/www/html</div><div class="line">$ sudo chown -R www-data:www-data redmine</div><div class="line">$ <span class="built_in">cd</span> redmine</div><div class="line">$ sudo chmod -R 775 files <span class="built_in">log</span> tmp public/plugin_assets</div><div class="line"><span class="comment"># if you set the permission to 755 according to the official doc,</span></div><div class="line"><span class="comment"># you will not install the plugin successfully.</span></div></pre></td></tr></table></figure>
-<h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">CREATE DATABASE redmine CHARACTER SET utf8;</div><div class="line">CREATE USER &apos;redmine&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;&lt;my_password&gt;&apos;;</div><div class="line">GRANT ALL PRIVILEGES ON redmine.* TO &apos;redmine&apos;@&apos;localhost&apos;;</div></pre></td></tr></table></figure>
-<h3 id="数据库连接配置"><a href="#数据库连接配置" class="headerlink" title="数据库连接配置"></a>数据库连接配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> /var/www/html/redmine/config</div><div class="line">$ copy database.yml.example database.yml</div><div class="line">$ vim database.yml</div><div class="line"></div><div class="line">production:</div><div class="line">  adapter: mysql2</div><div class="line">  database: redmine</div><div class="line">  host: localhost</div><div class="line">  username: redmine</div><div class="line">  password: &lt;my_password&gt;</div></pre></td></tr></table></figure>
-<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> /var/www/html/redmine</div><div class="line">$ gem install bundler</div><div class="line">$ bundle install --without development <span class="built_in">test</span></div><div class="line"><span class="comment"># during the process, you may be prompted to install Rmagick</span></div></pre></td></tr></table></figure>
-<h3 id="生成-session-secret-key"><a href="#生成-session-secret-key" class="headerlink" title="生成 session secret key"></a>生成 session secret key</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> /var/www/html/redmine</div><div class="line">$ bundle <span class="built_in">exec</span> rake generate_secret_token</div><div class="line"><span class="comment"># or</span></div><div class="line">$ rake secret</div><div class="line"><span class="comment"># then we should add that key to the /etc/profile file like this</span></div><div class="line"><span class="built_in">export</span> SECRET_KEY_BASE=asdf12320890asd09f23rlkuf09da09sdfklk324</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /var/www/html</span><br><span class="line">$ sudo chown -R www-data:www-data redmine</span><br><span class="line">$ <span class="built_in">cd</span> redmine</span><br><span class="line">$ sudo chmod -R 775 files <span class="built_in">log</span> tmp public/plugin_assets</span><br><span class="line"><span class="comment"># if you set the permission to 755 according to the official doc,</span></span><br><span class="line"><span class="comment"># you will not install the plugin successfully.</span></span><br></pre></td></tr></table></figure>
+<h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE redmine CHARACTER SET utf8;</span><br><span class="line">CREATE USER &apos;redmine&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;&lt;my_password&gt;&apos;;</span><br><span class="line">GRANT ALL PRIVILEGES ON redmine.* TO &apos;redmine&apos;@&apos;localhost&apos;;</span><br></pre></td></tr></table></figure>
+<h3 id="数据库连接配置"><a href="#数据库连接配置" class="headerlink" title="数据库连接配置"></a>数据库连接配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /var/www/html/redmine/config</span><br><span class="line">$ copy database.yml.example database.yml</span><br><span class="line">$ vim database.yml</span><br><span class="line"></span><br><span class="line">production:</span><br><span class="line">  adapter: mysql2</span><br><span class="line">  database: redmine</span><br><span class="line">  host: localhost</span><br><span class="line">  username: redmine</span><br><span class="line">  password: &lt;my_password&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /var/www/html/redmine</span><br><span class="line">$ gem install bundler</span><br><span class="line">$ bundle install --without development <span class="built_in">test</span></span><br><span class="line"><span class="comment"># during the process, you may be prompted to install Rmagick</span></span><br></pre></td></tr></table></figure>
+<h3 id="生成-session-secret-key"><a href="#生成-session-secret-key" class="headerlink" title="生成 session secret key"></a>生成 session secret key</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /var/www/html/redmine</span><br><span class="line">$ bundle <span class="built_in">exec</span> rake generate_secret_token</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">$ rake secret</span><br><span class="line"><span class="comment"># then we should add that key to the /etc/profile file like this</span></span><br><span class="line"><span class="built_in">export</span> SECRET_KEY_BASE=asdf12320890asd09f23rlkuf09da09sdfklk324</span><br></pre></td></tr></table></figure>
 <h3 id="初始化数据库"><a href="#初始化数据库" class="headerlink" title="初始化数据库"></a>初始化数据库</h3><p><strong>该过程可以在你删除了数据库中的表之后新建数据库用</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> /var/www/html/redmine</div><div class="line">$ RAILS_ENV=production bundle <span class="built_in">exec</span> rake db:migrate</div><div class="line">$ RAILS_ENV=production bundle <span class="built_in">exec</span> rake redmine:load_default_data</div></pre></td></tr></table></figure>
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> /var/www/html/redmine</div><div class="line">$ bundle <span class="built_in">exec</span> rails server webrick <span class="_">-e</span> production [-b &lt;ip&gt;] [<span class="_">-d</span>]</div><div class="line"><span class="comment"># the -b option change the default address from localhost:3000</span></div><div class="line"><span class="comment"># to &lt;ip&gt;:3000</span></div><div class="line"><span class="comment"># the -d option runs the server as a daemon.</span></div></pre></td></tr></table></figure>
-<h2 id="建立-Apache2-和-Redmine-的连接"><a href="#建立-Apache2-和-Redmine-的连接" class="headerlink" title="建立 Apache2 和 Redmine 的连接"></a>建立 Apache2 和 Redmine 的连接</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ gem install passenger</div><div class="line">$ passenger-install-apache2-module</div><div class="line"><span class="comment"># then the install process will guide you through.</span></div><div class="line"><span class="comment"># during the process, you will be asked to add code like the following to /etc/apache2/apache2.conf</span></div><div class="line">LoadModule passenger_module /usr/<span class="built_in">local</span>/rvm/gems/ruby-2.2.1/gems/passenger-5.0.21/buildout/apache2/mod_passenger.so</div><div class="line">&lt;IfModule mod_passenger.c&gt;</div><div class="line">        PassengerRoot /usr/<span class="built_in">local</span>/rvm/gems/ruby-2.2.1/gems/passenger-5.0.21</div><div class="line">        PassengerDefaultRuby /usr/<span class="built_in">local</span>/rvm/gems/ruby-2.2.1/wrappers/ruby</div><div class="line">&lt;/IfModule&gt;</div></pre></td></tr></table></figure>
-<h3 id="建立站点配置"><a href="#建立站点配置" class="headerlink" title="建立站点配置"></a>建立站点配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo vim /etc/apache2/apache2.conf</div><div class="line"><span class="comment">#add 'ServerName localhost'</span></div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">$ sudo vim /etc/apache2/sites-available/000-default.conf</div><div class="line"></div><div class="line"><span class="comment"># the default port is for redmine</span></div><div class="line">&lt;VirtualHost *:80&gt;</div><div class="line">        DocumentRoot /var/www/html/redmine/public</div><div class="line">        &lt;Directory /var/www/html/redmine/public&gt;</div><div class="line">                AllowOverride All</div><div class="line">                Options -MultiViews</div><div class="line">        &lt;/Directory&gt;</div><div class="line">        RailsEnv production</div><div class="line">        RailsBaseURI /redmine</div><div class="line">        ErrorLog <span class="variable">$&#123;APACHE_LOG_DIR&#125;</span>/error.log</div><div class="line">        CustomLog <span class="variable">$&#123;APACHE_LOG_DIR&#125;</span>/access.log combined</div><div class="line">&lt;/VirtualHost&gt;</div><div class="line"></div><div class="line">Listen 3000 <span class="comment"># we should listen to port 3000, or we cannot connect to it</span></div><div class="line"><span class="comment"># this is for the original apache site</span></div><div class="line">&lt;VirtualHost *:3000&gt;</div><div class="line">        DocumentRoot /var/www/html/</div><div class="line">        ErrorLog <span class="variable">$&#123;APACHE_LOG_DIR&#125;</span>/error.log</div><div class="line">        CustomLog <span class="variable">$&#123;APACHE_LOG_DIR&#125;</span>/access.log combined</div><div class="line">&lt;/VirtualHost&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /var/www/html/redmine</span><br><span class="line">$ RAILS_ENV=production bundle <span class="built_in">exec</span> rake db:migrate</span><br><span class="line">$ RAILS_ENV=production bundle <span class="built_in">exec</span> rake redmine:load_default_data</span><br></pre></td></tr></table></figure>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /var/www/html/redmine</span><br><span class="line">$ bundle <span class="built_in">exec</span> rails server webrick -e production [-b &lt;ip&gt;] [-d]</span><br><span class="line"><span class="comment"># the -b option change the default address from localhost:3000</span></span><br><span class="line"><span class="comment"># to &lt;ip&gt;:3000</span></span><br><span class="line"><span class="comment"># the -d option runs the server as a daemon.</span></span><br></pre></td></tr></table></figure>
+<h2 id="建立-Apache2-和-Redmine-的连接"><a href="#建立-Apache2-和-Redmine-的连接" class="headerlink" title="建立 Apache2 和 Redmine 的连接"></a>建立 Apache2 和 Redmine 的连接</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ gem install passenger</span><br><span class="line">$ passenger-install-apache2-module</span><br><span class="line"><span class="comment"># then the install process will guide you through.</span></span><br><span class="line"><span class="comment"># during the process, you will be asked to add code like the following to /etc/apache2/apache2.conf</span></span><br><span class="line">LoadModule passenger_module /usr/<span class="built_in">local</span>/rvm/gems/ruby-2.2.1/gems/passenger-5.0.21/buildout/apache2/mod_passenger.so</span><br><span class="line">&lt;IfModule mod_passenger.c&gt;</span><br><span class="line">        PassengerRoot /usr/<span class="built_in">local</span>/rvm/gems/ruby-2.2.1/gems/passenger-5.0.21</span><br><span class="line">        PassengerDefaultRuby /usr/<span class="built_in">local</span>/rvm/gems/ruby-2.2.1/wrappers/ruby</span><br><span class="line">&lt;/IfModule&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="建立站点配置"><a href="#建立站点配置" class="headerlink" title="建立站点配置"></a>建立站点配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/apache2/apache2.conf</span><br><span class="line"><span class="comment">#add 'ServerName localhost'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/apache2/sites-available/000-default.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># the default port is for redmine</span></span><br><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">        DocumentRoot /var/www/html/redmine/public</span><br><span class="line">        &lt;Directory /var/www/html/redmine/public&gt;</span><br><span class="line">                AllowOverride All</span><br><span class="line">                Options -MultiViews</span><br><span class="line">        &lt;/Directory&gt;</span><br><span class="line">        RailsEnv production</span><br><span class="line">        RailsBaseURI /redmine</span><br><span class="line">        ErrorLog <span class="variable">$&#123;APACHE_LOG_DIR&#125;</span>/error.log</span><br><span class="line">        CustomLog <span class="variable">$&#123;APACHE_LOG_DIR&#125;</span>/access.log combined</span><br><span class="line">&lt;/VirtualHost&gt;</span><br><span class="line"></span><br><span class="line">Listen 3000 <span class="comment"># we should listen to port 3000, or we cannot connect to it</span></span><br><span class="line"><span class="comment"># this is for the original apache site</span></span><br><span class="line">&lt;VirtualHost *:3000&gt;</span><br><span class="line">        DocumentRoot /var/www/html/</span><br><span class="line">        ErrorLog <span class="variable">$&#123;APACHE_LOG_DIR&#125;</span>/error.log</span><br><span class="line">        CustomLog <span class="variable">$&#123;APACHE_LOG_DIR&#125;</span>/access.log combined</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
 <h2 id="配置-Redmine-Mail-功能"><a href="#配置-Redmine-Mail-功能" class="headerlink" title="配置 Redmine Mail 功能"></a>配置 Redmine Mail 功能</h2><ol>
 <li>申请邮箱</li>
 <li><p>编辑配置文件</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> /var/www/html/redmine/config</div><div class="line">$ copy configuration.yml.example configuration.yml</div><div class="line">$ vim configuration.yml</div><div class="line"><span class="comment"># add the following to the last section of the file    </span></div><div class="line"><span class="comment"># be careful that this configuration cannot accept tab, we should all use spaces instead.</span></div><div class="line">production:</div><div class="line">  email_delivery:</div><div class="line">    delivery_method: :smtp</div><div class="line">    smtp_settings:</div><div class="line">      address: <span class="string">"smtp.sohu.com"</span></div><div class="line">      port: 25</div><div class="line">    <span class="comment"># if the site supports ssl access, then we should disable the port 25</span></div><div class="line">    <span class="comment"># then uncomment the following three lines.</span></div><div class="line">    <span class="comment"># tls: true</span></div><div class="line">    <span class="comment"># enable_starttls_auto: true</span></div><div class="line">    <span class="comment"># port: 587</span></div><div class="line">      domain: <span class="string">"smtp.sohu.com"</span></div><div class="line">      authentication: :login</div><div class="line">      user_name: <span class="string">"lhserver2011@sohu.com"</span></div><div class="line">      password: 123456 <span class="comment"># password don't quoted</span></div></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /var/www/html/redmine/config</span><br><span class="line">$ copy configuration.yml.example configuration.yml</span><br><span class="line">$ vim configuration.yml</span><br><span class="line"><span class="comment"># add the following to the last section of the file    </span></span><br><span class="line"><span class="comment"># be careful that this configuration cannot accept tab, we should all use spaces instead.</span></span><br><span class="line">production:</span><br><span class="line">  email_delivery:</span><br><span class="line">    delivery_method: :smtp</span><br><span class="line">    smtp_settings:</span><br><span class="line">      address: <span class="string">"smtp.sohu.com"</span></span><br><span class="line">      port: 25</span><br><span class="line">    <span class="comment"># if the site supports ssl access, then we should disable the port 25</span></span><br><span class="line">    <span class="comment"># then uncomment the following three lines.</span></span><br><span class="line">    <span class="comment"># tls: true</span></span><br><span class="line">    <span class="comment"># enable_starttls_auto: true</span></span><br><span class="line">    <span class="comment"># port: 587</span></span><br><span class="line">      domain: <span class="string">"smtp.sohu.com"</span></span><br><span class="line">      authentication: :login</span><br><span class="line">      user_name: <span class="string">"lhserver2011@sohu.com"</span></span><br><span class="line">      password: 123456 <span class="comment"># password don't quoted</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h2 id="建立-Redmine-同-Git-的连接"><a href="#建立-Redmine-同-Git-的连接" class="headerlink" title="建立 Redmine 同 Git 的连接"></a>建立 Redmine 同 Git 的连接</h2><p>假设 git 的某个工程存放在 /home/git/repositories/xyz.git，那么在 Redmine 中建立工程的版本库时，就要写这个绝对路径。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 将 www-data 加入到 git 组中</span></div><div class="line">$ sudo adduser www-data git</div><div class="line"><span class="comment"># 更正 xyz.git 的权限为 755</span></div></pre></td></tr></table></figure>
-<h2 id="添加-DMSF-插件"><a href="#添加-DMSF-插件" class="headerlink" title="添加 DMSF 插件"></a>添加 DMSF 插件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> /var/www/html/redmine</div><div class="line">$ git <span class="built_in">clone</span> https://github.com/danmunn/redmine_dmsf.git plugins/redmine_dmsf</div><div class="line">$ bundle <span class="built_in">exec</span> rake redmine:plugins:migrate RAILS_ENV=<span class="string">"production"</span></div><div class="line">$ sudo service apache2 restart</div><div class="line"><span class="comment"># then in the redmine project page, you should manually check the box of DMSF</span></div></pre></td></tr></table></figure>
-<h2 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ tail <span class="_">-f</span> /var/<span class="built_in">log</span>/apache2/error.log</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将 www-data 加入到 git 组中</span></span><br><span class="line">$ sudo adduser www-data git</span><br><span class="line"><span class="comment"># 更正 xyz.git 的权限为 755</span></span><br></pre></td></tr></table></figure>
+<h2 id="添加-DMSF-插件"><a href="#添加-DMSF-插件" class="headerlink" title="添加 DMSF 插件"></a>添加 DMSF 插件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /var/www/html/redmine</span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/danmunn/redmine_dmsf.git plugins/redmine_dmsf</span><br><span class="line">$ bundle <span class="built_in">exec</span> rake redmine:plugins:migrate RAILS_ENV=<span class="string">"production"</span></span><br><span class="line">$ sudo service apache2 restart</span><br><span class="line"><span class="comment"># then in the redmine project page, you should manually check the box of DMSF</span></span><br></pre></td></tr></table></figure>
+<h2 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ tail -f /var/<span class="built_in">log</span>/apache2/error.log</span><br></pre></td></tr></table></figure>
 
       
 
@@ -219,9 +241,19 @@
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>TRICK or TREAT<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wechatpay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
                     
                   </div>
                 </span>
@@ -405,8 +437,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
     
       
-      
-      
     
       
       
@@ -418,15 +448,13 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -490,43 +518,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
 
     
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-        <ul class="search-ul">
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
-            </li>
-          
-        </ul>
-  		
-    	</section>
-    
 
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">80 后空巢老人</div>
   	  	
     	</section>
     

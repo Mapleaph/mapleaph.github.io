@@ -47,7 +47,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/assets/pic.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Michael Wu</a></h1>
@@ -63,6 +63,14 @@
 	        
 				<li><a href="/tags/随笔/">随笔</a></li>
 	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/categories/Encyclopedia">杂七杂八</a></li>
+	        
+				<li><a href="/categories/Techniques">技术</a></li>
+	        
+				<li><a href="/instagram">相册</a></li>
+	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -71,8 +79,6 @@
     			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
     			
             
-    			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
     			
             
     			
@@ -83,13 +89,13 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/mapleaph" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="weibo" target="_blank" href="https://weibo.com/mapleaph" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+					<a class="mail" target="_blank" href="mailto:mapleaph@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="twitter" target="_blank" href="https://twitter.com/mapleaph" title="twitter"><i class="icon-twitter"></i></a>
 		        
 			</div>
 		</nav>
@@ -107,7 +113,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/assets/pic.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Michael Wu</h1>
@@ -121,29 +127,45 @@
 			
 				
 			
+				
+			
+				
+			
+				
+			
+				
+			
 			
 			
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/mapleaph" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="https://weibo.com/mapleaph" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+						<a class="mail" target="_blank" href="mailto:mapleaph@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="twitter" target="_blank" href="https://twitter.com/mapleaph" title="twitter"><i class="icon-twitter"></i></a>
 			        
 				</div>
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/archives">所有文章</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/categories/Encyclopedia">杂七杂八</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/categories/Techniques">技术</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/instagram">相册</a></li>
 		        
 				</ul>
 			</nav>
@@ -178,22 +200,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h2><p>请参照 <a href="https://hexo.io/docs/" target="_blank" rel="external">Hexo 官方文档</a></p>
+        <h2 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h2><p>请参照 <a href="https://hexo.io/docs/" target="_blank" rel="noopener">Hexo 官方文档</a></p>
 <h2 id="安装-git-支持"><a href="#安装-git-支持" class="headerlink" title="安装 git 支持"></a>安装 git 支持</h2><p>不安装的话，在部署的时候，会提示找不到 git。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
-<h2 id="创建并初始化-Hexo"><a href="#创建并初始化-Hexo" class="headerlink" title="创建并初始化 Hexo"></a>创建并初始化 Hexo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ mkdir /path/to/your/blogDir</div><div class="line">$ <span class="built_in">cd</span> /path/to/your/blogDir</div><div class="line">$ hexo init</div><div class="line">$ npm install</div></pre></td></tr></table></figure>
-<h2 id="启动本地服务并查看"><a href="#启动本地服务并查看" class="headerlink" title="启动本地服务并查看"></a>启动本地服务并查看</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<h2 id="创建并初始化-Hexo"><a href="#创建并初始化-Hexo" class="headerlink" title="创建并初始化 Hexo"></a>创建并初始化 Hexo</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir /path/to/your/blogDir</span><br><span class="line">$ <span class="built_in">cd</span> /path/to/your/blogDir</span><br><span class="line">$ hexo init</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<h2 id="启动本地服务并查看"><a href="#启动本地服务并查看" class="headerlink" title="启动本地服务并查看"></a>启动本地服务并查看</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 <p>接下来，打开浏览器，输入 localhost:4000，即可查看本地博客。</p>
 <h2 id="将本地博客部署到-Github-上"><a href="#将本地博客部署到-Github-上" class="headerlink" title="将本地博客部署到 Github 上"></a>将本地博客部署到 Github 上</h2><ol>
-<li>在 <a href="https://github.com" target="_blank" rel="external">Github</a> 上新建一个 repository，如果你的账号名称为 xyz，那么你的 repository 名称应该为 xyz.github.io。</li>
+<li>在 <a href="https://github.com" target="_blank" rel="noopener">Github</a> 上新建一个 repository，如果你的账号名称为 xyz，那么你的 repository 名称应该为 xyz.github.io。</li>
 <li><p>编辑 /path/to/your/blogDir 目录下的 _config.yml 文件：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  <span class="built_in">type</span>: git</div><div class="line">  repository: git@github.com:xyz/xyz.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repository: git@github.com:xyz/xyz.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>执行部署命令</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div><div class="line">$ hexo deploy <span class="comment"># 相当于 git 提交</span></div><div class="line"><span class="comment"># 接下来需要输入你在 github 上的账号密码，以便进行提交，这里可以设置 SSH 免密码提交</span></div></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line">$ hexo deploy <span class="comment"># 相当于 git 提交</span></span><br><span class="line"><span class="comment"># 接下来需要输入你在 github 上的账号密码，以便进行提交，这里可以设置 SSH 免密码提交</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h2 id="Hexo-的一些常用快捷键"><a href="#Hexo-的一些常用快捷键" class="headerlink" title="Hexo 的一些常用快捷键"></a>Hexo 的一些常用快捷键</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo g == hexo generate</div><div class="line">hexo d == hexo deploy</div><div class="line">hexo n == hexo new</div></pre></td></tr></table></figure>
+<h2 id="Hexo-的一些常用快捷键"><a href="#Hexo-的一些常用快捷键" class="headerlink" title="Hexo 的一些常用快捷键"></a>Hexo 的一些常用快捷键</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo g == hexo generate</span><br><span class="line">hexo d == hexo deploy</span><br><span class="line">hexo n == hexo new</span><br></pre></td></tr></table></figure>
 <h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><ol>
 <li>/path/to/your/blogDir/source/ 目录用于存放博客相关的文件，如 _posts 目录存放所有文章，我们可以自己新建 assets 目录，用于存放一些图片之类的文件。</li>
 <li>/path/to/your/blogDir/themes/ 目录用于存放博客主题。</li>
@@ -202,30 +224,30 @@
 <ol>
 <li>根据自己的情况，填写 title, subtitle, description, author, language 几项。</li>
 <li><p>自定义文章名称：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">new_post_name: :year-:month-:day-:title.md</div></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new_post_name: :year-:month-:day-:title.md</span><br></pre></td></tr></table></figure>
 <p> 假定今天是 2015 年 10 月 1 号，我们新建一篇文章，</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new post <span class="string">"my first post"</span></div></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new post <span class="string">"my first post"</span></span><br></pre></td></tr></table></figure>
 <p> 该命令会在执行后，根据配置文件，自动在 /path/to/your/blogDir/source/_posts 目录下新建名称为 2015-10-01-my-first-post.md 的文件。</p>
 </li>
 </ol>
 <h2 id="自定义-404-页面"><a href="#自定义-404-页面" class="headerlink" title="自定义 404 页面"></a>自定义 404 页面</h2><p>github 无法对二级域名（xxx.github.io）提供 404 页面自定义功能。目前的做法是，使用其他站点提供的公共 404 页面做跳转，我使用的是腾讯公益页面，具体做法如下：</p>
 <p>在 source 目录下新建 404.html 页面，然后把从腾讯公益页面获得的代码加入其中，保存后重新部署即可，试试刷新页面看看，很方便。</p>
-<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>你可以到 <a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">https://github.com/hexojs/hexo/wiki/Themes</a> 挑选你自己喜欢的主题。</p>
-<p>我选择的是 <a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">yilia</a>，下面介绍如何安装和配置。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> /path/to/your/blogDir</div><div class="line">$ git <span class="built_in">clone</span> https://github.com/litten/hexo-theme-yilia.git themes/yilia</div><div class="line">$ <span class="built_in">cd</span> themes/yilia</div></pre></td></tr></table></figure>
+<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>你可以到 <a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="noopener">https://github.com/hexojs/hexo/wiki/Themes</a> 挑选你自己喜欢的主题。</p>
+<p>我选择的是 <a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="noopener">yilia</a>，下面介绍如何安装和配置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /path/to/your/blogDir</span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/litten/hexo-theme-yilia.git themes/yilia</span><br><span class="line">$ <span class="built_in">cd</span> themes/yilia</span><br></pre></td></tr></table></figure>
 <p>下面编辑 <strong>yilia 目录下</strong>的 _config.yml：</p>
 <ol>
 <li>subnav 下面的每个链接都应该写上 http 或 https 前缀。</li>
 <li>mail 的前缀是 mailto。</li>
 <li>假定我把头像图片放在了 /path/to/your/blogDir/source/assets 目录下，名称为 pic.jpg，那么 avatar 头像的路径为 “/assets/pic.jpg”。</li>
-<li>duoshuo 评论需要先在 <a href="http://duoshuo.com" target="_blank" rel="external">多说</a> 注册自己的账号，注册之后会有自己的域名，假设域名为 xyz.duoshuo.com，那么配置文件中，将 duoshuo: true 改为 duoshuo: “xyz” 即可。</li>
+<li>duoshuo 评论需要先在 <a href="http://duoshuo.com" target="_blank" rel="noopener">多说</a> 注册自己的账号，注册之后会有自己的域名，假设域名为 xyz.duoshuo.com，那么配置文件中，将 duoshuo: true 改为 duoshuo: “xyz” 即可。</li>
 </ol>
-<h3 id="通过-Instagram-获取图片"><a href="#通过-Instagram-获取图片" class="headerlink" title="通过 Instagram 获取图片"></a>通过 Instagram 获取图片</h3><p>首先，请参考 <a href="https://github.com/litten/hexo-theme-yilia/wiki/%E5%90%8C%E6%AD%A5%E4%BD%A0%E7%9A%84instagram%E5%9B%BE%E7%89%87" target="_blank" rel="external">这篇文章</a>。</p>
+<h3 id="通过-Instagram-获取图片"><a href="#通过-Instagram-获取图片" class="headerlink" title="通过 Instagram 获取图片"></a>通过 Instagram 获取图片</h3><p>首先，请参考 <a href="https://github.com/litten/hexo-theme-yilia/wiki/%E5%90%8C%E6%AD%A5%E4%BD%A0%E7%9A%84instagram%E5%9B%BE%E7%89%87" target="_blank" rel="noopener">这篇文章</a>。</p>
 <p>然后在文章中给出的 index.md 文件末尾添加如下的代码，否则，图片拉取将会失败：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"</span>&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 <h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="找不到-hexo-命令"><a href="#找不到-hexo-命令" class="headerlink" title="找不到 hexo 命令"></a>找不到 hexo 命令</h3><p>hexo 的安装默认不会将环境变量添加到 .bashrc 中，我们需要手动更新，否则，在重新打开 terminal 执行 hexo 时，会提示找不到命令。具体命令的位置为：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/.nvm/versions/node/v4.2.4/bin</div></pre></td></tr></table></figure>
-<h3 id="执行-hexo-deploy-后，出现-error-deployer-not-found-git-的错误"><a href="#执行-hexo-deploy-后，出现-error-deployer-not-found-git-的错误" class="headerlink" title="执行 hexo deploy 后，出现 error deployer not found:git 的错误"></a>执行 hexo deploy 后，出现 error deployer not found:git 的错误</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.nvm/versions/node/v4.2.4/bin</span><br></pre></td></tr></table></figure>
+<h3 id="执行-hexo-deploy-后，出现-error-deployer-not-found-git-的错误"><a href="#执行-hexo-deploy-后，出现-error-deployer-not-found-git-的错误" class="headerlink" title="执行 hexo deploy 后，出现 error deployer not found:git 的错误"></a>执行 hexo deploy 后，出现 error deployer not found:git 的错误</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 
       
 
@@ -239,9 +261,19 @@
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>TRICK or TREAT<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wechatpay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
                     
                   </div>
                 </span>
@@ -425,8 +457,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
     
       
-      
-      
     
       
       
@@ -438,15 +468,13 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -510,43 +538,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
 
     
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-        <ul class="search-ul">
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
-            </li>
-          
-        </ul>
-  		
-    	</section>
-    
 
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">80 后空巢老人</div>
   	  	
     	</section>
     

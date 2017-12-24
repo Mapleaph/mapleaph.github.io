@@ -47,7 +47,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/assets/pic.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Michael Wu</a></h1>
@@ -63,6 +63,14 @@
 	        
 				<li><a href="/tags/随笔/">随笔</a></li>
 	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/categories/Encyclopedia">杂七杂八</a></li>
+	        
+				<li><a href="/categories/Techniques">技术</a></li>
+	        
+				<li><a href="/instagram">相册</a></li>
+	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -71,8 +79,6 @@
     			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
     			
             
-    			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
     			
             
     			
@@ -83,13 +89,13 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/mapleaph" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="weibo" target="_blank" href="https://weibo.com/mapleaph" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+					<a class="mail" target="_blank" href="mailto:mapleaph@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="twitter" target="_blank" href="https://twitter.com/mapleaph" title="twitter"><i class="icon-twitter"></i></a>
 		        
 			</div>
 		</nav>
@@ -107,7 +113,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/assets/pic.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Michael Wu</h1>
@@ -121,29 +127,45 @@
 			
 				
 			
+				
+			
+				
+			
+				
+			
+				
+			
 			
 			
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/mapleaph" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="https://weibo.com/mapleaph" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+						<a class="mail" target="_blank" href="mailto:mapleaph@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="twitter" target="_blank" href="https://twitter.com/mapleaph" title="twitter"><i class="icon-twitter"></i></a>
 			        
 				</div>
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/archives">所有文章</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/categories/Encyclopedia">杂七杂八</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/categories/Techniques">技术</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/instagram">相册</a></li>
 		        
 				</ul>
 			</nav>
@@ -179,17 +201,17 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="x86-版安装"><a href="#x86-版安装" class="headerlink" title="x86 版安装"></a>x86 版安装</h2><h3 id="NeoKylin-Personal-v6-0-安装方法更新-UPDATE"><a href="#NeoKylin-Personal-v6-0-安装方法更新-UPDATE" class="headerlink" title="NeoKylin-Personal-v6.0 安装方法更新 [UPDATE]"></a>NeoKylin-Personal-v6.0 安装方法更新 [UPDATE]</h3><p>使用 UltraISO 将镜像中的 images/boot.iso 提取出来，然后将其刻录到 U 盘中<br>启动系统，按 TAB 键，将启动参数改为：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vmlinuz initrd=initrd.img repo=hd:/dev/sda4:/ quiet</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vmlinuz initrd=initrd.img repo=hd:/dev/sda4:/ quiet</span><br></pre></td></tr></table></figure>
 <p>之后正常安装即可。</p>
 <p>中标麒麟除了 V5，V6 并没有更精确的版本号描述，目前手中共有两个 V6 的版本，只能以默认安装的内核版本进行区分。</p>
 <p><strong>!!如果你能把中标麒麟的 iso 镜像文件刻录到光盘里的话，本文档就可以不用看了!!</strong></p>
 <h3 id="2-6-36-版"><a href="#2-6-36-版" class="headerlink" title="2.6.36 版"></a>2.6.36 版</h3><p>本文档仅针对使用 U 盘安装系统的情况，目前共验证了两种方式，一种为本地安装，另一种为 FTP 安装。</p>
 <h4 id="本地安装"><a href="#本地安装" class="headerlink" title="本地安装"></a>本地安装</h4><p>硬盘一个，U 盘一个，一个 Puppy Linux 系统。</p>
-<p>Puppy Linux 下载地址：<a href="http://distro.ibiblio.org/puppylinux/" target="_blank" rel="external">http://distro.ibiblio.org/puppylinux/</a></p>
+<p>Puppy Linux 下载地址：<a href="http://distro.ibiblio.org/puppylinux/" target="_blank" rel="noopener">http://distro.ibiblio.org/puppylinux/</a></p>
 <p>本测试选用 Puppy 5.6 目录下的 slacko-5.6-PAE.iso</p>
 <ol>
 <li><p>使用 puppy linux 为 U 盘安装 Grub4Dos，将 isolinux 文件夹从麒麟系统镜像中提取出来，并复制到 U 盘中，然后更改 U 盘中的 grub.conf 文件为如下内容：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">root (hdx,y)</div><div class="line">kernel /isolinux/vmlinuz</div><div class="line">initrd /isolinux/initrd.img</div><div class="line">boot</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root (hdx,y)</span><br><span class="line">kernel /isolinux/vmlinuz</span><br><span class="line">initrd /isolinux/initrd.img</span><br><span class="line">boot</span><br></pre></td></tr></table></figure>
 <p> 其中 (hdx,y) 需要根据实际情况进行修改。</p>
 </li>
 <li><p>对目标硬盘进行分区，注意需要多分出一个分区来，大小 5GB 即可，格式 FAT32/EXT4，用来存放麒麟的系统镜像和从镜像中提取出来的 images 文件夹。</p>
@@ -218,9 +240,9 @@
 <li><p>将麒麟系统镜像拷贝到 U 盘中</p>
 </li>
 <li><p>用 U 盘引导系统，在出现安装菜单时按 TAB 键，将命令改为</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo=hd:/dev/sdb4:/ quiet</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">repo=hd:/dev/sdb4:/ quiet</span><br></pre></td></tr></table></figure>
 <p> 如果在安装前检测硬盘时提示：<br> “Disk sda contains BIOS RAID metadata, but is not part of any recognized BIOS RAID sets. Ignoring disk sda”<br> 那么就需要改为：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repo=hd:/dev/sdb4:/ quiet nodmraid</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">repo=hd:/dev/sdb4:/ quiet nodmraid</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>之后按部就班安装即可。</p>
 </li>
@@ -255,40 +277,40 @@
 <p>编译完内核的剩余空间为：3.8GB</p>
 <h3 id="修改安装源"><a href="#修改安装源" class="headerlink" title="修改安装源"></a>修改安装源</h3><p>提示：该步骤需要确保系统能够联网！</p>
 <p>首先删除 [/etc/yum.repo.d/] 下面的两个文件，然后新建名为 f17.repo 的文件并向其中添加如下内容：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">[fedora]</div><div class="line">name=f17</div><div class="line">baseurl=http://archives.fedoraproject.org/pub/archive/fedora/linux/releases/17/Fedora/i386/os/</div><div class="line">enabled=1</div><div class="line">gpgcheck=0</div><div class="line"></div><div class="line">[everything]</div><div class="line">name=f17-everything</div><div class="line">baseurl=http://archives.fedoraproject.org/pub/archive/fedora/linux/releases/17/Everything/i386/os/</div><div class="line">enabled=1</div><div class="line">gpgcheck=0</div><div class="line"></div><div class="line">[updates]</div><div class="line">name=f17-updates</div><div class="line">baseurl=http://archives.fedoraproject.org/pub/archive/fedora/linux/updates/17/i386/</div><div class="line">enabled=1</div><div class="line">gpgcheck=0</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[fedora]</span><br><span class="line">name=f17</span><br><span class="line">baseurl=http://archives.fedoraproject.org/pub/archive/fedora/linux/releases/17/Fedora/i386/os/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br><span class="line"></span><br><span class="line">[everything]</span><br><span class="line">name=f17-everything</span><br><span class="line">baseurl=http://archives.fedoraproject.org/pub/archive/fedora/linux/releases/17/Everything/i386/os/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br><span class="line"></span><br><span class="line">[updates]</span><br><span class="line">name=f17-updates</span><br><span class="line">baseurl=http://archives.fedoraproject.org/pub/archive/fedora/linux/updates/17/i386/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br></pre></td></tr></table></figure>
 <p>保存，退出。</p>
-<h3 id="更新安装源"><a href="#更新安装源" class="headerlink" title="更新安装源"></a>更新安装源</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo yum list</div></pre></td></tr></table></figure>
-<h3 id="安装-ncurses-库（make-menuconfig-的时候会用到）"><a href="#安装-ncurses-库（make-menuconfig-的时候会用到）" class="headerlink" title="安装 ncurses 库（make menuconfig 的时候会用到）"></a>安装 ncurses 库（make menuconfig 的时候会用到）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo yum install ncurses-devel</div></pre></td></tr></table></figure>
-<h3 id="下载内核源代码"><a href="#下载内核源代码" class="headerlink" title="下载内核源代码"></a>下载内核源代码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~; curl -O https://www.kernel.org/pub/linux/kernel/v3.x/linux-3.3.4.tar.bz2</div><div class="line"><span class="comment"># 等待下载完成后，解压刚刚下载的压缩包并移动到 /usr/src/kernels 目录下</span></div><div class="line">$ tar jxf linux-3.3.4.tar.bz2; sudo mv linux-3.3.4 /usr/src/kernels</div></pre></td></tr></table></figure>
-<h3 id="对内核进行配置"><a href="#对内核进行配置" class="headerlink" title="对内核进行配置"></a>对内核进行配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/linux-3.3.4/; make mrproper; cp /boot/config-3.3.4-5.1.nk.i686.PAE .config</div><div class="line">$ make menuconfig</div><div class="line"><span class="comment"># 下面进入内核配置界面</span></div><div class="line"><span class="comment"># 将对两个地方进行配置</span></div><div class="line"><span class="comment"># 1. 添加 RapidIO 支持</span></div><div class="line"><span class="comment">#    进入 Bus options (PCI etc.)，选中 RapidIO support，将会弹出子菜单，根据硬件型号，选择前 4 项，即：</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment">#    IDT Tsi721 PCI Express SRIO Controller support</span></div><div class="line"><span class="comment">#    Discovery timeout duration (seconds) 该值默认为 30</span></div><div class="line"><span class="comment">#    Enable RapidIO Input/Output Ports</span></div><div class="line"><span class="comment">#    RapidIO subsystem debug messages</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># 2. 去掉默认的启动图片，防止跟中标麒麟的默认开机画面相冲突，不改的话会出现一个小企鹅图片，但不影响 RapidIO 功能的实现：</span></div><div class="line"><span class="comment">#    进入 Device Drivers -&gt; Graphics support，取消选中 Bootup logo 即可。</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># 确认修改后，退出保存即可。</span></div></pre></td></tr></table></figure>
-<h3 id="编译、安装新内核"><a href="#编译、安装新内核" class="headerlink" title="编译、安装新内核"></a>编译、安装新内核</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># CPU 有几个核，下面的 -j 后面的 n 就改成几，这样可以加快编译速度</span></div><div class="line">$ make -j&lt;n&gt;; make modules; sudo make modules_install; sudo make install</div><div class="line"><span class="comment"># 过程中会提示输入密码，请注意，安装完成后，重启系统，将会在启动菜单看到一个 RedHat Linux (3.3.4), 这就是我们的新内核，选这个进入系统就行了。</span></div></pre></td></tr></table></figure>
+<h3 id="更新安装源"><a href="#更新安装源" class="headerlink" title="更新安装源"></a>更新安装源</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum list</span><br></pre></td></tr></table></figure>
+<h3 id="安装-ncurses-库（make-menuconfig-的时候会用到）"><a href="#安装-ncurses-库（make-menuconfig-的时候会用到）" class="headerlink" title="安装 ncurses 库（make menuconfig 的时候会用到）"></a>安装 ncurses 库（make menuconfig 的时候会用到）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install ncurses-devel</span><br></pre></td></tr></table></figure>
+<h3 id="下载内核源代码"><a href="#下载内核源代码" class="headerlink" title="下载内核源代码"></a>下载内核源代码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~; curl -O https://www.kernel.org/pub/linux/kernel/v3.x/linux-3.3.4.tar.bz2</span><br><span class="line"><span class="comment"># 等待下载完成后，解压刚刚下载的压缩包并移动到 /usr/src/kernels 目录下</span></span><br><span class="line">$ tar jxf linux-3.3.4.tar.bz2; sudo mv linux-3.3.4 /usr/src/kernels</span><br></pre></td></tr></table></figure>
+<h3 id="对内核进行配置"><a href="#对内核进行配置" class="headerlink" title="对内核进行配置"></a>对内核进行配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/linux-3.3.4/; make mrproper; cp /boot/config-3.3.4-5.1.nk.i686.PAE .config</span><br><span class="line">$ make menuconfig</span><br><span class="line"><span class="comment"># 下面进入内核配置界面</span></span><br><span class="line"><span class="comment"># 将对两个地方进行配置</span></span><br><span class="line"><span class="comment"># 1. 添加 RapidIO 支持</span></span><br><span class="line"><span class="comment">#    进入 Bus options (PCI etc.)，选中 RapidIO support，将会弹出子菜单，根据硬件型号，选择前 4 项，即：</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#    IDT Tsi721 PCI Express SRIO Controller support</span></span><br><span class="line"><span class="comment">#    Discovery timeout duration (seconds) 该值默认为 30</span></span><br><span class="line"><span class="comment">#    Enable RapidIO Input/Output Ports</span></span><br><span class="line"><span class="comment">#    RapidIO subsystem debug messages</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 2. 去掉默认的启动图片，防止跟中标麒麟的默认开机画面相冲突，不改的话会出现一个小企鹅图片，但不影响 RapidIO 功能的实现：</span></span><br><span class="line"><span class="comment">#    进入 Device Drivers -&gt; Graphics support，取消选中 Bootup logo 即可。</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 确认修改后，退出保存即可。</span></span><br></pre></td></tr></table></figure>
+<h3 id="编译、安装新内核"><a href="#编译、安装新内核" class="headerlink" title="编译、安装新内核"></a>编译、安装新内核</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CPU 有几个核，下面的 -j 后面的 n 就改成几，这样可以加快编译速度</span></span><br><span class="line">$ make -j&lt;n&gt;; make modules; sudo make modules_install; sudo make install</span><br><span class="line"><span class="comment"># 过程中会提示输入密码，请注意，安装完成后，重启系统，将会在启动菜单看到一个 RedHat Linux (3.3.4), 这就是我们的新内核，选这个进入系统就行了。</span></span><br></pre></td></tr></table></figure>
 <h3 id="小修改"><a href="#小修改" class="headerlink" title="小修改"></a>小修改</h3><ol>
 <li><p>删除旧内核的相关文件</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo rm /boot/System.map* /boot/vmlinuz* /boot/config-3.3.4-5.1.nk.i686.PAE</div><div class="line">$ sudo rm -rf /lib/modules/3.3.4-5.1.nk.i686.PAE</div><div class="line">$ sudo rm -rf /usr/src/kernels/3.3.4-5.1.nk.i686.PAE</div></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo rm /boot/System.map* /boot/vmlinuz* /boot/config-3.3.4-5.1.nk.i686.PAE</span><br><span class="line">$ sudo rm -rf /lib/modules/3.3.4-5.1.nk.i686.PAE</span><br><span class="line">$ sudo rm -rf /usr/src/kernels/3.3.4-5.1.nk.i686.PAE</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>生成新的 grub.cfg</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo grub2-mkconfig -o /boot/grub2/grub.cfg</div><div class="line"><span class="comment"># 生成后再对文件进行进一步修改，将 menuentry 后面的 text 去掉</span></div></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo grub2-mkconfig -o /boot/grub2/grub.cfg</span><br><span class="line"><span class="comment"># 生成后再对文件进行进一步修改，将 menuentry 后面的 text 去掉</span></span><br></pre></td></tr></table></figure>
 <p> 保存，退出。</p>
 </li>
 </ol>
 <h3 id="旧版本麒麟编译安装-2-6-35-版本内核"><a href="#旧版本麒麟编译安装-2-6-35-版本内核" class="headerlink" title="旧版本麒麟编译安装 2.6.35 版本内核"></a>旧版本麒麟编译安装 2.6.35 版本内核</h3><p>需要卸载 VirtualBox，否则 make install 的时候会报错。</p>
 <p>使用如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rpm -qa | grep VirtualBox | xargs sudo rpm <span class="_">-e</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rpm -qa | grep VirtualBox | xargs sudo rpm -e</span><br></pre></td></tr></table></figure>
 <h3 id="安装串口测试程序-xgcom-的方法"><a href="#安装串口测试程序-xgcom-的方法" class="headerlink" title="安装串口测试程序 xgcom 的方法"></a>安装串口测试程序 xgcom 的方法</h3><p>这里讨论的是内核版本为 2.6.36 的中标麒麟</p>
 <ol>
-<li><p>在 <a href="https://code.google.com/p/xgcom/" target="_blank" rel="external">https://code.google.com/p/xgcom/</a> 下载 xgcom-0.04.2 版本源码包</p>
+<li><p>在 <a href="https://code.google.com/p/xgcom/" target="_blank" rel="noopener">https://code.google.com/p/xgcom/</a> 下载 xgcom-0.04.2 版本源码包</p>
 </li>
 <li><p>删除系统自带的 vte，这个会同时删除 gnome-terminal 和 gnome-color-manager</p>
 </li>
 <li><p>将下面的信息新建为文件 f13.repo，并放到 /etc/yum.repo.d/ 目录下</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[f13]</div><div class="line">name=f13</div><div class="line">baseurl=http://archives.fedoraproject.org/pub/archive/fedora/linux/releases/13/Fedora/i386/os</div><div class="line">gpgcheck=0</div><div class="line">enabled=1</div><div class="line"></div><div class="line">[f13-everything]</div><div class="line">name=f13-everything</div><div class="line">baseurl=http://archives.fedoraproject.org/pub/archive/fedora/linux/releases/13/Everything/i386/os</div><div class="line">gpgcheck=0</div><div class="line">enabled=1</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[f13]</span><br><span class="line">name=f13</span><br><span class="line">baseurl=http://archives.fedoraproject.org/pub/archive/fedora/linux/releases/13/Fedora/i386/os</span><br><span class="line">gpgcheck=0</span><br><span class="line">enabled=1</span><br><span class="line"></span><br><span class="line">[f13-everything]</span><br><span class="line">name=f13-everything</span><br><span class="line">baseurl=http://archives.fedoraproject.org/pub/archive/fedora/linux/releases/13/Everything/i386/os</span><br><span class="line">gpgcheck=0</span><br><span class="line">enabled=1</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>将其他源禁用掉</p>
 </li>
 <li><p>安装 vte, vte-devel, gnome-terminal, gnome-color-manager</p>
 </li>
 <li><p>进入 xgcom 的源码</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./autogen.sh</div><div class="line">make</div><div class="line">sudo make install</div></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./autogen.sh</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h2 id="龙芯版安装"><a href="#龙芯版安装" class="headerlink" title="龙芯版安装"></a>龙芯版安装</h2><h3 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h3><p><strong>目前仅支持整盘复制安装</strong></p>
@@ -296,15 +318,15 @@
 <li>需要一个可启动的 Linux 系统；</li>
 <li>在 Linux 系统下，重新对目标硬盘进行分区，要求为：整盘一个分区，可以启动，格式为 ext3；</li>
 <li><p>挂载目标硬盘，进行文件复制：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 假设 sda1 为目标硬盘的分区</span></div><div class="line">$ mount /dev/sda1 /mnt/</div><div class="line">$ tar --numeric-owner -xlpvf Neokylin-DT6-img.tar.gz -C /mnt --touch</div><div class="line"><span class="comment"># 复制完成之后，卸载目标硬盘</span></div><div class="line">$ umount /dev/sda1</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 假设 sda1 为目标硬盘的分区</span></span><br><span class="line">$ mount /dev/sda1 /mnt/</span><br><span class="line">$ tar --numeric-owner -xlpvf Neokylin-DT6-img.tar.gz -C /mnt --touch</span><br><span class="line"><span class="comment"># 复制完成之后，卸载目标硬盘</span></span><br><span class="line">$ umount /dev/sda1</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>启动系统</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 开机进入 PMON 引导命令行，使用 devls 命令查看设备名称，</span></div><div class="line"><span class="comment"># 假设得到的硬盘名称为 wd0</span></div><div class="line">load /dev/fs/ext2@wd0/boot/vmlinux.3a_newspec</div><div class="line"><span class="comment"># 等待加载成功</span></div><div class="line">g console=tty root=/dev/sda1 quiet splash loglevel=0</div><div class="line"><span class="comment"># 正常情况下，即等待进入桌面</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开机进入 PMON 引导命令行，使用 devls 命令查看设备名称，</span></span><br><span class="line"><span class="comment"># 假设得到的硬盘名称为 wd0</span></span><br><span class="line">load /dev/fs/ext2@wd0/boot/vmlinux.3a_newspec</span><br><span class="line"><span class="comment"># 等待加载成功</span></span><br><span class="line">g console=tty root=/dev/sda1 quiet splash loglevel=0</span><br><span class="line"><span class="comment"># 正常情况下，即等待进入桌面</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="升级-Qt4-8-5"><a href="#升级-Qt4-8-5" class="headerlink" title="升级 Qt4.8.5"></a>升级 Qt4.8.5</h3><p>适用系统版本：NeoKylin-Desktop-V6.0-Update4-Loongson-Release-Build050-20140124 (可用 cat /etc/.product_info 查看)。</p>
 <p>执行如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ sudo rpm -Uvh qt-4.8.6-10.ND6.2.mipsel.rpm \</div><div class="line">qt-x11-4.8.6-10.ND6.2.mipsel.rpm \</div><div class="line">qt-devel-4.8.6-10.ND6.2.mipsel.rpm \</div><div class="line">qt-demos-4.8.6-10.ND6.2.mipsel.rpm \</div><div class="line">qt-examples-4.8.6-10.ND6.2.mipsel.rpm \</div><div class="line">qt-odbc-4.8.6-10.ND6.2.mipsel.rpm \</div><div class="line">qt-doc-4.8.6-10.ND6.2.noarch.rpm \</div><div class="line">qt-assistant-4.8.6-10.ND6.2.mipsel.rpm \</div><div class="line">qtwebkit-2.2-3.20110513.ND6.3.mipsel.rpm \</div><div class="line">libjpeg-turbo-devel-1.2.90-2.ND6.mipsel.rpm \</div><div class="line">libjpeg-turbo-1.2.90-2.ND6.mipsel.rpm \</div><div class="line">libjpeg-turbo-static-1.2.90-2.ND6.mipsel.rpm</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ sudo rpm -Uvh qt-4.8.6-10.ND6.2.mipsel.rpm \</span><br><span class="line">qt-x11-4.8.6-10.ND6.2.mipsel.rpm \</span><br><span class="line">qt-devel-4.8.6-10.ND6.2.mipsel.rpm \</span><br><span class="line">qt-demos-4.8.6-10.ND6.2.mipsel.rpm \</span><br><span class="line">qt-examples-4.8.6-10.ND6.2.mipsel.rpm \</span><br><span class="line">qt-odbc-4.8.6-10.ND6.2.mipsel.rpm \</span><br><span class="line">qt-doc-4.8.6-10.ND6.2.noarch.rpm \</span><br><span class="line">qt-assistant-4.8.6-10.ND6.2.mipsel.rpm \</span><br><span class="line">qtwebkit-2.2-3.20110513.ND6.3.mipsel.rpm \</span><br><span class="line">libjpeg-turbo-devel-1.2.90-2.ND6.mipsel.rpm \</span><br><span class="line">libjpeg-turbo-1.2.90-2.ND6.mipsel.rpm \</span><br><span class="line">libjpeg-turbo-static-1.2.90-2.ND6.mipsel.rpm</span><br></pre></td></tr></table></figure>
 
       
 
@@ -318,9 +340,19 @@
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>TRICK or TREAT<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wechatpay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
                     
                   </div>
                 </span>
@@ -504,8 +536,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
     
       
-      
-      
     
       
       
@@ -517,15 +547,13 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -589,43 +617,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
 
     
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-        <ul class="search-ul">
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
-            </li>
-          
-        </ul>
-  		
-    	</section>
-    
 
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">80 后空巢老人</div>
   	  	
     	</section>
     

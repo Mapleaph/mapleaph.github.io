@@ -47,7 +47,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/assets/pic.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Michael Wu</a></h1>
@@ -63,6 +63,14 @@
 	        
 				<li><a href="/tags/随笔/">随笔</a></li>
 	        
+				<li><a href="/archives">所有文章</a></li>
+	        
+				<li><a href="/categories/Encyclopedia">杂七杂八</a></li>
+	        
+				<li><a href="/categories/Techniques">技术</a></li>
+	        
+				<li><a href="/instagram">相册</a></li>
+	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -71,8 +79,6 @@
     			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
     			
             
-    			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
     			
             
     			
@@ -83,13 +89,13 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/mapleaph" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="weibo" target="_blank" href="https://weibo.com/mapleaph" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+					<a class="mail" target="_blank" href="mailto:mapleaph@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="twitter" target="_blank" href="https://twitter.com/mapleaph" title="twitter"><i class="icon-twitter"></i></a>
 		        
 			</div>
 		</nav>
@@ -107,7 +113,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/assets/pic.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Michael Wu</h1>
@@ -121,29 +127,45 @@
 			
 				
 			
+				
+			
+				
+			
+				
+			
+				
+			
 			
 			
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/mapleaph" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="https://weibo.com/mapleaph" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+						<a class="mail" target="_blank" href="mailto:mapleaph@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="twitter" target="_blank" href="https://twitter.com/mapleaph" title="twitter"><i class="icon-twitter"></i></a>
 			        
 				</div>
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/archives">所有文章</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/categories/Encyclopedia">杂七杂八</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/categories/Techniques">技术</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/instagram">相册</a></li>
 		        
 				</ul>
 			</nav>
@@ -178,41 +200,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="读取文件内容，每次处理一行"><a href="#读取文件内容，每次处理一行" class="headerlink" title="读取文件内容，每次处理一行"></a>读取文件内容，每次处理一行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="keyword">while</span> <span class="built_in">read</span> &lt;line&gt;</div><div class="line"><span class="keyword">do</span></div><div class="line">    <span class="built_in">echo</span> $&lt;line&gt; <span class="comment"># or something else you want to do</span></div><div class="line"><span class="keyword">done</span> &lt; &lt;filename&gt;</div></pre></td></tr></table></figure>
+        <h2 id="读取文件内容，每次处理一行"><a href="#读取文件内容，每次处理一行" class="headerlink" title="读取文件内容，每次处理一行"></a>读取文件内容，每次处理一行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">read</span> &lt;line&gt;</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> $&lt;line&gt; <span class="comment"># or something else you want to do</span></span><br><span class="line"><span class="keyword">done</span> &lt; &lt;filename&gt;</span><br></pre></td></tr></table></figure>
 <h2 id="同时打开两个新终端并执行程序"><a href="#同时打开两个新终端并执行程序" class="headerlink" title="同时打开两个新终端并执行程序"></a>同时打开两个新终端并执行程序</h2><p>源代码</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"> * test.c</div><div class="line"> */</div><div class="line"> </div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span>* <span class="title">func1</span><span class="params">(<span class="keyword">void</span>* args)</span></span></div><div class="line">&#123;</div><div class="line">    system(<span class="string">"gnome-terminal -e ./test1"</span>);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span>* <span class="title">func2</span><span class="params">(<span class="keyword">void</span>* args)</span></span></div><div class="line">&#123;</div><div class="line">    system(<span class="string">"gnome-terminal -e ./test2"</span>);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">pthread_t</span> thread1, thread2;</div><div class="line">    pthread_create(&amp;thread1, <span class="literal">NULL</span>, func1, <span class="literal">NULL</span>);</div><div class="line">    pthread_create(&amp;thread1, <span class="literal">NULL</span>, func1, <span class="literal">NULL</span>);</div><div class="line">    </div><div class="line">    pthread_join(thread1, <span class="literal">NULL</span>);</div><div class="line">    pthread_join(thread2, <span class="literal">NULL</span>);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * test.c</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> </span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span>* <span class="title">func1</span><span class="params">(<span class="keyword">void</span>* args)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    system(<span class="string">"gnome-terminal -e ./test1"</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span>* <span class="title">func2</span><span class="params">(<span class="keyword">void</span>* args)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    system(<span class="string">"gnome-terminal -e ./test2"</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">pthread_t</span> thread1, thread2;</span><br><span class="line">    pthread_create(&amp;thread1, <span class="literal">NULL</span>, func1, <span class="literal">NULL</span>);</span><br><span class="line">    pthread_create(&amp;thread1, <span class="literal">NULL</span>, func1, <span class="literal">NULL</span>);</span><br><span class="line">    </span><br><span class="line">    pthread_join(thread1, <span class="literal">NULL</span>);</span><br><span class="line">    pthread_join(thread2, <span class="literal">NULL</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>生成可执行程序</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gcc test.c -o <span class="built_in">test</span> -lpthread</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc test.c -o <span class="built_in">test</span> -lpthread</span><br></pre></td></tr></table></figure>
 <h2 id="为新线程传递参数"><a href="#为新线程传递参数" class="headerlink" title="为新线程传递参数"></a>为新线程传递参数</h2><p>源代码</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">struct</span> thread_args &#123;</div><div class="line">    <span class="keyword">int</span> arg1;</div><div class="line">    <span class="keyword">int</span> arg2;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">/* 无论是否传递参数，线程所执行的函数都应该具有如下声明 */</span></div><div class="line"><span class="function"><span class="keyword">void</span>* <span class="title">func</span><span class="params">(<span class="keyword">void</span>* args)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">struct</span> thread_args* myargs = (<span class="keyword">struct</span> thread_args*) args;</div><div class="line">    </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"arg1 is %d, arg2 is %d\n"</span>, myargs-&gt;arg1, myargs-&gt;arg2);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">pthread_t</span> mythread;</div><div class="line">    <span class="keyword">struct</span> thread_args myargs;</div><div class="line">    </div><div class="line">    myargs.arg1 = <span class="number">100</span>;</div><div class="line">    myargs.arg2 = <span class="number">200</span>;</div><div class="line">    </div><div class="line">    <span class="comment">/* 必须以结构体的形式，将参数传递给新线程 */</span></div><div class="line">    pthread_create(&amp;mythread, <span class="literal">NULL</span>, func, &amp;myargs);</div><div class="line">    </div><div class="line">    pthread_join(mythread, <span class="literal">NULL</span>);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pthread.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">thread_args</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> arg1;</span><br><span class="line">    <span class="keyword">int</span> arg2;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 无论是否传递参数，线程所执行的函数都应该具有如下声明 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span>* <span class="title">func</span><span class="params">(<span class="keyword">void</span>* args)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">thread_args</span>* <span class="title">myargs</span> = (<span class="title">struct</span> <span class="title">thread_args</span>*) <span class="title">args</span>;</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"arg1 is %d, arg2 is %d\n"</span>, myargs-&gt;arg1, myargs-&gt;arg2);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">pthread_t</span> mythread;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">thread_args</span> <span class="title">myargs</span>;</span></span><br><span class="line">    </span><br><span class="line">    myargs.arg1 = <span class="number">100</span>;</span><br><span class="line">    myargs.arg2 = <span class="number">200</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* 必须以结构体的形式，将参数传递给新线程 */</span></span><br><span class="line">    pthread_create(&amp;mythread, <span class="literal">NULL</span>, func, &amp;myargs);</span><br><span class="line">    </span><br><span class="line">    pthread_join(mythread, <span class="literal">NULL</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="warning-address-of-stack-memory…"><a href="#warning-address-of-stack-memory…" class="headerlink" title="warning: address of stack memory…"></a>warning: address of stack memory…</h2><p>如果我写了一个返回指针的函数，而在函数体的 return 后面返回的是变量的地址，编译器就会给出警告，说这样是不安全的，所以我们再增加一个指针变量，将那个变量的地址赋给指针变量，最后再返回就好了。</p>
 <p>即：应返回指针，而不是变量地址。</p>
-<h2 id="Simple-Intro-to-GDB"><a href="#Simple-Intro-to-GDB" class="headerlink" title="Simple Intro to GDB"></a>Simple Intro to GDB</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// this is a really simple program called fact.c </span></div><div class="line"><span class="comment">// to calculate the factorial of 4</span></div><div class="line"><span class="comment">// the expecting result is 24</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> i, j;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span> (j=<span class="number">1</span>; j&lt;<span class="number">5</span>; j++) &#123;</div><div class="line">        i = i * j;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"the result is %d\n"</span>, i);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># we use gcc to compile it</span></div><div class="line">$ gcc -o fact fact.c</div><div class="line"><span class="comment"># then run it</span></div><div class="line">$ ./fact</div><div class="line">the result is 0</div><div class="line"><span class="comment"># that is not what we expeted!</span></div></pre></td></tr></table></figure>
+<h2 id="Simple-Intro-to-GDB"><a href="#Simple-Intro-to-GDB" class="headerlink" title="Simple Intro to GDB"></a>Simple Intro to GDB</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// this is a really simple program called fact.c </span></span><br><span class="line"><span class="comment">// to calculate the factorial of 4</span></span><br><span class="line"><span class="comment">// the expecting result is 24</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (j=<span class="number">1</span>; j&lt;<span class="number">5</span>; j++) &#123;</span><br><span class="line">        i = i * j;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"the result is %d\n"</span>, i);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># we use gcc to compile it</span></span><br><span class="line">$ gcc -o fact fact.c</span><br><span class="line"><span class="comment"># then run it</span></span><br><span class="line">$ ./fact</span><br><span class="line">the result is 0</span><br><span class="line"><span class="comment"># that is not what we expeted!</span></span><br></pre></td></tr></table></figure>
 <p>So we use gdb to check what is going on~~~</p>
 <p>To use gdb, we should add -ggdb to the gcc command line to include information for debugging.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gcc -ggdb -o fact fact.c</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -ggdb -o fact fact.c</span><br></pre></td></tr></table></figure>
 <p>Then, We just run the following command to start gdb.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gdb ./fact</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gdb ./fact</span><br></pre></td></tr></table></figure>
 <p>and you will get a prompt like this,</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(gdb)</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb)</span><br></pre></td></tr></table></figure>
 <p>Next, type <strong>r</strong> or <strong>run</strong> and hit enter, you will get the entire program running just like what running the fact executable.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(gdb) r</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) r</span><br></pre></td></tr></table></figure>
 <p>What if we want to stop the program somewhere, just type <strong>b fact.c:5</strong> or <strong>break fact.c:5</strong> to stop the program at line 5 in the source code, or type <strong>b fact.c:main</strong> to stop the program from the very beginning.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(gdb) b fact.c: main</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) b fact.c: main</span><br></pre></td></tr></table></figure>
 <p>If you want to see the source code to determine which line you should break, just type <strong>l</strong> to show a piece of the source code, then another <strong>l</strong>, you will get another piece, also <strong>l 12</strong> will get you to the line 12.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(gdb) l 12</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) l 12</span><br></pre></td></tr></table></figure>
 <p>Suppose now you are at the <strong>for</strong> loop line, and you want to check the value of i, you can simply type <strong>p i</strong> or <strong>print i</strong> to print the current value of the variable i, further more, if you want to show all the variables, just type <strong>info locals</strong>.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(gdb) info locals</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) info locals</span><br></pre></td></tr></table></figure>
 <p>If you want to change the value of some variable, say change the value of i from nothing to 1, you can type <strong>p i = 1</strong>, then hit enter, then <strong>c</strong> or <strong>continue</strong> to continue the rest of the program or <strong>n</strong> to run just the next line of code, if we want to execute the program line by line, you can save you typing by just hit enter, the enter will execute the previous command which is <strong>n</strong>.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(gdb) p i = 1</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) p i = 1</span><br></pre></td></tr></table></figure>
 <p>If you want to quit the gdb, just type <strong>q</strong> or <strong>quit</strong>.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(gdb) q</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) q</span><br></pre></td></tr></table></figure>
 <h2 id="C-redifinition-error"><a href="#C-redifinition-error" class="headerlink" title="C redifinition error"></a>C redifinition error</h2><p>如果工程中有多个头文件，并且有的会互相包含，那么有可能会在编译的时候报出重复定义的错误，因为有的头文件被包含了不止一次，可以通过如下方式解决这个问题：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __SOMEFILE\_H__</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> __SOMEFILE\_H__</span></div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"> *</div><div class="line"> * things in the file</div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __SOMEFILE\_H__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __SOMEFILE\_H__</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * things in the file</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 <p>头文件只会在变量未定义的情况下被包含一次，这样就很好的避免了重复定义的错误。</p>
 <h2 id="如何编写并使用-DLL"><a href="#如何编写并使用-DLL" class="headerlink" title="如何编写并使用 DLL"></a>如何编写并使用 DLL</h2><h3 id="生成-DLL"><a href="#生成-DLL" class="headerlink" title="生成 DLL"></a>生成 DLL</h3><p>首先在 VC++ 6.0 中新建 Win32 Dynamic-Link Library 工程 testDLL，然后新建如下两个文件，EXPORT.h 和 testDLL.cpp。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"> * EXPORT.h</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> EXPORTING_DLL</span></div><div class="line"><span class="keyword">extern</span> <span class="string">"C"</span> __declspec (dllexport) <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line"><span class="keyword">extern</span> <span class="string">"C"</span> __declspec (dllimport) <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line"> * testDLL.cpp</div><div class="line"> */</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> EXPORTING_DLL</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"EXPORT.h"</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> a + b;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * EXPORT.h</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> EXPORTING_DLL</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> __declspec (dllexport) <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> __declspec (dllimport) <span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * testDLL.cpp</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EXPORTING_DLL</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"EXPORT.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>编译之后，会生成两个文件 testDLL.dll 和 testDLL.lib。</p>
 <h3 id="使用-DLL"><a href="#使用-DLL" class="headerlink" title="使用 DLL"></a>使用 DLL</h3><ol>
 <li><p>新建一个 Win32 Console Application 工程 test，将 testDLL.lib 添加到<br>Project->Settings->Link 选项卡下的 Object/library modules 中。</p>
@@ -222,7 +244,7 @@
 <li><p>在 test 工程中新建文件 test.c 并添加如下内容</p>
 </li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line"> * test.c</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="comment">#include "EXPORT.h"</span></div><div class="line"></div><div class="line">int <span class="function"><span class="title">main</span></span>()</div><div class="line">&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"the result of 1+2 is %d\n"</span>, add(1, 2));</div><div class="line">    <span class="built_in">return</span> 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * test.c</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line"><span class="comment">#include "EXPORT.h"</span></span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"the result of 1+2 is %d\n"</span>, add(1, 2));</span><br><span class="line">    <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="使用-vs2013-需要注意的地方"><a href="#使用-vs2013-需要注意的地方" class="headerlink" title="使用 vs2013 需要注意的地方"></a>使用 vs2013 需要注意的地方</h3><h4 id="让-vs2013-生成兼容-XP-的应用程序"><a href="#让-vs2013-生成兼容-XP-的应用程序" class="headerlink" title="让 vs2013 生成兼容 XP 的应用程序"></a>让 vs2013 生成兼容 XP 的应用程序</h4><p>默认是不兼容 XP 的。</p>
 <p>右键单击工程-&gt;Properties-&gt;General-&gt;General-&gt;Platform Toolset: Visual Studio 2013 - Windows XP (v120_xp)</p>
 <h4 id="字符集设置"><a href="#字符集设置" class="headerlink" title="字符集设置"></a>字符集设置</h4><p>默认情况下，使用双引号字符串会报错，采用下面的方法避免这个错误的产生。</p>
@@ -285,7 +307,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="referencing-an-external-css-file"><a href="#referencing-an-external-css-file" class="headerlink" title="referencing an external css file"></a>referencing an external css file</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"stylesheet.css"</span>\&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="referencing-an-external-css-file"><a href="#referencing-an-external-css-file" class="headerlink" title="referencing an external css file"></a>referencing an external css file</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"stylesheet.css"</span>\&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="module-object-has-no-attribute-‘OrderedDict’"><a href="#module-object-has-no-attribute-‘OrderedDict’" class="headerlink" title="module object has no attribute ‘OrderedDict’"></a>module object has no attribute ‘OrderedDict’</h2><p>OrderedDict 在 Python2.7 才开始加入了该支持，所以如果 Python 的当前版本低于 2.7，就会报这个错误。</p>
 
       
@@ -300,9 +322,19 @@
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>TRICK or TREAT<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wechatpay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
                     
                   </div>
                 </span>
@@ -486,8 +518,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
     
       
-      
-      
     
       
       
@@ -499,15 +529,13 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -571,43 +599,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
 
     
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-        <ul class="search-ul">
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
-            </li>
-          
-        </ul>
-  		
-    	</section>
-    
 
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">80 后空巢老人</div>
   	  	
     	</section>
     
