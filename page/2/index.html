@@ -184,6 +184,120 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Windows-Embedded" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/22/Windows-Embedded/">Windows Embedded</a>
+    </h1>
+  
+
+        
+        <a href="/2015/11/22/Windows-Embedded/" class="archive-article-date">
+  	<time datetime="2015-11-22T03:23:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-11-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="自定义-Shell"><a href="#自定义-Shell" class="headerlink" title="自定义 Shell"></a>自定义 Shell</h2><p>默认情况下，构建 XPE 时，我们都选择 Explorer Shell，可如果我们想要在进入系统后，默认打开其他的应用程序呢？这里可以使用Component Designer 来建立自定义 Shell 组件，之后在检查依赖性的时候，就可以只选择我们自定义的 Shell 而不选择 Explorer Shell 了。</p>
+<h2 id="最小化-XPE"><a href="#最小化-XPE" class="headerlink" title="最小化 XPE"></a>最小化 XPE</h2><p>在最小化 XPE 的过程中，类似 Networking 这样的组件，虽然我们用不到，可是也需要添加到系统中，否则无法通过依赖性检查。</p>
+<h2 id="EWF-Enhanced-Write-Filter"><a href="#EWF-Enhanced-Write-Filter" class="headerlink" title="EWF (Enhanced Write Filter)"></a>EWF (Enhanced Write Filter)</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>EWF 是 Windows 提供的一种针对磁盘分区的保护机制，将所有对分区的更改都只保留在内存中，并不向磁盘进行任何的数据写入，在系统重启之后，分区能够保持未更改的状态，我们可以用这种方法来防病毒。</p>
+<h3 id="XPE-下-EWF-的安装"><a href="#XPE-下-EWF-的安装" class="headerlink" title="XPE 下 EWF 的安装"></a>XPE 下 EWF 的安装</h3><ol>
+<li><p>在 Target Designer 中添加一下四个组件：</p>
+<ul>
+<li><p>EWF NTLDR</p>
+</li>
+<li><p>Enhanced Write Filter</p>
+</li>
+<li><p>Enhanced Write Filter API (EWF API)</p>
+</li>
+<li><p>EWF Manager Console application</p>
+</li>
+</ul>
+</li>
+<li><p>需要删除一个组件：</p>
+<ul>
+<li>NT Loader</li>
+</ul>
+</li>
+<li><p>在 Enhanced Write Filter 组件的 Settings 中，做如下设定：</p>
+<ol>
+<li><p>取消 Start EWF Enabled 勾选</p>
+</li>
+<li><p>在 Partition Number 一项中填写合适的值，默认是 1，表示保护第一个分区（即 C 盘），用户可以根据实际情况进行选择</p>
+</li>
+<li><p>Overlay Type 一项，选择 RAM</p>
+</li>
+</ol>
+</li>
+<li><p>检查组件依赖性并编译系统镜像</p>
+</li>
+</ol>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>FBA 之后的第一次启动，如果在命令行中用 ewfmgr <n>: 来查看现在的 EWF 保护情况，会出现错误，需要将下面的代码制作成 .reg 注册表文件，双击运行并重启系统，之后再用命令 ewfmgr <n>: 查看 EWF 的保护状态，就会给出正常的结果了，当前的状态应该是 Enable。</n></n></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line">[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ewf]</span><br><span class="line">&quot;ErrorControl&quot;=dword:00000001</span><br><span class="line">&quot;Group&quot;=&quot;System Bus Extender&quot;</span><br><span class="line">&quot;Start&quot;=dword:00000000</span><br><span class="line">&quot;Type&quot;=dword:00000001</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\&#123;71A27CDD-812A-11D0-BEC7-08002BE2092F&#125;]</span><br><span class="line">&quot;UpperFilters&quot;=&quot;Ewf&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ewf\Parameters]</span><br><span class="line">[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ewf\Parameters\Protected]</span><br><span class="line">[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ewf\Parameters\Protected\Volume0]</span><br><span class="line">&quot;VolumeID&quot;=&quot;&#123;1EA414D1-6760-4625-8CBE-4F9F85A48E15&#125;&quot;</span><br><span class="line">&quot;Type&quot;=dword:00000001</span><br><span class="line">&quot;ArcName&quot;=&quot;multi(0)disk(0)rdisk(0)partition(1)&quot;</span><br></pre></td></tr></table></figure>
+<p>注意：<strong>ArcName 最后的 partition(n) 应该和 Enhanced Write Filter 中 Partition Number 的值保持一致。</strong></p>
+<p>采用上述系统 Ghost 出来的新系统，需要正常启动两次，才能使用 EWF 功能。</p>
+<p>注：Ghost 软件应使用 DOS 下的纯净 Ghost，Laomaotao 下的 Ghost 工具会在镜像里面添加广告文件。</p>
+<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1. 查看状态</span><br><span class="line">ewfmgr &lt;n&gt;:</span><br><span class="line"></span><br><span class="line">2. 启用保护，重启后生效</span><br><span class="line">ewfmgr &lt;n&gt;: -enable</span><br><span class="line"></span><br><span class="line">3. 撤销保护，立即生效</span><br><span class="line">ewfmgr &lt;n&gt;: -commitanddisable -live</span><br></pre></td></tr></table></figure>
+<h3 id="HORM-Hibernate-Once-Resume-Many"><a href="#HORM-Hibernate-Once-Resume-Many" class="headerlink" title="HORM (Hibernate Once Resume Many)"></a>HORM (Hibernate Once Resume Many)</h3><p>HORM 是 EWF 当中的一项技术，在系统首次启动后，如果进入休眠状态，之后的关机，无论是正常关机还是异常关机，都会直接从休眠状态中恢复回来，这样可以显著缩短系统启动的时间。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Techniques//" class="article-tag-list-link color1">Techniques</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/11/22/Windows-Embedded/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-English-Translation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1787,81 +1901,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2015/11/22/Windows-Batch-Programming-Summary/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Proftpd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/21/Proftpd/">Proftpd</a>
-    </h1>
-  
-
-        
-        <a href="/2015/11/21/Proftpd/" class="archive-article-date">
-  	<time datetime="2015-11-21T14:26:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-11-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install proftpd</span><br><span class="line"><span class="comment"># choose standalone mode</span></span><br></pre></td></tr></table></figure>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/proftpd/proftpd.conf</span><br><span class="line"></span><br><span class="line">1. change ServerName to your specified name</span><br><span class="line">2. uncomment DefaultRoot ~ to jail all users to their homes</span><br><span class="line"><span class="comment"># following is an example, we want /ftp_pool/pub to be the home directory of the ftp server.</span></span><br><span class="line"><span class="comment"># so you should ensure that the permission of the /ftp_pool/pub is 777.</span></span><br><span class="line">&lt;Anonymous /ftp_pool/pub&gt;</span><br><span class="line">   User                     ftp</span><br><span class="line">   Group                    ftp</span><br><span class="line">   <span class="comment"># We want clients to be able to login with "anonymous" as well as "ftp"</span></span><br><span class="line">   UserAlias                anonymous ftp</span><br><span class="line">   <span class="comment"># Cosmetic changes, all files belongs to ftp user</span></span><br><span class="line">   DirFakeUser  on ftp</span><br><span class="line">   DirFakeGroup on ftp</span><br><span class="line">   RequireValidShell        off</span><br><span class="line">   <span class="comment"># Limit the maximum number of anonymous logins</span></span><br><span class="line">   MaxClients               10</span><br><span class="line">   <span class="comment"># We want 'welcome.msg' displayed at login, and '.message' displayed</span></span><br><span class="line">   <span class="comment"># in each newly chdired directory.</span></span><br><span class="line">   DisplayLogin             welcome.msg</span><br><span class="line">   DisplayChdir             .message</span><br><span class="line">   <span class="comment"># Limit WRITE everywhere in the anonymous chroot</span></span><br><span class="line">   &lt;Directory *&gt;</span><br><span class="line">     &lt;Limit WRITE&gt;</span><br><span class="line">        AllowAll <span class="comment"># currently, all users can download and upload anything.</span></span><br><span class="line">     &lt;/Limit&gt;</span><br><span class="line">   &lt;/Directory&gt;</span><br><span class="line">&lt;/anonymous&gt;</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Techniques//" class="article-tag-list-link color1">Techniques</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/11/21/Proftpd/">展开全文 >></a>
         </p>
       
 
