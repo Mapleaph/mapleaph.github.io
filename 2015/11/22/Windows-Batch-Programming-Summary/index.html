@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"基本\n第一行 @echo off 可以禁止输出命令本身\ncopy 1.txt c:\\ &gt;nul 可以禁止输出结果\n用双冒号 :: 注释\nshutdown -a 用于取消强制的关机和重启命令\nping -n x 127.1&gt;nul 用于延时 x 秒\ntaskkill /f /im xxx.exe 用于强制关闭当前所有名称为 xxx.exe 的进程\n\n执行 xxx.bat 时不显示窗口的方法新建 vbs 文件，输入以下内容：\n123Set WshShell = CreateObject(&quot;WScript.Shell&quot;)WshShell.Run chr(34) &amp; &quot;xxx.bat&quot; &amp; Chr(34), 0Set WshShell = Nothing\n按任意键才能关闭窗口的方法123echo Press Any Key to Continuepause&gt;nulexit\n批处理文件执行出现乱码的解决方法如果文件中包含中文，则一定要将文件用记事本按 ANSI 格式保存，如果按 UTF-8 进行保存，在执行文件的时候原本中文就会显示为乱码。\n等待进程启动下面的代码用来检查某个名为 xxx.exe 的进程是否存在，如果不存在则等待到存在为止。\n123:looptasklist /FI &quot;IMAGENAME eq xxx.exe&quot; 2&gt;nul | find /I /N &quot;xxx.exe&quot;&gt;nulif %ERRORLEVEL% == 1 goto loop\n读取写入文件假定有文件 test.txt 其内容为 1，我们将其改为 2，然后保存。\n1234set local EnableDelayedExpensionset /p old=&lt; test.txtset /a new = %old% + 1echo %new% &gt; test.txt\n","dateCreated":"2015-11-22T09:42:09+08:00","dateModified":"2015-11-22T09:44:41+08:00","datePublished":"2015-11-22T09:42:09+08:00","description":"","headline":"批处理小结","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/22/Windows-Batch-Programming-Summary/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"http://yoursite.com/2015/11/22/Windows-Batch-Programming-Summary/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"},"articleBody":"基本\n第一行 @echo off 可以禁止输出命令本身\ncopy 1.txt c:\\ &gt;nul 可以禁止输出结果\n用双冒号 :: 注释\nshutdown -a 用于取消强制的关机和重启命令\nping -n x 127.1&gt;nul 用于延时 x 秒\ntaskkill /f /im xxx.exe 用于强制关闭当前所有名称为 xxx.exe 的进程\n\n执行 xxx.bat 时不显示窗口的方法新建 vbs 文件，输入以下内容：\n123Set WshShell = CreateObject(&quot;WScript.Shell&quot;)WshShell.Run chr(34) &amp; &quot;xxx.bat&quot; &amp; Chr(34), 0Set WshShell = Nothing\n按任意键才能关闭窗口的方法123echo Press Any Key to Continuepause&gt;nulexit\n批处理文件执行出现乱码的解决方法如果文件中包含中文，则一定要将文件用记事本按 ANSI 格式保存，如果按 UTF-8 进行保存，在执行文件的时候原本中文就会显示为乱码。\n等待进程启动下面的代码用来检查某个名为 xxx.exe 的进程是否存在，如果不存在则等待到存在为止。\n123:looptasklist /FI &quot;IMAGENAME eq xxx.exe&quot; 2&gt;nul | find /I /N &quot;xxx.exe&quot;&gt;nulif %ERRORLEVEL% == 1 goto loop\n读取写入文件假定有文件 test.txt 其内容为 1，我们将其改为 2，然后保存。\n1234set local EnableDelayedExpensionset /p old=&lt; test.txtset /a new = %old% + 1echo %new% &gt; test.txt\n","dateCreated":"2015-11-22T09:42:09+08:00","dateModified":"2015-11-22T09:44:41+08:00","datePublished":"2015-11-22T09:42:09+08:00","description":"","headline":"批处理小结","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/22/Windows-Batch-Programming-Summary/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"}},"url":"http://yoursite.com/2015/11/22/Windows-Batch-Programming-Summary/"}</script>
     <meta name="description" content="基本 第一行 @echo off 可以禁止输出命令本身 copy 1.txt c:\ &amp;gt;nul 可以禁止输出结果 用双冒号 :: 注释 shutdown -a 用于取消强制的关机和重启命令 ping -n x 127.1&amp;gt;nul 用于延时 x 秒 taskkill /f /im xxx.exe 用于强制关闭当前所有名称为 xxx.exe 的进程  执行 xxx.bat 时不显示窗口的方">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="批处理小结">
@@ -23,6 +23,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="批处理小结">
 <meta name="twitter:description" content="基本 第一行 @echo off 可以禁止输出命令本身 copy 1.txt c:\ &amp;gt;nul 可以禁止输出结果 用双冒号 :: 注释 shutdown -a 用于取消强制的关机和重启命令 ping -n x 127.1&amp;gt;nul 用于延时 x 秒 taskkill /f /im xxx.exe 用于强制关闭当前所有名称为 xxx.exe 的进程  执行 xxx.bat 时不显示窗口的方">
+<meta name="twitter:creator" content="@mapleaph">
     
     
         
@@ -91,11 +92,11 @@
                         <a  class="sidebar-button-link "
                              href="/all-categories"
                             
-                            title="Categories"
+                            title="Kategorien"
                         >
                     
                         <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Categories</span>
+                        <span class="sidebar-button-desc">Kategorien</span>
                     </a>
             </li>
             
@@ -117,11 +118,11 @@
                         <a  class="sidebar-button-link "
                              href="/all-archives"
                             
-                            title="Archives"
+                            title="Archiv"
                         >
                     
                         <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Archives</span>
+                        <span class="sidebar-button-desc">Archiv</span>
                     </a>
             </li>
             
@@ -130,11 +131,11 @@
                         <a  class="sidebar-button-link open-algolia-search"
                              href="#search"
                             
-                            title="Search"
+                            title="Suche"
                         >
                     
                         <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Search</span>
+                        <span class="sidebar-button-desc">Suche</span>
                     </a>
             </li>
             
@@ -143,11 +144,11 @@
                         <a  class="sidebar-button-link "
                              href="#about"
                             
-                            title="About"
+                            title="Über"
                         >
                     
                         <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
+                        <span class="sidebar-button-desc">Über</span>
                     </a>
             </li>
             
@@ -157,7 +158,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="https://github.com/" target="_blank" rel="noopener" title="GitHub">
+                        <a  class="sidebar-button-link " href="https://github.com/mapleaph" target="_blank" rel="noopener" title="GitHub">
                     
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">GitHub</span>
@@ -166,16 +167,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="http://stackoverflow.com/users" target="_blank" rel="noopener" title="Stack Overflow">
-                    
-                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Stack Overflow</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter">
+                        <a  class="sidebar-button-link " href="https://twitter.com/mapleaph" target="_blank" rel="noopener" title="Twitter">
                     
                         <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">Twitter</span>
@@ -184,57 +176,13 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
-                    
-                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Facebook</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://plus.google.com/" target="_blank" rel="noopener" title="Google +">
-                    
-                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Google +</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://www.linkedin.com/profile/" target="_blank" rel="noopener" title="LinkedIn">
-                    
-                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">LinkedIn</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
                         <a  class="sidebar-button-link "
-                             href="/mailto"
-                            title="Mail"
+                             href="/mapleaph@gmail.com"
+                            title="E-Mail"
                         >
                     
                         <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Mail</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/atom.xml"
-                            
-                            title="RSS"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">RSS</span>
+                        <span class="sidebar-button-desc">E-Mail</span>
                     </a>
             </li>
             
@@ -262,7 +210,7 @@
         <div class="post-meta">
     <time datetime="2015-11-22T09:42:09+08:00">
 	
-		    11月 22, 2015
+		    22 11月 2015
     	
     </time>
     
@@ -310,18 +258,18 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Qt/" data-tooltip="Qt" aria-label="PREVIOUS: Qt">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Qt/" data-tooltip="Qt" aria-label="FRÜHER: Qt">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
                 </a>
             </li>
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/21/Proftpd/" data-tooltip="Proftpd" aria-label="NEXT: Proftpd">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/21/Proftpd/" data-tooltip="Proftpd" aria-label="NÄCHSTER: Proftpd">
                 
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </a>
             </li>
@@ -329,7 +277,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -337,7 +285,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Windows-Batch-Programming-Summary/" title="Share on Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Windows-Batch-Programming-Summary/" title="Teilen auf Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -345,7 +293,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Windows-Batch-Programming-Summary/" title="Share on Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Windows-Batch-Programming-Summary/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -353,7 +301,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Windows-Batch-Programming-Summary/" title="Share on Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Windows-Batch-Programming-Summary/" title="Teilen auf Google Plus">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -363,7 +311,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -396,18 +344,18 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Qt/" data-tooltip="Qt" aria-label="PREVIOUS: Qt">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Qt/" data-tooltip="Qt" aria-label="FRÜHER: Qt">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
                 </a>
             </li>
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/21/Proftpd/" data-tooltip="Proftpd" aria-label="NEXT: Proftpd">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/21/Proftpd/" data-tooltip="Proftpd" aria-label="NÄCHSTER: Proftpd">
                 
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </a>
             </li>
@@ -415,7 +363,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -423,7 +371,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Windows-Batch-Programming-Summary/" title="Share on Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Windows-Batch-Programming-Summary/" title="Teilen auf Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -431,7 +379,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Windows-Batch-Programming-Summary/" title="Share on Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Windows-Batch-Programming-Summary/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -439,7 +387,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Windows-Batch-Programming-Summary/" title="Share on Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Windows-Batch-Programming-Summary/" title="Teilen auf Google Plus">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -449,7 +397,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -467,7 +415,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Windows-Batch-Programming-Summary/">
-                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Teilen auf Facebook</span>
                 </a>
             </li>
         
@@ -475,7 +423,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Windows-Batch-Programming-Summary/">
-                    <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    <i class="fab fa-twitter" aria-hidden="true"></i><span>Teilen auf Twitter</span>
                 </a>
             </li>
         
@@ -483,7 +431,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Windows-Batch-Programming-Summary/">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Teilen auf Google Plus</span>
                 </a>
             </li>
         
@@ -514,6 +462,12 @@
 
             </div>
         
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Tianjin, China
+            </div>
         
     </div>
 </div>

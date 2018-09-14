@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"安装 Ruby on Rails安装 RVM1234# for single user, it will be installed under ~/.rvm$ curl -L get.rvm.io | bash -s stable# for all users, it will be installed under /usr/local/rvm$ sudo curl -L get.vm.io | bash -s stable\n安装 Ruby123$ rvm install ruby# check the ruby version$ ruby -v\n安装 Rails123456# list all the download sources$ gem source -l# remove the origin sources$ gem source -r https://rubygems.org/$ gem source -a https://ruby.taobao.org/$ gem install rails\n安装 Apache21$ sudo apt-get install apache2\n安装 MySQL, PhpMyAdmin1$ sudo apt-get install mysql-client mysql-server phpmyadmin\n安装 PHP1$ sudo apt-get install libapache2-mod-php5\n安装 RedmineDownload the source from www.redmine.org and extract the file to /var/www/html/redmine.Make sure that the redmine directory belongs to group www-data.The own of the redmine directory should in the group of www-data.\n123456$ cd /var/www/html$ sudo chown -R www-data:www-data redmine$ cd redmine$ sudo chmod -R 775 files log tmp public/plugin_assets# if you set the permission to 755 according to the official doc,# you will not install the plugin successfully.\n创建数据库123CREATE DATABASE redmine CHARACTER SET utf8;CREATE USER &apos;redmine&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;&lt;my_password&gt;&apos;;GRANT ALL PRIVILEGES ON redmine.* TO &apos;redmine&apos;@&apos;localhost&apos;;\n数据库连接配置12345678910$ cd /var/www/html/redmine/config$ copy database.yml.example database.yml$ vim database.ymlproduction:  adapter: mysql2  database: redmine  host: localhost  username: redmine  password: &lt;my_password&gt;\n安装依赖1234$ cd /var/www/html/redmine$ gem install bundler$ bundle install --without development test# during the process, you may be prompted to install Rmagick\n生成 session secret key123456$ cd /var/www/html/redmine$ bundle exec rake generate_secret_token# or$ rake secret# then we should add that key to the /etc/profile file like thisexport SECRET_KEY_BASE=asdf12320890asd09f23rlkuf09da09sdfklk324\n初始化数据库该过程可以在你删除了数据库中的表之后新建数据库用\n123$ cd /var/www/html/redmine$ RAILS_ENV=production bundle exec rake db:migrate$ RAILS_ENV=production bundle exec rake redmine:load_default_data\n测试12345$ cd /var/www/html/redmine$ bundle exec rails server webrick -e production [-b &lt;ip&gt;] [-d]# the -b option change the default address from localhost:3000# to &lt;ip&gt;:3000# the -d option runs the server as a daemon.\n建立 Apache2 和 Redmine 的连接123456789$ gem install passenger$ passenger-install-apache2-module# then the install process will guide you through.# during the process, you will be asked to add code like the following to /etc/apache2/apache2.confLoadModule passenger_module /usr/local/rvm/gems/ruby-2.2.1/gems/passenger-5.0.21/buildout/apache2/mod_passenger.so&lt;IfModule mod_passenger.c&gt;        PassengerRoot /usr/local/rvm/gems/ruby-2.2.1/gems/passenger-5.0.21        PassengerDefaultRuby /usr/local/rvm/gems/ruby-2.2.1/wrappers/ruby&lt;/IfModule&gt;\n建立站点配置12$ sudo vim /etc/apache2/apache2.conf#add 'ServerName localhost'\n12345678910111213141516171819202122$ sudo vim /etc/apache2/sites-available/000-default.conf# the default port is for redmine&lt;VirtualHost *:80&gt;        DocumentRoot /var/www/html/redmine/public        &lt;Directory /var/www/html/redmine/public&gt;                AllowOverride All                Options -MultiViews        &lt;/Directory&gt;        RailsEnv production        RailsBaseURI /redmine        ErrorLog $&#123;APACHE_LOG_DIR&#125;/error.log        CustomLog $&#123;APACHE_LOG_DIR&#125;/access.log combined&lt;/VirtualHost&gt;Listen 3000 # we should listen to port 3000, or we cannot connect to it# this is for the original apache site&lt;VirtualHost *:3000&gt;        DocumentRoot /var/www/html/        ErrorLog $&#123;APACHE_LOG_DIR&#125;/error.log        CustomLog $&#123;APACHE_LOG_DIR&#125;/access.log combined&lt;/VirtualHost&gt;\n配置 Redmine Mail 功能\n申请邮箱\n编辑配置文件\n 1234567891011121314151617181920$ cd /var/www/html/redmine/config$ copy configuration.yml.example configuration.yml$ vim configuration.yml# add the following to the last section of the file    # be careful that this configuration cannot accept tab, we should all use spaces instead.production:  email_delivery:    delivery_method: :smtp    smtp_settings:      address: \"smtp.sohu.com\"      port: 25    # if the site supports ssl access, then we should disable the port 25    # then uncomment the following three lines.    # tls: true    # enable_starttls_auto: true    # port: 587      domain: \"smtp.sohu.com\"      authentication: :login      user_name: \"lhserver2011@sohu.com\"      password: 123456 # password don't quoted\n\n\n建立 Redmine 同 Git 的连接假设 git 的某个工程存放在 /home/git/repositories/xyz.git，那么在 Redmine 中建立工程的版本库时，就要写这个绝对路径。\n123# 将 www-data 加入到 git 组中$ sudo adduser www-data git# 更正 xyz.git 的权限为 755\n添加 DMSF 插件12345$ cd /var/www/html/redmine$ git clone https://github.com/danmunn/redmine_dmsf.git plugins/redmine_dmsf$ bundle exec rake redmine:plugins:migrate RAILS_ENV=\"production\"$ sudo service apache2 restart# then in the redmine project page, you should manually check the box of DMSF\n查看日志1$ tail -f /var/log/apache2/error.log\n","dateCreated":"2015-11-21T22:16:41+08:00","dateModified":"2016-01-06T18:36:12+08:00","datePublished":"2015-11-21T22:16:41+08:00","description":"","headline":"Setting up Redmine","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/21/Setting-up-Redmine/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"http://yoursite.com/2015/11/21/Setting-up-Redmine/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"},"articleBody":"安装 Ruby on Rails安装 RVM1234# for single user, it will be installed under ~/.rvm$ curl -L get.rvm.io | bash -s stable# for all users, it will be installed under /usr/local/rvm$ sudo curl -L get.vm.io | bash -s stable\n安装 Ruby123$ rvm install ruby# check the ruby version$ ruby -v\n安装 Rails123456# list all the download sources$ gem source -l# remove the origin sources$ gem source -r https://rubygems.org/$ gem source -a https://ruby.taobao.org/$ gem install rails\n安装 Apache21$ sudo apt-get install apache2\n安装 MySQL, PhpMyAdmin1$ sudo apt-get install mysql-client mysql-server phpmyadmin\n安装 PHP1$ sudo apt-get install libapache2-mod-php5\n安装 RedmineDownload the source from www.redmine.org and extract the file to /var/www/html/redmine.Make sure that the redmine directory belongs to group www-data.The own of the redmine directory should in the group of www-data.\n123456$ cd /var/www/html$ sudo chown -R www-data:www-data redmine$ cd redmine$ sudo chmod -R 775 files log tmp public/plugin_assets# if you set the permission to 755 according to the official doc,# you will not install the plugin successfully.\n创建数据库123CREATE DATABASE redmine CHARACTER SET utf8;CREATE USER &apos;redmine&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;&lt;my_password&gt;&apos;;GRANT ALL PRIVILEGES ON redmine.* TO &apos;redmine&apos;@&apos;localhost&apos;;\n数据库连接配置12345678910$ cd /var/www/html/redmine/config$ copy database.yml.example database.yml$ vim database.ymlproduction:  adapter: mysql2  database: redmine  host: localhost  username: redmine  password: &lt;my_password&gt;\n安装依赖1234$ cd /var/www/html/redmine$ gem install bundler$ bundle install --without development test# during the process, you may be prompted to install Rmagick\n生成 session secret key123456$ cd /var/www/html/redmine$ bundle exec rake generate_secret_token# or$ rake secret# then we should add that key to the /etc/profile file like thisexport SECRET_KEY_BASE=asdf12320890asd09f23rlkuf09da09sdfklk324\n初始化数据库该过程可以在你删除了数据库中的表之后新建数据库用\n123$ cd /var/www/html/redmine$ RAILS_ENV=production bundle exec rake db:migrate$ RAILS_ENV=production bundle exec rake redmine:load_default_data\n测试12345$ cd /var/www/html/redmine$ bundle exec rails server webrick -e production [-b &lt;ip&gt;] [-d]# the -b option change the default address from localhost:3000# to &lt;ip&gt;:3000# the -d option runs the server as a daemon.\n建立 Apache2 和 Redmine 的连接123456789$ gem install passenger$ passenger-install-apache2-module# then the install process will guide you through.# during the process, you will be asked to add code like the following to /etc/apache2/apache2.confLoadModule passenger_module /usr/local/rvm/gems/ruby-2.2.1/gems/passenger-5.0.21/buildout/apache2/mod_passenger.so&lt;IfModule mod_passenger.c&gt;        PassengerRoot /usr/local/rvm/gems/ruby-2.2.1/gems/passenger-5.0.21        PassengerDefaultRuby /usr/local/rvm/gems/ruby-2.2.1/wrappers/ruby&lt;/IfModule&gt;\n建立站点配置12$ sudo vim /etc/apache2/apache2.conf#add 'ServerName localhost'\n12345678910111213141516171819202122$ sudo vim /etc/apache2/sites-available/000-default.conf# the default port is for redmine&lt;VirtualHost *:80&gt;        DocumentRoot /var/www/html/redmine/public        &lt;Directory /var/www/html/redmine/public&gt;                AllowOverride All                Options -MultiViews        &lt;/Directory&gt;        RailsEnv production        RailsBaseURI /redmine        ErrorLog $&#123;APACHE_LOG_DIR&#125;/error.log        CustomLog $&#123;APACHE_LOG_DIR&#125;/access.log combined&lt;/VirtualHost&gt;Listen 3000 # we should listen to port 3000, or we cannot connect to it# this is for the original apache site&lt;VirtualHost *:3000&gt;        DocumentRoot /var/www/html/        ErrorLog $&#123;APACHE_LOG_DIR&#125;/error.log        CustomLog $&#123;APACHE_LOG_DIR&#125;/access.log combined&lt;/VirtualHost&gt;\n配置 Redmine Mail 功能\n申请邮箱\n编辑配置文件\n 1234567891011121314151617181920$ cd /var/www/html/redmine/config$ copy configuration.yml.example configuration.yml$ vim configuration.yml# add the following to the last section of the file    # be careful that this configuration cannot accept tab, we should all use spaces instead.production:  email_delivery:    delivery_method: :smtp    smtp_settings:      address: \"smtp.sohu.com\"      port: 25    # if the site supports ssl access, then we should disable the port 25    # then uncomment the following three lines.    # tls: true    # enable_starttls_auto: true    # port: 587      domain: \"smtp.sohu.com\"      authentication: :login      user_name: \"lhserver2011@sohu.com\"      password: 123456 # password don't quoted\n\n\n建立 Redmine 同 Git 的连接假设 git 的某个工程存放在 /home/git/repositories/xyz.git，那么在 Redmine 中建立工程的版本库时，就要写这个绝对路径。\n123# 将 www-data 加入到 git 组中$ sudo adduser www-data git# 更正 xyz.git 的权限为 755\n添加 DMSF 插件12345$ cd /var/www/html/redmine$ git clone https://github.com/danmunn/redmine_dmsf.git plugins/redmine_dmsf$ bundle exec rake redmine:plugins:migrate RAILS_ENV=\"production\"$ sudo service apache2 restart# then in the redmine project page, you should manually check the box of DMSF\n查看日志1$ tail -f /var/log/apache2/error.log\n","dateCreated":"2015-11-21T22:16:41+08:00","dateModified":"2016-01-06T18:36:12+08:00","datePublished":"2015-11-21T22:16:41+08:00","description":"","headline":"Setting up Redmine","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/21/Setting-up-Redmine/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"}},"url":"http://yoursite.com/2015/11/21/Setting-up-Redmine/"}</script>
     <meta name="description" content="安装 Ruby on Rails安装 RVM1234# for single user, it will be installed under ~/.rvm$ curl -L get.rvm.io | bash -s stable# for all users, it will be installed under /usr/local/rvm$ sudo curl -L get.vm.io |">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Setting up Redmine">
@@ -23,6 +23,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Setting up Redmine">
 <meta name="twitter:description" content="安装 Ruby on Rails安装 RVM1234# for single user, it will be installed under ~/.rvm$ curl -L get.rvm.io | bash -s stable# for all users, it will be installed under /usr/local/rvm$ sudo curl -L get.vm.io |">
+<meta name="twitter:creator" content="@mapleaph">
     
     
         
@@ -91,11 +92,11 @@
                         <a  class="sidebar-button-link "
                              href="/all-categories"
                             
-                            title="Categories"
+                            title="Kategorien"
                         >
                     
                         <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Categories</span>
+                        <span class="sidebar-button-desc">Kategorien</span>
                     </a>
             </li>
             
@@ -117,11 +118,11 @@
                         <a  class="sidebar-button-link "
                              href="/all-archives"
                             
-                            title="Archives"
+                            title="Archiv"
                         >
                     
                         <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Archives</span>
+                        <span class="sidebar-button-desc">Archiv</span>
                     </a>
             </li>
             
@@ -130,11 +131,11 @@
                         <a  class="sidebar-button-link open-algolia-search"
                              href="#search"
                             
-                            title="Search"
+                            title="Suche"
                         >
                     
                         <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Search</span>
+                        <span class="sidebar-button-desc">Suche</span>
                     </a>
             </li>
             
@@ -143,11 +144,11 @@
                         <a  class="sidebar-button-link "
                              href="#about"
                             
-                            title="About"
+                            title="Über"
                         >
                     
                         <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
+                        <span class="sidebar-button-desc">Über</span>
                     </a>
             </li>
             
@@ -157,7 +158,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="https://github.com/" target="_blank" rel="noopener" title="GitHub">
+                        <a  class="sidebar-button-link " href="https://github.com/mapleaph" target="_blank" rel="noopener" title="GitHub">
                     
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">GitHub</span>
@@ -166,16 +167,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="http://stackoverflow.com/users" target="_blank" rel="noopener" title="Stack Overflow">
-                    
-                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Stack Overflow</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter">
+                        <a  class="sidebar-button-link " href="https://twitter.com/mapleaph" target="_blank" rel="noopener" title="Twitter">
                     
                         <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">Twitter</span>
@@ -184,57 +176,13 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
-                    
-                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Facebook</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://plus.google.com/" target="_blank" rel="noopener" title="Google +">
-                    
-                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Google +</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://www.linkedin.com/profile/" target="_blank" rel="noopener" title="LinkedIn">
-                    
-                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">LinkedIn</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
                         <a  class="sidebar-button-link "
-                             href="/mailto"
-                            title="Mail"
+                             href="/mapleaph@gmail.com"
+                            title="E-Mail"
                         >
                     
                         <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Mail</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/atom.xml"
-                            
-                            title="RSS"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">RSS</span>
+                        <span class="sidebar-button-desc">E-Mail</span>
                     </a>
             </li>
             
@@ -262,7 +210,7 @@
         <div class="post-meta">
     <time datetime="2015-11-21T22:16:41+08:00">
 	
-		    11月 21, 2015
+		    21 11月 2015
     	
     </time>
     
@@ -322,18 +270,18 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/21/Things-Need-to-Know-about-Git/" data-tooltip="Git" aria-label="PREVIOUS: Git">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/21/Things-Need-to-Know-about-Git/" data-tooltip="Git" aria-label="FRÜHER: Git">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
                 </a>
             </li>
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/09/03/Setting-up-a-New-Blog/" data-tooltip="Setting up a New Blog" aria-label="NEXT: Setting up a New Blog">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/09/03/Setting-up-a-New-Blog/" data-tooltip="Setting up a New Blog" aria-label="NÄCHSTER: Setting up a New Blog">
                 
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </a>
             </li>
@@ -341,7 +289,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -349,7 +297,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/21/Setting-up-Redmine/" title="Share on Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/21/Setting-up-Redmine/" title="Teilen auf Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -357,7 +305,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/21/Setting-up-Redmine/" title="Share on Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/21/Setting-up-Redmine/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -365,7 +313,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/21/Setting-up-Redmine/" title="Share on Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/21/Setting-up-Redmine/" title="Teilen auf Google Plus">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -375,7 +323,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -408,18 +356,18 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/21/Things-Need-to-Know-about-Git/" data-tooltip="Git" aria-label="PREVIOUS: Git">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/21/Things-Need-to-Know-about-Git/" data-tooltip="Git" aria-label="FRÜHER: Git">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
                 </a>
             </li>
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/09/03/Setting-up-a-New-Blog/" data-tooltip="Setting up a New Blog" aria-label="NEXT: Setting up a New Blog">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/09/03/Setting-up-a-New-Blog/" data-tooltip="Setting up a New Blog" aria-label="NÄCHSTER: Setting up a New Blog">
                 
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </a>
             </li>
@@ -427,7 +375,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -435,7 +383,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/21/Setting-up-Redmine/" title="Share on Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/21/Setting-up-Redmine/" title="Teilen auf Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -443,7 +391,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/21/Setting-up-Redmine/" title="Share on Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/21/Setting-up-Redmine/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -451,7 +399,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/21/Setting-up-Redmine/" title="Share on Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/21/Setting-up-Redmine/" title="Teilen auf Google Plus">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -461,7 +409,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -479,7 +427,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/21/Setting-up-Redmine/">
-                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Teilen auf Facebook</span>
                 </a>
             </li>
         
@@ -487,7 +435,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/21/Setting-up-Redmine/">
-                    <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    <i class="fab fa-twitter" aria-hidden="true"></i><span>Teilen auf Twitter</span>
                 </a>
             </li>
         
@@ -495,7 +443,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/21/Setting-up-Redmine/">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Teilen auf Google Plus</span>
                 </a>
             </li>
         
@@ -526,6 +474,12 @@
 
             </div>
         
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Tianjin, China
+            </div>
         
     </div>
 </div>

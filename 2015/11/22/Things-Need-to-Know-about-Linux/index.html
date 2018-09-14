@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"Ubuntu 登录及注销时自动执行的脚本策略登录时\n~/.bash_profile\n\n~/.bash_login\n\n~/.profile\n\n\n按顺序查找，只执行最先找到的那个脚本。\n注销时~/.bash_logout\nHash sum mismatch error while updating Ubuntu12sudo rm -rf /var/lib/apt/lists/*sudo apt-get update\nUbuntu 切换到命令行模式的三种方法\nsudo init 1;\n\n切换到其他终端：crtl + alt + Fn\n\nsudo /etc/init.d/gdm stop\n\n\nAuthentication failureUbuntu 默认不开启 root 帐户，如果使用了 su 命令的话，会提示 authentication failure。\n这时，需要用\n1sudo passwd root\n为 root 帐户设置密码。\n系统自动发送串口测试指令 (AT+GCAP)在正常加载驱动后，Ubuntu 的 ModemManager 会自动对串口进行测试，那么就会发现，还没有启动串口就已经有数据从串口发送出去了，要避免这种情况的发生，需要做下面的步骤，将 ModemManager 功能禁用掉。\n123cd /usr/share/dbus-1/system-servicesmv org.freedesktop.ModemManager.service org.freedesktop.ModemManager.service.disabledsudo reboot\nRemove unused kernel images123uname -rdpkg --list | grep linux-imagesudo apt-get purge linux-image-x.x.x.x-generic\nunknown filesystem: grub rescue\nls 列出所有硬盘分区\n\nls (hd0,x)/ 检查分区中是否存在安装的系统\n\n如果找到分区，则:\n\nset root=(hd0,x)\n\nset prefix=(hd0,x)/boot/grub\n\ninsmod /boot/grub/i386-pc/normal.mod\n\nnormal\n\n\n正常情况下应该进入到启动列表，然后按 c 进入 grub 命令行：\n\nset root=(hd0,x)\n\nlinux /boot/vmlinuz-xxx root=/dev/sda(y)\n\ninitrd /boot/initrd-xxx\n\nboot\n\n\n如果成功的话就能够正常进入 ubuntu系统了，进入系统后，打开 terminal：\n1234sudo grub-install /dev/sdasudo depmodsudo update-grubsudo reboot\nvim 方向键变字母的问题\n方法一\n  1sudo apt-get remove vim-common; sudo apt-get install vim\n\n方法二\n  123sudo gedit ~/.vimrc添加set nocompatible\n\n\nInstall Boot-Repair on Ubuntu123sudo add-apt-repository ppa:yannubuntu/boot-repairsudo apt-get updatesudo apt-get install boot-repair\nconfigure: error: C++ preprocessor “|lib|cpp” fails sanity check在编译软件时，如果出现上面错误，在 centos 下运行\n1yum install gcc-c++\n即可。\ngrep lines containing tab characterUsing a regular form to grep lines in file.txt containing tab character, be careful about the $ sign before the ‘\\t’ expression.\n1grep $'\\t' file.txt\nUsing perl script to grep lines in file.txt containing tab character, -P (uppercase) option means perl.\n1grep -P '\\t' file.txt\nGrep lines in file.txt not containing tab character, -v option means reverse.\n1grep -v $'\\t' file.txt\ngrep+find 指定文件范围查找1find . -i name \"*.c\" -exec grep \"hello\" &#123;&#125; \\;\nKernel Panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0)12sudo initramfs -u -k versionsudo update-grub2\n安装 Nvidia 显卡驱动\n禁用 SELinux\n\n将 “blacklist nouveau” 添加到 /etc/modprob.d/blacklist.conf 文件末尾\n\n将 /etc/grub.conf 中的 “nouveau.modeset=0” 去掉\n\n执行 init 3\n\n执行 xxx.run 驱动安装脚本\n\n备份 /etc/X11/xorg.conf 后，将该文件删掉\n\n重新启动系统。\n\n\nssh-keygen 的使用方法为了让两个 Linux 机器之间使用 ssh 不需要用户名和密码，采用数字签名 RSA 或者 DSA 来完成这个操作。\n模型分析假设 A (192.168.20.59) 为客户机器，B (192.168.20.60) 为目标机。\n要达到的目的：\nA 机器 ssh 登录 B 机器无需输入密码；\n加密方式选 rsa 或者 dsa 均可以，默认是 dsa。\n具体操作流程单向登陆的操作过程（能满足上边的目的）\n登录 A 机器\n\nssh-keygen -t [rsa|dsa]，将会生成密钥文件和私钥文件 id_rsa, id_rsa.pub 或 id_dsa, id_dsa.pub\n\n将 .pub 文件复制到 B 机器的 .ssh 目录， 并 cat id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys\n\n大功告成，从 A 机器登录 B 机器的目标账户，不再需要密码了。（直接运行 ssh 192.168.20.60）\n\n\n双向登陆的操作过程ssh-keygen 做密码验证可以使在向对方机器上 ssh, scp 不用使用密码。具体方法如下:\n\n在两个机器上互相执行上面的 1～3 步\n\n设置文件和目录权限：\n 12chmod 600 authorized_keyschmod 700 -R .ssh\n 要保证 .ssh 和 authorized_keys 都只有用户自己有写权限，否则验证无效。\n\n\nUbuntu 10.04 如何进入 grub 命令行Ubuntu 从 10.04 开始使用 GRUB2.0 版本，默认安装情况下 grub2 启动菜单是隐藏的，除非您改动了 /etc/default/grub 中的设置。\n打开 grub2 启动菜单的方法：\n在开机启动时一直按 Shift 键，直到 grub2 启动菜单出现，这时候可以按上下方向键选择一个项目，或者直接按 ‘c’ 进入命令行模式。\n命令行下查找和替换文本的方法1sed -i 's/&lt;old-string&gt;/&lt;new-string&gt;/g' `grep &lt;old-string&gt; -rl .`\nGetting part of a stringGetting the “File” part\n1echo \"File.txt\" | cut -d\\. -f1\nGetting the “txt” part\n1echo \"File.txt\" | cut -d\\. -f2\n-fn stands for the nth field\n-d. means we use dot character as delimiter. cut command uses tab as its delimiter by default.\n-s option means only shows the results contains the delimiter\n安装 Grub12mount /dev/sdaX /mntgrub-install --root-directory=/mnt /dev/sdX\ngawk需要系统中有 troff\n1234./configuremakecd doc/make awkward.pdf\nwget下载 https 链接需要添加 –no-check-certificate 选项\n在配置文件中添加代理编辑 ~/.wgetrc 文件\n1234http_proxy=http://127.0.0.1:8088https_proxy=http://127.0.0.1:8088ftp_proxy=http://127.0.0.1:8088use_proxy=off (默认不开启代理)\n之后可在命令中用 -Y on 来手动开启代理。\nBochsUbuntu 环境下，默认的配置文件为 /etc/bochs-init/bochsrc.\n将配置文件中的\n1romimage: file=$BXSHARE/BIOS-bochs-latest, address=0xf0000\n改成\n1romimage: file=$BXSHARE/BIOS-bochs-latest\n即可。\ndiff 的四种格式解读123456789101112# 1. 传统格式diff &lt;before&gt; &lt;after&gt;# 2. 上下文格式diff -c &lt;before&gt; &lt;after&gt;# 3. 合并格式diff -u &lt;before&gt; &lt;after&gt;# 4. git diff# 这种格式不需要文件位于 git 仓库内git diff &lt;before&gt; &lt;after&gt;\n几个常用的 RPM 命令1234567891. 查询特定的 rpm 包是否已经安装rpm -q xxx.rpm2. 列出系统中所有的 rpm 包，并在中间按关键字查找rpm -qa | grep xxx3. 删除制定的 rpm 包rpm -e xxx.rpm注：如果有依赖关系的话，默认是不能删除的，这时就要用 yum remove 来进行卸载\n基础命令的进度监控正常情况下，cp 命令是不会显示进度的，如果你打算拷贝一个 20 GB 的文件，天知道要等多久，心里真没底啊。。。。咋办呢？\n下面是方法一：\n干脆就不用 cp 命令了，改用下面这个：\n1$ rsync -av --progress &lt;from&gt; &lt;to&gt;\n但是，别的命令咋办呢，比如 mv？正好在 github 上面有这个项目，Coreutils Viewer，下载之后 make &amp;&amp; make install 就可以了，下面给出使用方法：\n1$ cp &lt;from&gt; &lt;to&gt; &amp; cv -m\n注意：上面的命令仅仅用了一个 &amp;，用来让 cp 命令在后台执行，而在前台执行 cv -m 命令，目的就是用来监控 cp 的进度，非常方便。\nUbuntu 内核开发环境搭建配置\nOS：ubuntu-12.04.4-desktop-i386\n\n运行环境：虚拟机。内存分配 1GB，CPU 分配一个核心\n\n安装配置：磁盘分配为系统默认，默认选择 “安装时下载” 和 “安装第三方软件“\n\n系统自带内核：3.11.0-15\n\n需要编译的内核：linux-3.11.tar.gz （从 kernel.org 下载）\n\n需要 apt-get 安装组件 build-essential, libncurses-dev, kernel-package\n\n\n内核编译及安装步骤12345678910cd ~/Desktop; tar zxf linux-3.11.tar.gz; cd linuxmake mrpropermake menuconfig# 界面出来之后直接选择退出，然后选择保存cp /boot/xxx-config .configmake -j&lt;n&gt; #单核 n=1，双核 n=2# 接下来会让你确认一个内核选项，是关于 vesa 的，选择 yes 即可# 然后就进入了编译过程，这里需要漫长的等待，根据上面的虚拟机配置，预计时间为 30 ~ 60 分钟sudo make modules_installsudo make install\n新内核使用及相关问题重启后如果找不到 Grub2 启动菜单，需要在启动时按住 Shift 键，然后在菜单上找到 Previous 选择新内核进入系统后，需要重新安装 VMware Tools，否则无法同主机进行文件共享。编译驱动时，如果提示 popt.h: No such file or directory，需要 apt-get 安装 libpopt-dev。\n如何验证当前系统是 32 位还是 64 位方法一\n1$ getconf LONG_BIT\n方法二\n1$ file /bin/ls\nHow to Check and Use Serial Ports under LinuxCheck the System Initialization for Serial Ports1$ dmesg | grep tty\nCheck What Serial Ports Your Linux Has1$ setserial -g /dev/ttyS[0123]\n串口的简单使用\n查看串口设备信息\n 1$ dmesg | grep tty\n\n查看串口驱动信息\n 1$ cat /proc/tty/drivers/serial\n\n读写\n 1234# read$ cat /dev/ttyS1# write$ echo 12345 &gt; /dev/ttyS1\n\n\n添加删除用户\n注销旧用户\n 1$ pkill -u &lt;username&gt;\n or\n 用 ps 命令找到用户登录的终端，然后关闭对应的进程\n\n删除旧用户\n 1$ userdel &lt;username&gt;\n\n添加新用户\n 12345$ groupadd &lt;groupname&gt;$ useradd -g &lt;groupname&gt; -d /home/&lt;username&gt; -s /bin/bash# 将用户加入到新组，并不破坏原来的组$ usermod -a -G &lt;groupname&gt; &lt;username&gt;\n\n\n运行软件时提示 GLIBCXX_3.4.15 not found我打算在 fedora 14 上安装使用 Qt5.4.1，能够正常安装，但是打不开 QtCreator，提示 /usr/lib/libstdc++.so.6: GLIBCXX_3.4.15 not found，在官网上下载了 fedora 15 的 libstdc++-4.6.0-6.fc15.i686.rpm，直接安装的话，会和现有的组件起冲突，可以换另外一种方式：\n1234567891011# 对 rpm 进行解压缩$ rpm2cpio libstdc++-4.6.0-6.fc15.i686.rpm | cpio -div# 解压出来是一个 usr 文件夹$ cd usr/lib/# 可以通过下面的命令查看当前动态库是否包含 GLIBCXX_3.4.15$ strings libstdc++.so.6.16 | grep GLIBCXX_3.4.15$ sudo cp libstdc++.so.6.16 /usr/lib/; cd /usr/lib# 删除旧的链接并重新新建$ sudo rm libstdc++.so.6$ sudo ln -s libstdc++.so.6 libstdc++.so.6.16\n修改用户信息1$ chfn &lt;username&gt;\nApache 允许外部主机访问如果安装的是 xampp，在 Apache2.4 以后的版本，需要编辑 /opt/xampp/etc/extra/httpd-xampp.conf，找到 LocationMatch，将里面的 Require local 替换为 Require all granted 即可。\n网络配置1$ ifconfig eth0 192.168.1.120 netmask 255.255.255.0\nELDK 安装ELDK 是用于生成 u-boot 的开发套件，目前的最新版本是 5.6\n下载针对 PowerPC 的镜像 eldk-5.6-powerpc.iso，文件大小 5GB 左右。\n123456789101112131415161718$ sudo mount -t iso9660 -o loop eldk-5.6-powerpc.iso /mnt$ cd /mnt/eldk-5.6/$ sudo ./install.sh -s toolchain powerpc# 接下来安装会有问题，提示不能读取 toolchain 的 tarball 文件，那么我们就来手动安装$ cd /opt/eldk-5.6/powerpc$ sudo mkdir rootfs-minimal$ sudo tar xpf /mnt/eldk-5.6/targets/powerpc/core-image-minimal-generic-powerpc.tar.gz -C rootfs-minimal$ sudo mkdir rootfs-minimal-dev$ sudo tar xpf /mnt/eldk-5.6/targets/powerpc/core-image-minimal-dev-generic-powerpc.tar.gz -C rootfs-minimal-dev$ sudo mkdir rootfs-minimal-mtdutils$ sudo tar xpf /mnt/eldk-5.6/targets/powerpc/core-image-minimal-mtdutils-generic-powerpc.tar.gz -C rootfs-minimal-mtdutils$ sudo mkdir rootfs-minimal-xenomai$ sudo tar xpf /mnt/eldk-5.6/targets/powerpc/core-image-minimal-xenomai-generic-powerpc.tar.gz -C rootfs-minimal-xenomai\n设置环境变量1234$ cd /opt/eldk-5.6/powerpc$ source environment-setup-powerpc-linux$ export ARCH=powerpc$ export CROSS_COMPILE=$&#123;TARGET_PREFIX&#125;\nUbuntu14.04 安装 Sublime Text 2123$ sudo add-apt-repository ppa:webupd8team/sublime-text-2$ sudo apt-get update$ sudo apt-get install sublime-text\nTerminal 配色方案文本颜色设为 #708284，背景颜色设为 #07242E\nUbuntu 用关键字查询已经安装的软件包1$ sudo dpkg --get-selections | grep xxx\nupdate-alternatives 学习笔记［转载］作用概述\n为多个功能相同但名称不同的软件起一个共用的名称；\n可以让同一个软件的多个版本共存。\n\nLinux 发展到今天，可用的软件已经非常多了。这样自然会有一些软件的功能大致上相同。例如，同样是编辑器，就有 nvi、vim、emacs、nano，而且我说的这些还只是一部分。大多数情况下，这样的功能相似的软件都是同时安装在系统里的，可以用它们的名称来执行。例如，要执行 vim，只要在终端下输入 vim 并按回车就可以了。不过，有些情况下我们需要用一个相对固定的命令调用这些程序中的一个。例如，当我们写一个脚本程序时，只要写下 editor，而不希望要为“编辑器是哪个”而操心。Debian 提供了一种机制来解决这个问题，而 update-alternatives 就是用来实现这种机制的。\n参数详解\n–display\n 它使我们可以看到一个命令的所有可选命令\n 1$ update-alternatives --display editor\n 可以看到我的机器上的所有可以用来被 editor 链接的命令。\n\n–config\n 这个选项使我们可以选择其中一个命令程序来作为 editor\n 1$ update-alternatives --config editor\n\n–auto\n update-alternatives 在一般情况下是由 postinst 和 prerm 这样的安装脚本自动调用的，所以一个 alternative 的状态有两种：自动和手动。每个 alternative 的 初始状态都是自动。如果系统发现管理员手动修改了一个 alternative，它的状态就从自动变成了手动，这样安装脚本就不会更新它了。如果你希望将一个 alternative 变回自动，只要执行代码:\n 1$ update-alternatives --auto editor\n\n–install\n 1$ update-alternatives --install gen link alt pri [--slave sgen slink salt] ...\n gen，link，alt，pri 分别在下面解释。如果需要从 alternative，你可以用 –slave。如果你在向一个已经存在的 alternative 组中添加新的 alternative，该命令会把这个 alternative 加入到这个已经存在的 alternative 组的列表中，并用新的可选命令作为新的命令；否则，将会建立一个新的自动的 alternative 组。\n\n–remove\n 1$ update-alternatives --remove name path\n\n\n名词解释\ngeneral name：这是指一系列功能相似的程序的“公用”名字（包括绝对路径），比如 /usr/bin/editor。\nlink：这是指一个 alternative 在 /etc/alternative 中的名字，比如 editor，–display，–config 和 –auto 后面跟的都是 link。\nalternative：顾名思义，这是指一个可选的程序所在的路径（包括绝对路径），比如 /usr/bin/vim。\n优先级：这个比较简单，当然优先级越高的程序越好啦。\n主和从alternative：想想看，你将 /usr/bin/editor 链接到了 vim，可是当你执行 man editor 时看到的却是 emacs 的 manpage，你会做何感想呢？这就引出了主和从 alternative 的概念了：当更新主的 alternative 时，从的 alternative 也会被更新。\n\n多个 gcc 共存因为编译软件的需要，Ubuntu 自带的 gcc4.4.1 版本太高，可能需要 gcc3.x，这里选择的是 gcc3.4.4。\n下载并安装 deb 安装包选择源码包编译安装可能会出错\n下载地址为：http://archive.ubuntu.com/ubuntu/pool/universe/g/gcc-3.4/\n\ngcc-3.4-base_3.4.6-6ubuntu3_i386.deb\ngcc-3.4_3.4.6-6ubuntu3_i386.deb\ncpp-3.4_3.4.6-6ubuntu3_i386.deb\ng++-3.4_3.4.6-6ubuntu3_i386.deb\nlibstdc++6-dev_3.4.6-6ubuntu3_i386.deb\n\n配置目前系统里存在有两个版本的 gcc，缺省值为 gcc4.4.1，这里我们需要改变系统的缺省值\n1ls /usr/bin/gcc* -ll\n12345rwxrwxrwx  1 root root  21      2009-02-10 17:24 /usr/bin/gcc -&gt; /etc/alternatives/gcc-rwxr-xr-x 1 root root  85552   2008-05-08 18:04 /usr/bin/gcc-3.4-rwxr-xr-x 1 root root  193372  2008-10-11 03:41 /usr/bin/gcc-4.2-rwxr-xr-x 1 root root  16090   2008-05-08 17:58 /usr/bin/gccbug-3.4-rwxr-xr-x 1 root root  2018    2007-06-05 08:59 /usr/bin/gccmakedep\n增加 gcc3.4 和 gcc4.3 可选项12$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.2 40$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-3.4 30\n切换版本到 gcc-3.41$ sudo update-alternatives --config gcc\n现有 2 个可选项，它们都提供了 gcc\n121   /usr/bin/gcc-3.4*2   /usr/bin/gcc-4.2\n要维持缺省值 [*]，按回车键，或者键入选择的编号：1\n使用 “/usr/bin/gcc-3.4” 来提供 gcc。\nno glxinfo command1$ sudo apt-get install mesa-utils\ninodeA Brief Intro1 sector = 512B = 0.5KiB\n1 block contains a series of sectors, commonly 4KiB (8 sectors).\n1 disk consists of a data section and a inode section.\n1 inode represents 1 file in the disk, it contains\n\nsize in Bytes\nowner ID\ngroup ID\nRWX priviledge\ntimestamp\nctime (last inode change time)\nmtime (last file content change time)\natime (last file access time)\n\n\nnumber of links\ndata section location\n\nFiles in Linux\nreal file\ndata\ninode\n\n\ndirectory\nfile list (use the pair (file_name : inode_num))\ninode\n\n\n\nThe maximum number of files (a.k.a the number of inodes) is fixed after the disk formatting.\nUseful Commandsstatshow the inode information of file1:\n1$ stat file1\ndf -iexamine the inode usage of the system:\n1$ df -i\ndumpe2fscheck the inode size of disk sda in the current system:\n1$ sudo dumpe2fs -h /dev/sda1 | gerp \"Inode size\"\nThe result is usually 128B or 256B.\nls -icheck the inode number of file1:\n1$ ls -i file1\nvmware workstation no 3d support on linuxOpen the .vmx file of the virtual machine with a text editor, add the following to the end of the file.\n1mks.gl.allowBlacklistedDrivers = \"TRUE\"\n简单的网络诊断方法检测网络端口状态1sudo netstat -apn\n检测防火墙规则1sudo iptables -L\n查看防火墙状态1sudo ufw verbose","dateCreated":"2015-11-22T10:05:04+08:00","dateModified":"2016-01-06T18:41:32+08:00","datePublished":"2015-11-22T10:05:04+08:00","description":"","headline":"Linux","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/22/Things-Need-to-Know-about-Linux/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"http://yoursite.com/2015/11/22/Things-Need-to-Know-about-Linux/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"},"articleBody":"Ubuntu 登录及注销时自动执行的脚本策略登录时\n~/.bash_profile\n\n~/.bash_login\n\n~/.profile\n\n\n按顺序查找，只执行最先找到的那个脚本。\n注销时~/.bash_logout\nHash sum mismatch error while updating Ubuntu12sudo rm -rf /var/lib/apt/lists/*sudo apt-get update\nUbuntu 切换到命令行模式的三种方法\nsudo init 1;\n\n切换到其他终端：crtl + alt + Fn\n\nsudo /etc/init.d/gdm stop\n\n\nAuthentication failureUbuntu 默认不开启 root 帐户，如果使用了 su 命令的话，会提示 authentication failure。\n这时，需要用\n1sudo passwd root\n为 root 帐户设置密码。\n系统自动发送串口测试指令 (AT+GCAP)在正常加载驱动后，Ubuntu 的 ModemManager 会自动对串口进行测试，那么就会发现，还没有启动串口就已经有数据从串口发送出去了，要避免这种情况的发生，需要做下面的步骤，将 ModemManager 功能禁用掉。\n123cd /usr/share/dbus-1/system-servicesmv org.freedesktop.ModemManager.service org.freedesktop.ModemManager.service.disabledsudo reboot\nRemove unused kernel images123uname -rdpkg --list | grep linux-imagesudo apt-get purge linux-image-x.x.x.x-generic\nunknown filesystem: grub rescue\nls 列出所有硬盘分区\n\nls (hd0,x)/ 检查分区中是否存在安装的系统\n\n如果找到分区，则:\n\nset root=(hd0,x)\n\nset prefix=(hd0,x)/boot/grub\n\ninsmod /boot/grub/i386-pc/normal.mod\n\nnormal\n\n\n正常情况下应该进入到启动列表，然后按 c 进入 grub 命令行：\n\nset root=(hd0,x)\n\nlinux /boot/vmlinuz-xxx root=/dev/sda(y)\n\ninitrd /boot/initrd-xxx\n\nboot\n\n\n如果成功的话就能够正常进入 ubuntu系统了，进入系统后，打开 terminal：\n1234sudo grub-install /dev/sdasudo depmodsudo update-grubsudo reboot\nvim 方向键变字母的问题\n方法一\n  1sudo apt-get remove vim-common; sudo apt-get install vim\n\n方法二\n  123sudo gedit ~/.vimrc添加set nocompatible\n\n\nInstall Boot-Repair on Ubuntu123sudo add-apt-repository ppa:yannubuntu/boot-repairsudo apt-get updatesudo apt-get install boot-repair\nconfigure: error: C++ preprocessor “|lib|cpp” fails sanity check在编译软件时，如果出现上面错误，在 centos 下运行\n1yum install gcc-c++\n即可。\ngrep lines containing tab characterUsing a regular form to grep lines in file.txt containing tab character, be careful about the $ sign before the ‘\\t’ expression.\n1grep $'\\t' file.txt\nUsing perl script to grep lines in file.txt containing tab character, -P (uppercase) option means perl.\n1grep -P '\\t' file.txt\nGrep lines in file.txt not containing tab character, -v option means reverse.\n1grep -v $'\\t' file.txt\ngrep+find 指定文件范围查找1find . -i name \"*.c\" -exec grep \"hello\" &#123;&#125; \\;\nKernel Panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0)12sudo initramfs -u -k versionsudo update-grub2\n安装 Nvidia 显卡驱动\n禁用 SELinux\n\n将 “blacklist nouveau” 添加到 /etc/modprob.d/blacklist.conf 文件末尾\n\n将 /etc/grub.conf 中的 “nouveau.modeset=0” 去掉\n\n执行 init 3\n\n执行 xxx.run 驱动安装脚本\n\n备份 /etc/X11/xorg.conf 后，将该文件删掉\n\n重新启动系统。\n\n\nssh-keygen 的使用方法为了让两个 Linux 机器之间使用 ssh 不需要用户名和密码，采用数字签名 RSA 或者 DSA 来完成这个操作。\n模型分析假设 A (192.168.20.59) 为客户机器，B (192.168.20.60) 为目标机。\n要达到的目的：\nA 机器 ssh 登录 B 机器无需输入密码；\n加密方式选 rsa 或者 dsa 均可以，默认是 dsa。\n具体操作流程单向登陆的操作过程（能满足上边的目的）\n登录 A 机器\n\nssh-keygen -t [rsa|dsa]，将会生成密钥文件和私钥文件 id_rsa, id_rsa.pub 或 id_dsa, id_dsa.pub\n\n将 .pub 文件复制到 B 机器的 .ssh 目录， 并 cat id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys\n\n大功告成，从 A 机器登录 B 机器的目标账户，不再需要密码了。（直接运行 ssh 192.168.20.60）\n\n\n双向登陆的操作过程ssh-keygen 做密码验证可以使在向对方机器上 ssh, scp 不用使用密码。具体方法如下:\n\n在两个机器上互相执行上面的 1～3 步\n\n设置文件和目录权限：\n 12chmod 600 authorized_keyschmod 700 -R .ssh\n 要保证 .ssh 和 authorized_keys 都只有用户自己有写权限，否则验证无效。\n\n\nUbuntu 10.04 如何进入 grub 命令行Ubuntu 从 10.04 开始使用 GRUB2.0 版本，默认安装情况下 grub2 启动菜单是隐藏的，除非您改动了 /etc/default/grub 中的设置。\n打开 grub2 启动菜单的方法：\n在开机启动时一直按 Shift 键，直到 grub2 启动菜单出现，这时候可以按上下方向键选择一个项目，或者直接按 ‘c’ 进入命令行模式。\n命令行下查找和替换文本的方法1sed -i 's/&lt;old-string&gt;/&lt;new-string&gt;/g' `grep &lt;old-string&gt; -rl .`\nGetting part of a stringGetting the “File” part\n1echo \"File.txt\" | cut -d\\. -f1\nGetting the “txt” part\n1echo \"File.txt\" | cut -d\\. -f2\n-fn stands for the nth field\n-d. means we use dot character as delimiter. cut command uses tab as its delimiter by default.\n-s option means only shows the results contains the delimiter\n安装 Grub12mount /dev/sdaX /mntgrub-install --root-directory=/mnt /dev/sdX\ngawk需要系统中有 troff\n1234./configuremakecd doc/make awkward.pdf\nwget下载 https 链接需要添加 –no-check-certificate 选项\n在配置文件中添加代理编辑 ~/.wgetrc 文件\n1234http_proxy=http://127.0.0.1:8088https_proxy=http://127.0.0.1:8088ftp_proxy=http://127.0.0.1:8088use_proxy=off (默认不开启代理)\n之后可在命令中用 -Y on 来手动开启代理。\nBochsUbuntu 环境下，默认的配置文件为 /etc/bochs-init/bochsrc.\n将配置文件中的\n1romimage: file=$BXSHARE/BIOS-bochs-latest, address=0xf0000\n改成\n1romimage: file=$BXSHARE/BIOS-bochs-latest\n即可。\ndiff 的四种格式解读123456789101112# 1. 传统格式diff &lt;before&gt; &lt;after&gt;# 2. 上下文格式diff -c &lt;before&gt; &lt;after&gt;# 3. 合并格式diff -u &lt;before&gt; &lt;after&gt;# 4. git diff# 这种格式不需要文件位于 git 仓库内git diff &lt;before&gt; &lt;after&gt;\n几个常用的 RPM 命令1234567891. 查询特定的 rpm 包是否已经安装rpm -q xxx.rpm2. 列出系统中所有的 rpm 包，并在中间按关键字查找rpm -qa | grep xxx3. 删除制定的 rpm 包rpm -e xxx.rpm注：如果有依赖关系的话，默认是不能删除的，这时就要用 yum remove 来进行卸载\n基础命令的进度监控正常情况下，cp 命令是不会显示进度的，如果你打算拷贝一个 20 GB 的文件，天知道要等多久，心里真没底啊。。。。咋办呢？\n下面是方法一：\n干脆就不用 cp 命令了，改用下面这个：\n1$ rsync -av --progress &lt;from&gt; &lt;to&gt;\n但是，别的命令咋办呢，比如 mv？正好在 github 上面有这个项目，Coreutils Viewer，下载之后 make &amp;&amp; make install 就可以了，下面给出使用方法：\n1$ cp &lt;from&gt; &lt;to&gt; &amp; cv -m\n注意：上面的命令仅仅用了一个 &amp;，用来让 cp 命令在后台执行，而在前台执行 cv -m 命令，目的就是用来监控 cp 的进度，非常方便。\nUbuntu 内核开发环境搭建配置\nOS：ubuntu-12.04.4-desktop-i386\n\n运行环境：虚拟机。内存分配 1GB，CPU 分配一个核心\n\n安装配置：磁盘分配为系统默认，默认选择 “安装时下载” 和 “安装第三方软件“\n\n系统自带内核：3.11.0-15\n\n需要编译的内核：linux-3.11.tar.gz （从 kernel.org 下载）\n\n需要 apt-get 安装组件 build-essential, libncurses-dev, kernel-package\n\n\n内核编译及安装步骤12345678910cd ~/Desktop; tar zxf linux-3.11.tar.gz; cd linuxmake mrpropermake menuconfig# 界面出来之后直接选择退出，然后选择保存cp /boot/xxx-config .configmake -j&lt;n&gt; #单核 n=1，双核 n=2# 接下来会让你确认一个内核选项，是关于 vesa 的，选择 yes 即可# 然后就进入了编译过程，这里需要漫长的等待，根据上面的虚拟机配置，预计时间为 30 ~ 60 分钟sudo make modules_installsudo make install\n新内核使用及相关问题重启后如果找不到 Grub2 启动菜单，需要在启动时按住 Shift 键，然后在菜单上找到 Previous 选择新内核进入系统后，需要重新安装 VMware Tools，否则无法同主机进行文件共享。编译驱动时，如果提示 popt.h: No such file or directory，需要 apt-get 安装 libpopt-dev。\n如何验证当前系统是 32 位还是 64 位方法一\n1$ getconf LONG_BIT\n方法二\n1$ file /bin/ls\nHow to Check and Use Serial Ports under LinuxCheck the System Initialization for Serial Ports1$ dmesg | grep tty\nCheck What Serial Ports Your Linux Has1$ setserial -g /dev/ttyS[0123]\n串口的简单使用\n查看串口设备信息\n 1$ dmesg | grep tty\n\n查看串口驱动信息\n 1$ cat /proc/tty/drivers/serial\n\n读写\n 1234# read$ cat /dev/ttyS1# write$ echo 12345 &gt; /dev/ttyS1\n\n\n添加删除用户\n注销旧用户\n 1$ pkill -u &lt;username&gt;\n or\n 用 ps 命令找到用户登录的终端，然后关闭对应的进程\n\n删除旧用户\n 1$ userdel &lt;username&gt;\n\n添加新用户\n 12345$ groupadd &lt;groupname&gt;$ useradd -g &lt;groupname&gt; -d /home/&lt;username&gt; -s /bin/bash# 将用户加入到新组，并不破坏原来的组$ usermod -a -G &lt;groupname&gt; &lt;username&gt;\n\n\n运行软件时提示 GLIBCXX_3.4.15 not found我打算在 fedora 14 上安装使用 Qt5.4.1，能够正常安装，但是打不开 QtCreator，提示 /usr/lib/libstdc++.so.6: GLIBCXX_3.4.15 not found，在官网上下载了 fedora 15 的 libstdc++-4.6.0-6.fc15.i686.rpm，直接安装的话，会和现有的组件起冲突，可以换另外一种方式：\n1234567891011# 对 rpm 进行解压缩$ rpm2cpio libstdc++-4.6.0-6.fc15.i686.rpm | cpio -div# 解压出来是一个 usr 文件夹$ cd usr/lib/# 可以通过下面的命令查看当前动态库是否包含 GLIBCXX_3.4.15$ strings libstdc++.so.6.16 | grep GLIBCXX_3.4.15$ sudo cp libstdc++.so.6.16 /usr/lib/; cd /usr/lib# 删除旧的链接并重新新建$ sudo rm libstdc++.so.6$ sudo ln -s libstdc++.so.6 libstdc++.so.6.16\n修改用户信息1$ chfn &lt;username&gt;\nApache 允许外部主机访问如果安装的是 xampp，在 Apache2.4 以后的版本，需要编辑 /opt/xampp/etc/extra/httpd-xampp.conf，找到 LocationMatch，将里面的 Require local 替换为 Require all granted 即可。\n网络配置1$ ifconfig eth0 192.168.1.120 netmask 255.255.255.0\nELDK 安装ELDK 是用于生成 u-boot 的开发套件，目前的最新版本是 5.6\n下载针对 PowerPC 的镜像 eldk-5.6-powerpc.iso，文件大小 5GB 左右。\n123456789101112131415161718$ sudo mount -t iso9660 -o loop eldk-5.6-powerpc.iso /mnt$ cd /mnt/eldk-5.6/$ sudo ./install.sh -s toolchain powerpc# 接下来安装会有问题，提示不能读取 toolchain 的 tarball 文件，那么我们就来手动安装$ cd /opt/eldk-5.6/powerpc$ sudo mkdir rootfs-minimal$ sudo tar xpf /mnt/eldk-5.6/targets/powerpc/core-image-minimal-generic-powerpc.tar.gz -C rootfs-minimal$ sudo mkdir rootfs-minimal-dev$ sudo tar xpf /mnt/eldk-5.6/targets/powerpc/core-image-minimal-dev-generic-powerpc.tar.gz -C rootfs-minimal-dev$ sudo mkdir rootfs-minimal-mtdutils$ sudo tar xpf /mnt/eldk-5.6/targets/powerpc/core-image-minimal-mtdutils-generic-powerpc.tar.gz -C rootfs-minimal-mtdutils$ sudo mkdir rootfs-minimal-xenomai$ sudo tar xpf /mnt/eldk-5.6/targets/powerpc/core-image-minimal-xenomai-generic-powerpc.tar.gz -C rootfs-minimal-xenomai\n设置环境变量1234$ cd /opt/eldk-5.6/powerpc$ source environment-setup-powerpc-linux$ export ARCH=powerpc$ export CROSS_COMPILE=$&#123;TARGET_PREFIX&#125;\nUbuntu14.04 安装 Sublime Text 2123$ sudo add-apt-repository ppa:webupd8team/sublime-text-2$ sudo apt-get update$ sudo apt-get install sublime-text\nTerminal 配色方案文本颜色设为 #708284，背景颜色设为 #07242E\nUbuntu 用关键字查询已经安装的软件包1$ sudo dpkg --get-selections | grep xxx\nupdate-alternatives 学习笔记［转载］作用概述\n为多个功能相同但名称不同的软件起一个共用的名称；\n可以让同一个软件的多个版本共存。\n\nLinux 发展到今天，可用的软件已经非常多了。这样自然会有一些软件的功能大致上相同。例如，同样是编辑器，就有 nvi、vim、emacs、nano，而且我说的这些还只是一部分。大多数情况下，这样的功能相似的软件都是同时安装在系统里的，可以用它们的名称来执行。例如，要执行 vim，只要在终端下输入 vim 并按回车就可以了。不过，有些情况下我们需要用一个相对固定的命令调用这些程序中的一个。例如，当我们写一个脚本程序时，只要写下 editor，而不希望要为“编辑器是哪个”而操心。Debian 提供了一种机制来解决这个问题，而 update-alternatives 就是用来实现这种机制的。\n参数详解\n–display\n 它使我们可以看到一个命令的所有可选命令\n 1$ update-alternatives --display editor\n 可以看到我的机器上的所有可以用来被 editor 链接的命令。\n\n–config\n 这个选项使我们可以选择其中一个命令程序来作为 editor\n 1$ update-alternatives --config editor\n\n–auto\n update-alternatives 在一般情况下是由 postinst 和 prerm 这样的安装脚本自动调用的，所以一个 alternative 的状态有两种：自动和手动。每个 alternative 的 初始状态都是自动。如果系统发现管理员手动修改了一个 alternative，它的状态就从自动变成了手动，这样安装脚本就不会更新它了。如果你希望将一个 alternative 变回自动，只要执行代码:\n 1$ update-alternatives --auto editor\n\n–install\n 1$ update-alternatives --install gen link alt pri [--slave sgen slink salt] ...\n gen，link，alt，pri 分别在下面解释。如果需要从 alternative，你可以用 –slave。如果你在向一个已经存在的 alternative 组中添加新的 alternative，该命令会把这个 alternative 加入到这个已经存在的 alternative 组的列表中，并用新的可选命令作为新的命令；否则，将会建立一个新的自动的 alternative 组。\n\n–remove\n 1$ update-alternatives --remove name path\n\n\n名词解释\ngeneral name：这是指一系列功能相似的程序的“公用”名字（包括绝对路径），比如 /usr/bin/editor。\nlink：这是指一个 alternative 在 /etc/alternative 中的名字，比如 editor，–display，–config 和 –auto 后面跟的都是 link。\nalternative：顾名思义，这是指一个可选的程序所在的路径（包括绝对路径），比如 /usr/bin/vim。\n优先级：这个比较简单，当然优先级越高的程序越好啦。\n主和从alternative：想想看，你将 /usr/bin/editor 链接到了 vim，可是当你执行 man editor 时看到的却是 emacs 的 manpage，你会做何感想呢？这就引出了主和从 alternative 的概念了：当更新主的 alternative 时，从的 alternative 也会被更新。\n\n多个 gcc 共存因为编译软件的需要，Ubuntu 自带的 gcc4.4.1 版本太高，可能需要 gcc3.x，这里选择的是 gcc3.4.4。\n下载并安装 deb 安装包选择源码包编译安装可能会出错\n下载地址为：http://archive.ubuntu.com/ubuntu/pool/universe/g/gcc-3.4/\n\ngcc-3.4-base_3.4.6-6ubuntu3_i386.deb\ngcc-3.4_3.4.6-6ubuntu3_i386.deb\ncpp-3.4_3.4.6-6ubuntu3_i386.deb\ng++-3.4_3.4.6-6ubuntu3_i386.deb\nlibstdc++6-dev_3.4.6-6ubuntu3_i386.deb\n\n配置目前系统里存在有两个版本的 gcc，缺省值为 gcc4.4.1，这里我们需要改变系统的缺省值\n1ls /usr/bin/gcc* -ll\n12345rwxrwxrwx  1 root root  21      2009-02-10 17:24 /usr/bin/gcc -&gt; /etc/alternatives/gcc-rwxr-xr-x 1 root root  85552   2008-05-08 18:04 /usr/bin/gcc-3.4-rwxr-xr-x 1 root root  193372  2008-10-11 03:41 /usr/bin/gcc-4.2-rwxr-xr-x 1 root root  16090   2008-05-08 17:58 /usr/bin/gccbug-3.4-rwxr-xr-x 1 root root  2018    2007-06-05 08:59 /usr/bin/gccmakedep\n增加 gcc3.4 和 gcc4.3 可选项12$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.2 40$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-3.4 30\n切换版本到 gcc-3.41$ sudo update-alternatives --config gcc\n现有 2 个可选项，它们都提供了 gcc\n121   /usr/bin/gcc-3.4*2   /usr/bin/gcc-4.2\n要维持缺省值 [*]，按回车键，或者键入选择的编号：1\n使用 “/usr/bin/gcc-3.4” 来提供 gcc。\nno glxinfo command1$ sudo apt-get install mesa-utils\ninodeA Brief Intro1 sector = 512B = 0.5KiB\n1 block contains a series of sectors, commonly 4KiB (8 sectors).\n1 disk consists of a data section and a inode section.\n1 inode represents 1 file in the disk, it contains\n\nsize in Bytes\nowner ID\ngroup ID\nRWX priviledge\ntimestamp\nctime (last inode change time)\nmtime (last file content change time)\natime (last file access time)\n\n\nnumber of links\ndata section location\n\nFiles in Linux\nreal file\ndata\ninode\n\n\ndirectory\nfile list (use the pair (file_name : inode_num))\ninode\n\n\n\nThe maximum number of files (a.k.a the number of inodes) is fixed after the disk formatting.\nUseful Commandsstatshow the inode information of file1:\n1$ stat file1\ndf -iexamine the inode usage of the system:\n1$ df -i\ndumpe2fscheck the inode size of disk sda in the current system:\n1$ sudo dumpe2fs -h /dev/sda1 | gerp \"Inode size\"\nThe result is usually 128B or 256B.\nls -icheck the inode number of file1:\n1$ ls -i file1\nvmware workstation no 3d support on linuxOpen the .vmx file of the virtual machine with a text editor, add the following to the end of the file.\n1mks.gl.allowBlacklistedDrivers = \"TRUE\"\n简单的网络诊断方法检测网络端口状态1sudo netstat -apn\n检测防火墙规则1sudo iptables -L\n查看防火墙状态1sudo ufw verbose","dateCreated":"2015-11-22T10:05:04+08:00","dateModified":"2016-01-06T18:41:32+08:00","datePublished":"2015-11-22T10:05:04+08:00","description":"","headline":"Linux","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/22/Things-Need-to-Know-about-Linux/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"}},"url":"http://yoursite.com/2015/11/22/Things-Need-to-Know-about-Linux/"}</script>
     <meta name="description" content="Ubuntu 登录及注销时自动执行的脚本策略登录时 ~/.bash_profile  ~/.bash_login  ~/.profile   按顺序查找，只执行最先找到的那个脚本。 注销时~/.bash_logout Hash sum mismatch error while updating Ubuntu12sudo rm -rf /var/lib/apt/lists/*sudo apt-get">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Linux">
@@ -23,6 +23,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux">
 <meta name="twitter:description" content="Ubuntu 登录及注销时自动执行的脚本策略登录时 ~/.bash_profile  ~/.bash_login  ~/.profile   按顺序查找，只执行最先找到的那个脚本。 注销时~/.bash_logout Hash sum mismatch error while updating Ubuntu12sudo rm -rf /var/lib/apt/lists/*sudo apt-get">
+<meta name="twitter:creator" content="@mapleaph">
     
     
         
@@ -91,11 +92,11 @@
                         <a  class="sidebar-button-link "
                              href="/all-categories"
                             
-                            title="Categories"
+                            title="Kategorien"
                         >
                     
                         <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Categories</span>
+                        <span class="sidebar-button-desc">Kategorien</span>
                     </a>
             </li>
             
@@ -117,11 +118,11 @@
                         <a  class="sidebar-button-link "
                              href="/all-archives"
                             
-                            title="Archives"
+                            title="Archiv"
                         >
                     
                         <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Archives</span>
+                        <span class="sidebar-button-desc">Archiv</span>
                     </a>
             </li>
             
@@ -130,11 +131,11 @@
                         <a  class="sidebar-button-link open-algolia-search"
                              href="#search"
                             
-                            title="Search"
+                            title="Suche"
                         >
                     
                         <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Search</span>
+                        <span class="sidebar-button-desc">Suche</span>
                     </a>
             </li>
             
@@ -143,11 +144,11 @@
                         <a  class="sidebar-button-link "
                              href="#about"
                             
-                            title="About"
+                            title="Über"
                         >
                     
                         <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
+                        <span class="sidebar-button-desc">Über</span>
                     </a>
             </li>
             
@@ -157,7 +158,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="https://github.com/" target="_blank" rel="noopener" title="GitHub">
+                        <a  class="sidebar-button-link " href="https://github.com/mapleaph" target="_blank" rel="noopener" title="GitHub">
                     
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">GitHub</span>
@@ -166,16 +167,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="http://stackoverflow.com/users" target="_blank" rel="noopener" title="Stack Overflow">
-                    
-                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Stack Overflow</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter">
+                        <a  class="sidebar-button-link " href="https://twitter.com/mapleaph" target="_blank" rel="noopener" title="Twitter">
                     
                         <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">Twitter</span>
@@ -184,57 +176,13 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
-                    
-                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Facebook</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://plus.google.com/" target="_blank" rel="noopener" title="Google +">
-                    
-                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Google +</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://www.linkedin.com/profile/" target="_blank" rel="noopener" title="LinkedIn">
-                    
-                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">LinkedIn</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
                         <a  class="sidebar-button-link "
-                             href="/mailto"
-                            title="Mail"
+                             href="/mapleaph@gmail.com"
+                            title="E-Mail"
                         >
                     
                         <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Mail</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/atom.xml"
-                            
-                            title="RSS"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">RSS</span>
+                        <span class="sidebar-button-desc">E-Mail</span>
                     </a>
             </li>
             
@@ -262,7 +210,7 @@
         <div class="post-meta">
     <time datetime="2015-11-22T10:05:04+08:00">
 	
-		    11月 22, 2015
+		    22 11月 2015
     	
     </time>
     
@@ -598,18 +546,18 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Programming/" data-tooltip="Programming" aria-label="PREVIOUS: Programming">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Programming/" data-tooltip="Programming" aria-label="FRÜHER: Programming">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
                 </a>
             </li>
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Differences-in-Linux-Kernels-for-Device-Driver-Development/" data-tooltip="不同内核版本间的差异" aria-label="NEXT: 不同内核版本间的差异">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Differences-in-Linux-Kernels-for-Device-Driver-Development/" data-tooltip="不同内核版本间的差异" aria-label="NÄCHSTER: 不同内核版本间的差异">
                 
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </a>
             </li>
@@ -617,7 +565,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -625,7 +573,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Things-Need-to-Know-about-Linux/" title="Share on Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Things-Need-to-Know-about-Linux/" title="Teilen auf Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -633,7 +581,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Things-Need-to-Know-about-Linux/" title="Share on Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Things-Need-to-Know-about-Linux/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -641,7 +589,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Things-Need-to-Know-about-Linux/" title="Share on Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Things-Need-to-Know-about-Linux/" title="Teilen auf Google Plus">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -651,7 +599,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -684,18 +632,18 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Programming/" data-tooltip="Programming" aria-label="PREVIOUS: Programming">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Programming/" data-tooltip="Programming" aria-label="FRÜHER: Programming">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
                 </a>
             </li>
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Differences-in-Linux-Kernels-for-Device-Driver-Development/" data-tooltip="不同内核版本间的差异" aria-label="NEXT: 不同内核版本间的差异">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Differences-in-Linux-Kernels-for-Device-Driver-Development/" data-tooltip="不同内核版本间的差异" aria-label="NÄCHSTER: 不同内核版本间的差异">
                 
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </a>
             </li>
@@ -703,7 +651,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -711,7 +659,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Things-Need-to-Know-about-Linux/" title="Share on Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Things-Need-to-Know-about-Linux/" title="Teilen auf Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -719,7 +667,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Things-Need-to-Know-about-Linux/" title="Share on Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Things-Need-to-Know-about-Linux/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -727,7 +675,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Things-Need-to-Know-about-Linux/" title="Share on Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Things-Need-to-Know-about-Linux/" title="Teilen auf Google Plus">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -737,7 +685,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -755,7 +703,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Things-Need-to-Know-about-Linux/">
-                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Teilen auf Facebook</span>
                 </a>
             </li>
         
@@ -763,7 +711,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Things-Need-to-Know-about-Linux/">
-                    <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    <i class="fab fa-twitter" aria-hidden="true"></i><span>Teilen auf Twitter</span>
                 </a>
             </li>
         
@@ -771,7 +719,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Things-Need-to-Know-about-Linux/">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Teilen auf Google Plus</span>
                 </a>
             </li>
         
@@ -802,6 +750,12 @@
 
             </div>
         
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Tianjin, China
+            </div>
         
     </div>
 </div>

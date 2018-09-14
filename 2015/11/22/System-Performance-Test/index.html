@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"CPU 性能测试 [UPDATE]Stress + htop\n简介Phoronix Test Suite 是一款跨平台（Linux/Mac/Windows）的计算机性能测试软件，测试种类共分为五大类：\n\nSystem\n\nMemory\n\nProcessor\n\nGraphics\n\nDisk\n\n\n以上每一个分类里面都有若干个工具，我们是用某个分类里的某个工具来对相关性能进行测试的，下面列出每个分类里面的工具：\nSystemhint, idle, juliagpu, mandelbulbgpu, mandelgpu, nexuiz-iqc, pgbench, pybench, smallpt-gpu, sunflow, xplane9-iqc\nMemoryStream\nProcessorblake2, bork, botan, build-apache, build-php, bullet, byte, c-ray, clomp, compress-7zip, compress-gzip, dcraw, ffmpeg, fhourstones, graphics-magick, himeno, java-scimark2, jgfxbat, john-the-ripper, mafft, mencoder, minion, mrbayes, openssl, polybench-c, primesieve, sample-program, scimark2, stockfish, sudokut, tachyon, tscp\nGraphicsapitest, corebench, j2dbench, nexuiz, openarena, qvdpautest, unvanquished, urbanterror, xonotic, xplane9\nDiskblogbench, compilebench, postmark, tiobench, unpack-linux\n注：这个列表不是很全，没有列出的就是不能用的。\n安装将下载好的安装包，现在直接从 phoronix-test-suite-packages 里面提取即可，放到 /path/to/phoronix-dir/download-cache 目录下，然后运行下面的命令进行安装，\n1$ phoronix-test-suite install pts/&lt;tool-name&gt;\n使用1$ phoronix-test-suite run &lt;tool-name&gt;\n备份如果手头没有下载好的 package 安装包，执行安装命令就会直接从网络上面下载工具并安装，之后，如果我们想要把下载好的包提取出来做个备份，只需要执行下面的命令即可，\n1$ phoronix-test-suite make-download-cache\n命令成功执行后，我们就可以从 /path/to/phoronix-dir/download-cache 目录中找到了。\n以上就是基本的介绍和使用指南，hope you enjoy it～\n","dateCreated":"2015-11-22T10:52:13+08:00","dateModified":"2015-12-05T21:05:11+08:00","datePublished":"2015-11-22T10:52:13+08:00","description":"","headline":"跨平台计算机性能测试套件","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/22/System-Performance-Test/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"http://yoursite.com/2015/11/22/System-Performance-Test/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"},"articleBody":"CPU 性能测试 [UPDATE]Stress + htop\n简介Phoronix Test Suite 是一款跨平台（Linux/Mac/Windows）的计算机性能测试软件，测试种类共分为五大类：\n\nSystem\n\nMemory\n\nProcessor\n\nGraphics\n\nDisk\n\n\n以上每一个分类里面都有若干个工具，我们是用某个分类里的某个工具来对相关性能进行测试的，下面列出每个分类里面的工具：\nSystemhint, idle, juliagpu, mandelbulbgpu, mandelgpu, nexuiz-iqc, pgbench, pybench, smallpt-gpu, sunflow, xplane9-iqc\nMemoryStream\nProcessorblake2, bork, botan, build-apache, build-php, bullet, byte, c-ray, clomp, compress-7zip, compress-gzip, dcraw, ffmpeg, fhourstones, graphics-magick, himeno, java-scimark2, jgfxbat, john-the-ripper, mafft, mencoder, minion, mrbayes, openssl, polybench-c, primesieve, sample-program, scimark2, stockfish, sudokut, tachyon, tscp\nGraphicsapitest, corebench, j2dbench, nexuiz, openarena, qvdpautest, unvanquished, urbanterror, xonotic, xplane9\nDiskblogbench, compilebench, postmark, tiobench, unpack-linux\n注：这个列表不是很全，没有列出的就是不能用的。\n安装将下载好的安装包，现在直接从 phoronix-test-suite-packages 里面提取即可，放到 /path/to/phoronix-dir/download-cache 目录下，然后运行下面的命令进行安装，\n1$ phoronix-test-suite install pts/&lt;tool-name&gt;\n使用1$ phoronix-test-suite run &lt;tool-name&gt;\n备份如果手头没有下载好的 package 安装包，执行安装命令就会直接从网络上面下载工具并安装，之后，如果我们想要把下载好的包提取出来做个备份，只需要执行下面的命令即可，\n1$ phoronix-test-suite make-download-cache\n命令成功执行后，我们就可以从 /path/to/phoronix-dir/download-cache 目录中找到了。\n以上就是基本的介绍和使用指南，hope you enjoy it～\n","dateCreated":"2015-11-22T10:52:13+08:00","dateModified":"2015-12-05T21:05:11+08:00","datePublished":"2015-11-22T10:52:13+08:00","description":"","headline":"跨平台计算机性能测试套件","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/22/System-Performance-Test/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"}},"url":"http://yoursite.com/2015/11/22/System-Performance-Test/"}</script>
     <meta name="description" content="CPU 性能测试 [UPDATE]Stress + htop 简介Phoronix Test Suite 是一款跨平台（Linux/Mac/Windows）的计算机性能测试软件，测试种类共分为五大类：  System  Memory  Processor  Graphics  Disk   以上每一个分类里面都有若干个工具，我们是用某个分类里的某个工具来对相关性能进行测试的，下面列出每个分类里面的">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="跨平台计算机性能测试套件">
@@ -23,6 +23,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="跨平台计算机性能测试套件">
 <meta name="twitter:description" content="CPU 性能测试 [UPDATE]Stress + htop 简介Phoronix Test Suite 是一款跨平台（Linux/Mac/Windows）的计算机性能测试软件，测试种类共分为五大类：  System  Memory  Processor  Graphics  Disk   以上每一个分类里面都有若干个工具，我们是用某个分类里的某个工具来对相关性能进行测试的，下面列出每个分类里面的">
+<meta name="twitter:creator" content="@mapleaph">
     
     
         
@@ -91,11 +92,11 @@
                         <a  class="sidebar-button-link "
                              href="/all-categories"
                             
-                            title="Categories"
+                            title="Kategorien"
                         >
                     
                         <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Categories</span>
+                        <span class="sidebar-button-desc">Kategorien</span>
                     </a>
             </li>
             
@@ -117,11 +118,11 @@
                         <a  class="sidebar-button-link "
                              href="/all-archives"
                             
-                            title="Archives"
+                            title="Archiv"
                         >
                     
                         <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Archives</span>
+                        <span class="sidebar-button-desc">Archiv</span>
                     </a>
             </li>
             
@@ -130,11 +131,11 @@
                         <a  class="sidebar-button-link open-algolia-search"
                              href="#search"
                             
-                            title="Search"
+                            title="Suche"
                         >
                     
                         <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Search</span>
+                        <span class="sidebar-button-desc">Suche</span>
                     </a>
             </li>
             
@@ -143,11 +144,11 @@
                         <a  class="sidebar-button-link "
                              href="#about"
                             
-                            title="About"
+                            title="Über"
                         >
                     
                         <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
+                        <span class="sidebar-button-desc">Über</span>
                     </a>
             </li>
             
@@ -157,7 +158,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="https://github.com/" target="_blank" rel="noopener" title="GitHub">
+                        <a  class="sidebar-button-link " href="https://github.com/mapleaph" target="_blank" rel="noopener" title="GitHub">
                     
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">GitHub</span>
@@ -166,16 +167,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="http://stackoverflow.com/users" target="_blank" rel="noopener" title="Stack Overflow">
-                    
-                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Stack Overflow</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter">
+                        <a  class="sidebar-button-link " href="https://twitter.com/mapleaph" target="_blank" rel="noopener" title="Twitter">
                     
                         <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">Twitter</span>
@@ -184,57 +176,13 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
-                    
-                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Facebook</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://plus.google.com/" target="_blank" rel="noopener" title="Google +">
-                    
-                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Google +</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://www.linkedin.com/profile/" target="_blank" rel="noopener" title="LinkedIn">
-                    
-                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">LinkedIn</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
                         <a  class="sidebar-button-link "
-                             href="/mailto"
-                            title="Mail"
+                             href="/mapleaph@gmail.com"
+                            title="E-Mail"
                         >
                     
                         <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Mail</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/atom.xml"
-                            
-                            title="RSS"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">RSS</span>
+                        <span class="sidebar-button-desc">E-Mail</span>
                     </a>
             </li>
             
@@ -262,7 +210,7 @@
         <div class="post-meta">
     <time datetime="2015-11-22T10:52:13+08:00">
 	
-		    11月 22, 2015
+		    22 11月 2015
     	
     </time>
     
@@ -322,18 +270,18 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Max-File-Size-of-Common-File-Systems/" data-tooltip="常用文件系统可支持的最大单文件大小" aria-label="PREVIOUS: 常用文件系统可支持的最大单文件大小">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Max-File-Size-of-Common-File-Systems/" data-tooltip="常用文件系统可支持的最大单文件大小" aria-label="FRÜHER: 常用文件系统可支持的最大单文件大小">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
                 </a>
             </li>
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Programming/" data-tooltip="Programming" aria-label="NEXT: Programming">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Programming/" data-tooltip="Programming" aria-label="NÄCHSTER: Programming">
                 
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </a>
             </li>
@@ -341,7 +289,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -349,7 +297,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/System-Performance-Test/" title="Share on Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/System-Performance-Test/" title="Teilen auf Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -357,7 +305,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/System-Performance-Test/" title="Share on Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/System-Performance-Test/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -365,7 +313,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/System-Performance-Test/" title="Share on Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/System-Performance-Test/" title="Teilen auf Google Plus">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -375,7 +323,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -408,18 +356,18 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Max-File-Size-of-Common-File-Systems/" data-tooltip="常用文件系统可支持的最大单文件大小" aria-label="PREVIOUS: 常用文件系统可支持的最大单文件大小">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Max-File-Size-of-Common-File-Systems/" data-tooltip="常用文件系统可支持的最大单文件大小" aria-label="FRÜHER: 常用文件系统可支持的最大单文件大小">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
                 </a>
             </li>
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Programming/" data-tooltip="Programming" aria-label="NEXT: Programming">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Programming/" data-tooltip="Programming" aria-label="NÄCHSTER: Programming">
                 
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </a>
             </li>
@@ -427,7 +375,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -435,7 +383,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/System-Performance-Test/" title="Share on Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/System-Performance-Test/" title="Teilen auf Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -443,7 +391,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/System-Performance-Test/" title="Share on Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/System-Performance-Test/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -451,7 +399,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/System-Performance-Test/" title="Share on Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/System-Performance-Test/" title="Teilen auf Google Plus">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -461,7 +409,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -479,7 +427,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/System-Performance-Test/">
-                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Teilen auf Facebook</span>
                 </a>
             </li>
         
@@ -487,7 +435,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/System-Performance-Test/">
-                    <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    <i class="fab fa-twitter" aria-hidden="true"></i><span>Teilen auf Twitter</span>
                 </a>
             </li>
         
@@ -495,7 +443,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/System-Performance-Test/">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Teilen auf Google Plus</span>
                 </a>
             </li>
         
@@ -526,6 +474,12 @@
 
             </div>
         
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Tianjin, China
+            </div>
         
     </div>
 </div>

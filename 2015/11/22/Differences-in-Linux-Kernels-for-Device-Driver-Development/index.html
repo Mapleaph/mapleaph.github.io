@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"ioctl and unlocked_ioctl从 2.6.36 版本的内核开始，file_operations 结构体弃用了原来的 ioctl 成员，改用了新的名为 unlocked_ioctl 成员，该成员指向的函数删除了之前函数的第一个参数 inode，所以为了使设备驱动适应多个不同的内核版本，就需要在代码中对内核版本进行判断，进而采用不同的函数的声明：\n这里，我们需要包含头文件 。\n123456#if LINUX_VERSION_CODE &lt; KERNEL_VERSION(2, 6, 36)    static int xxx_ioctl(struct inode *inode, struct file *filp, unsigned int cmd, unsigned long *arg);#else    static int xxx_ioctl(struct file *filp, unsigned int cmd, unsigned long *arg);#endif\n注意：在函数定义的时候也需要用上面的判断来写函数头。\n同样：\n12345678910static const struct file_operations xxx_fops = &#123;    ......    #if LINUX_VERSION_CODE &lt; KERNEL_VERSION(2, 6, 36)    .ioctl = xxx_ioctl,    #else    .unlocked_ioctl = xxx_ioctl,    #endif    ......&#125;\ninit_MUTEX_LOCKED and sema_init从 2.6.37 版本的内核开始，init_MUTEX_LOCKED 宏遭到了弃用，我们只能使用 sema_init 来对锁进行操作，具体代码如下：\n123456struct semaphore sem;#if LINUX_VERSION_CODE &lt; KERNEL_VERSION(2, 6, 37)    init_MUTEX_LOCKED(&amp;sem);#else    sema_init(&amp;sem, 0);#endif\nsmp_lock.h and hardirq.h从 2.6.39 版本的内核开始，内核不再包含 smp_lock.h，取而代之的是 hardirq.h。\n12345#if LINUX_VERSION_CODE &lt; KERNEL_VERSION(2, 6, 39)    #include &lt;linux/smp_lock.h&gt;#else    #include &lt;linux/hardirq.h&gt;#endif\nasm/system.h 文件从 3.4 版本开始，内核不再提供 asm/system.h 文件。\n","dateCreated":"2015-11-22T09:59:02+08:00","dateModified":"2015-11-22T10:00:21+08:00","datePublished":"2015-11-22T09:59:02+08:00","description":"","headline":"不同内核版本间的差异","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/22/Differences-in-Linux-Kernels-for-Device-Driver-Development/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"http://yoursite.com/2015/11/22/Differences-in-Linux-Kernels-for-Device-Driver-Development/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"},"articleBody":"ioctl and unlocked_ioctl从 2.6.36 版本的内核开始，file_operations 结构体弃用了原来的 ioctl 成员，改用了新的名为 unlocked_ioctl 成员，该成员指向的函数删除了之前函数的第一个参数 inode，所以为了使设备驱动适应多个不同的内核版本，就需要在代码中对内核版本进行判断，进而采用不同的函数的声明：\n这里，我们需要包含头文件 。\n123456#if LINUX_VERSION_CODE &lt; KERNEL_VERSION(2, 6, 36)    static int xxx_ioctl(struct inode *inode, struct file *filp, unsigned int cmd, unsigned long *arg);#else    static int xxx_ioctl(struct file *filp, unsigned int cmd, unsigned long *arg);#endif\n注意：在函数定义的时候也需要用上面的判断来写函数头。\n同样：\n12345678910static const struct file_operations xxx_fops = &#123;    ......    #if LINUX_VERSION_CODE &lt; KERNEL_VERSION(2, 6, 36)    .ioctl = xxx_ioctl,    #else    .unlocked_ioctl = xxx_ioctl,    #endif    ......&#125;\ninit_MUTEX_LOCKED and sema_init从 2.6.37 版本的内核开始，init_MUTEX_LOCKED 宏遭到了弃用，我们只能使用 sema_init 来对锁进行操作，具体代码如下：\n123456struct semaphore sem;#if LINUX_VERSION_CODE &lt; KERNEL_VERSION(2, 6, 37)    init_MUTEX_LOCKED(&amp;sem);#else    sema_init(&amp;sem, 0);#endif\nsmp_lock.h and hardirq.h从 2.6.39 版本的内核开始，内核不再包含 smp_lock.h，取而代之的是 hardirq.h。\n12345#if LINUX_VERSION_CODE &lt; KERNEL_VERSION(2, 6, 39)    #include &lt;linux/smp_lock.h&gt;#else    #include &lt;linux/hardirq.h&gt;#endif\nasm/system.h 文件从 3.4 版本开始，内核不再提供 asm/system.h 文件。\n","dateCreated":"2015-11-22T09:59:02+08:00","dateModified":"2015-11-22T10:00:21+08:00","datePublished":"2015-11-22T09:59:02+08:00","description":"","headline":"不同内核版本间的差异","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/22/Differences-in-Linux-Kernels-for-Device-Driver-Development/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"}},"url":"http://yoursite.com/2015/11/22/Differences-in-Linux-Kernels-for-Device-Driver-Development/"}</script>
     <meta name="description" content="ioctl and unlocked_ioctl从 2.6.36 版本的内核开始，file_operations 结构体弃用了原来的 ioctl 成员，改用了新的名为 unlocked_ioctl 成员，该成员指向的函数删除了之前函数的第一个参数 inode，所以为了使设备驱动适应多个不同的内核版本，就需要在代码中对内核版本进行判断，进而采用不同的函数的声明： 这里，我们需要包含头文件 。 123">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="不同内核版本间的差异">
@@ -23,6 +23,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="不同内核版本间的差异">
 <meta name="twitter:description" content="ioctl and unlocked_ioctl从 2.6.36 版本的内核开始，file_operations 结构体弃用了原来的 ioctl 成员，改用了新的名为 unlocked_ioctl 成员，该成员指向的函数删除了之前函数的第一个参数 inode，所以为了使设备驱动适应多个不同的内核版本，就需要在代码中对内核版本进行判断，进而采用不同的函数的声明： 这里，我们需要包含头文件 。 123">
+<meta name="twitter:creator" content="@mapleaph">
     
     
         
@@ -91,11 +92,11 @@
                         <a  class="sidebar-button-link "
                              href="/all-categories"
                             
-                            title="Categories"
+                            title="Kategorien"
                         >
                     
                         <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Categories</span>
+                        <span class="sidebar-button-desc">Kategorien</span>
                     </a>
             </li>
             
@@ -117,11 +118,11 @@
                         <a  class="sidebar-button-link "
                              href="/all-archives"
                             
-                            title="Archives"
+                            title="Archiv"
                         >
                     
                         <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Archives</span>
+                        <span class="sidebar-button-desc">Archiv</span>
                     </a>
             </li>
             
@@ -130,11 +131,11 @@
                         <a  class="sidebar-button-link open-algolia-search"
                              href="#search"
                             
-                            title="Search"
+                            title="Suche"
                         >
                     
                         <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Search</span>
+                        <span class="sidebar-button-desc">Suche</span>
                     </a>
             </li>
             
@@ -143,11 +144,11 @@
                         <a  class="sidebar-button-link "
                              href="#about"
                             
-                            title="About"
+                            title="Über"
                         >
                     
                         <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
+                        <span class="sidebar-button-desc">Über</span>
                     </a>
             </li>
             
@@ -157,7 +158,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="https://github.com/" target="_blank" rel="noopener" title="GitHub">
+                        <a  class="sidebar-button-link " href="https://github.com/mapleaph" target="_blank" rel="noopener" title="GitHub">
                     
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">GitHub</span>
@@ -166,16 +167,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="http://stackoverflow.com/users" target="_blank" rel="noopener" title="Stack Overflow">
-                    
-                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Stack Overflow</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter">
+                        <a  class="sidebar-button-link " href="https://twitter.com/mapleaph" target="_blank" rel="noopener" title="Twitter">
                     
                         <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">Twitter</span>
@@ -184,57 +176,13 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
-                    
-                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Facebook</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://plus.google.com/" target="_blank" rel="noopener" title="Google +">
-                    
-                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Google +</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://www.linkedin.com/profile/" target="_blank" rel="noopener" title="LinkedIn">
-                    
-                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">LinkedIn</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
                         <a  class="sidebar-button-link "
-                             href="/mailto"
-                            title="Mail"
+                             href="/mapleaph@gmail.com"
+                            title="E-Mail"
                         >
                     
                         <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Mail</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/atom.xml"
-                            
-                            title="RSS"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">RSS</span>
+                        <span class="sidebar-button-desc">E-Mail</span>
                     </a>
             </li>
             
@@ -262,7 +210,7 @@
         <div class="post-meta">
     <time datetime="2015-11-22T09:59:02+08:00">
 	
-		    11月 22, 2015
+		    22 11月 2015
     	
     </time>
     
@@ -305,18 +253,18 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Things-Need-to-Know-about-Linux/" data-tooltip="Linux" aria-label="PREVIOUS: Linux">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Things-Need-to-Know-about-Linux/" data-tooltip="Linux" aria-label="FRÜHER: Linux">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
                 </a>
             </li>
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Qt/" data-tooltip="Qt" aria-label="NEXT: Qt">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Qt/" data-tooltip="Qt" aria-label="NÄCHSTER: Qt">
                 
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </a>
             </li>
@@ -324,7 +272,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -332,7 +280,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Differences-in-Linux-Kernels-for-Device-Driver-Development/" title="Share on Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Differences-in-Linux-Kernels-for-Device-Driver-Development/" title="Teilen auf Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -340,7 +288,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Differences-in-Linux-Kernels-for-Device-Driver-Development/" title="Share on Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Differences-in-Linux-Kernels-for-Device-Driver-Development/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -348,7 +296,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Differences-in-Linux-Kernels-for-Device-Driver-Development/" title="Share on Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Differences-in-Linux-Kernels-for-Device-Driver-Development/" title="Teilen auf Google Plus">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -358,7 +306,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -391,18 +339,18 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Things-Need-to-Know-about-Linux/" data-tooltip="Linux" aria-label="PREVIOUS: Linux">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Things-Need-to-Know-about-Linux/" data-tooltip="Linux" aria-label="FRÜHER: Linux">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
                 </a>
             </li>
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Qt/" data-tooltip="Qt" aria-label="NEXT: Qt">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Qt/" data-tooltip="Qt" aria-label="NÄCHSTER: Qt">
                 
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </a>
             </li>
@@ -410,7 +358,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -418,7 +366,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Differences-in-Linux-Kernels-for-Device-Driver-Development/" title="Share on Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Differences-in-Linux-Kernels-for-Device-Driver-Development/" title="Teilen auf Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -426,7 +374,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Differences-in-Linux-Kernels-for-Device-Driver-Development/" title="Share on Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Differences-in-Linux-Kernels-for-Device-Driver-Development/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -434,7 +382,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Differences-in-Linux-Kernels-for-Device-Driver-Development/" title="Share on Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Differences-in-Linux-Kernels-for-Device-Driver-Development/" title="Teilen auf Google Plus">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -444,7 +392,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -462,7 +410,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Differences-in-Linux-Kernels-for-Device-Driver-Development/">
-                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Teilen auf Facebook</span>
                 </a>
             </li>
         
@@ -470,7 +418,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Differences-in-Linux-Kernels-for-Device-Driver-Development/">
-                    <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    <i class="fab fa-twitter" aria-hidden="true"></i><span>Teilen auf Twitter</span>
                 </a>
             </li>
         
@@ -478,7 +426,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Differences-in-Linux-Kernels-for-Device-Driver-Development/">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Teilen auf Google Plus</span>
                 </a>
             </li>
         
@@ -509,6 +457,12 @@
 
             </div>
         
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Tianjin, China
+            </div>
         
     </div>
 </div>

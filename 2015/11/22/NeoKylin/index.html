@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"x86 版安装NeoKylin-Personal-v6.0 安装方法更新 [UPDATE]使用 UltraISO 将镜像中的 images/boot.iso 提取出来，然后将其刻录到 U 盘中启动系统，按 TAB 键，将启动参数改为：\n1vmlinuz initrd=initrd.img repo=hd:/dev/sda4:/ quiet\n之后正常安装即可。\n中标麒麟除了 V5，V6 并没有更精确的版本号描述，目前手中共有两个 V6 的版本，只能以默认安装的内核版本进行区分。\n!!如果你能把中标麒麟的 iso 镜像文件刻录到光盘里的话，本文档就可以不用看了!!\n2.6.36 版本文档仅针对使用 U 盘安装系统的情况，目前共验证了两种方式，一种为本地安装，另一种为 FTP 安装。\n本地安装硬盘一个，U 盘一个，一个 Puppy Linux 系统。\nPuppy Linux 下载地址：http://distro.ibiblio.org/puppylinux/\n本测试选用 Puppy 5.6 目录下的 slacko-5.6-PAE.iso\n\n使用 puppy linux 为 U 盘安装 Grub4Dos，将 isolinux 文件夹从麒麟系统镜像中提取出来，并复制到 U 盘中，然后更改 U 盘中的 grub.conf 文件为如下内容：\n 1234root (hdx,y)kernel /isolinux/vmlinuzinitrd /isolinux/initrd.imgboot\n 其中 (hdx,y) 需要根据实际情况进行修改。\n\n对目标硬盘进行分区，注意需要多分出一个分区来，大小 5GB 即可，格式 FAT32/EXT4，用来存放麒麟的系统镜像和从镜像中提取出来的 images 文件夹。\n\n使用 U 盘引导系统，在选择镜像所在磁盘时，选择上一步那个多分出来的分区，这一步找的是 images/install.img 文件。\n\n在之后的安装方式上选择自定义磁盘分区，注意不要挂在最后一个分区，否则之后会出错。\n\n如果在接下来查找镜像时出现 device or resource busy 的错误，那么这种安装方式宣告失败，请换用下面的 FTP 安装方式。\n\n\nFTP 安装如果用的是 Mac 系统，可以选用，Rumpus FTP Server 进行 FTP 服务器搭建，如果用 Windows，可用 File zilla。\n\n同本地安装的第一步\n\n将 Packages, repodata, images 文件夹从系统镜像中提取出来并放到 ftp 服务器根目录中。\n\n用 U 盘启动系统，镜像存在位置选择 URL，然后在地址栏中输入 ftp://192.168.x.x/ 正常情况下，会显示 retrieving…，只有按部就班安装即可。\n\n\n3.3.4 版\n将 images/boot.iso 从镜像中提取出来\n\n用 UltraISO 将 boot.iso 写入 U 盘\n\n将麒麟系统镜像拷贝到 U 盘中\n\n用 U 盘引导系统，在出现安装菜单时按 TAB 键，将命令改为\n 1repo=hd:/dev/sdb4:/ quiet\n 如果在安装前检测硬盘时提示： “Disk sda contains BIOS RAID metadata, but is not part of any recognized BIOS RAID sets. Ignoring disk sda” 那么就需要改为：\n 1repo=hd:/dev/sdb4:/ quiet nodmraid\n\n之后按部就班安装即可。\n\n\n中标麒麟 RapidIO 安装指南磁盘规划总共 20GB\n\n\n\npartition\nsize\n\n\n\n\nbios-boot\n1MB\n\n\nboot\n500MB\n\n\nroot\n16GB\n\n\nswap\n3GB\n\n\n\n编译完内核的剩余空间为：3.8GB\n修改安装源提示：该步骤需要确保系统能够联网！\n首先删除 [/etc/yum.repo.d/] 下面的两个文件，然后新建名为 f17.repo 的文件并向其中添加如下内容：\n1234567891011121314151617[fedora]name=f17baseurl=http://archives.fedoraproject.org/pub/archive/fedora/linux/releases/17/Fedora/i386/os/enabled=1gpgcheck=0[everything]name=f17-everythingbaseurl=http://archives.fedoraproject.org/pub/archive/fedora/linux/releases/17/Everything/i386/os/enabled=1gpgcheck=0[updates]name=f17-updatesbaseurl=http://archives.fedoraproject.org/pub/archive/fedora/linux/updates/17/i386/enabled=1gpgcheck=0\n保存，退出。\n更新安装源1$ sudo yum list\n安装 ncurses 库（make menuconfig 的时候会用到）1$ sudo yum install ncurses-devel\n下载内核源代码123$ cd ~; curl -O https://www.kernel.org/pub/linux/kernel/v3.x/linux-3.3.4.tar.bz2# 等待下载完成后，解压刚刚下载的压缩包并移动到 /usr/src/kernels 目录下$ tar jxf linux-3.3.4.tar.bz2; sudo mv linux-3.3.4 /usr/src/kernels\n对内核进行配置12345678910111213141516$ cd ~/linux-3.3.4/; make mrproper; cp /boot/config-3.3.4-5.1.nk.i686.PAE .config$ make menuconfig# 下面进入内核配置界面# 将对两个地方进行配置# 1. 添加 RapidIO 支持#    进入 Bus options (PCI etc.)，选中 RapidIO support，将会弹出子菜单，根据硬件型号，选择前 4 项，即：##    IDT Tsi721 PCI Express SRIO Controller support#    Discovery timeout duration (seconds) 该值默认为 30#    Enable RapidIO Input/Output Ports#    RapidIO subsystem debug messages## 2. 去掉默认的启动图片，防止跟中标麒麟的默认开机画面相冲突，不改的话会出现一个小企鹅图片，但不影响 RapidIO 功能的实现：#    进入 Device Drivers -&gt; Graphics support，取消选中 Bootup logo 即可。## 确认修改后，退出保存即可。\n编译、安装新内核123# CPU 有几个核，下面的 -j 后面的 n 就改成几，这样可以加快编译速度$ make -j&lt;n&gt;; make modules; sudo make modules_install; sudo make install# 过程中会提示输入密码，请注意，安装完成后，重启系统，将会在启动菜单看到一个 RedHat Linux (3.3.4), 这就是我们的新内核，选这个进入系统就行了。\n小修改\n删除旧内核的相关文件\n 123$ sudo rm /boot/System.map* /boot/vmlinuz* /boot/config-3.3.4-5.1.nk.i686.PAE$ sudo rm -rf /lib/modules/3.3.4-5.1.nk.i686.PAE$ sudo rm -rf /usr/src/kernels/3.3.4-5.1.nk.i686.PAE\n\n生成新的 grub.cfg\n 12$ sudo grub2-mkconfig -o /boot/grub2/grub.cfg# 生成后再对文件进行进一步修改，将 menuentry 后面的 text 去掉\n 保存，退出。\n\n\n旧版本麒麟编译安装 2.6.35 版本内核需要卸载 VirtualBox，否则 make install 的时候会报错。\n使用如下命令：\n1$ rpm -qa | grep VirtualBox | xargs sudo rpm -e\n安装串口测试程序 xgcom 的方法这里讨论的是内核版本为 2.6.36 的中标麒麟\n\n在 https://code.google.com/p/xgcom/ 下载 xgcom-0.04.2 版本源码包\n\n删除系统自带的 vte，这个会同时删除 gnome-terminal 和 gnome-color-manager\n\n将下面的信息新建为文件 f13.repo，并放到 /etc/yum.repo.d/ 目录下\n 1234567891011[f13]name=f13baseurl=http://archives.fedoraproject.org/pub/archive/fedora/linux/releases/13/Fedora/i386/osgpgcheck=0enabled=1[f13-everything]name=f13-everythingbaseurl=http://archives.fedoraproject.org/pub/archive/fedora/linux/releases/13/Everything/i386/osgpgcheck=0enabled=1\n\n将其他源禁用掉\n\n安装 vte, vte-devel, gnome-terminal, gnome-color-manager\n\n进入 xgcom 的源码\n 123./autogen.shmakesudo make install\n\n\n龙芯版安装系统安装目前仅支持整盘复制安装\n\n需要一个可启动的 Linux 系统；\n在 Linux 系统下，重新对目标硬盘进行分区，要求为：整盘一个分区，可以启动，格式为 ext3；\n挂载目标硬盘，进行文件复制：\n12345# 假设 sda1 为目标硬盘的分区$ mount /dev/sda1 /mnt/$ tar --numeric-owner -xlpvf Neokylin-DT6-img.tar.gz -C /mnt --touch# 复制完成之后，卸载目标硬盘$ umount /dev/sda1\n\n启动系统\n123456# 开机进入 PMON 引导命令行，使用 devls 命令查看设备名称，# 假设得到的硬盘名称为 wd0load /dev/fs/ext2@wd0/boot/vmlinux.3a_newspec# 等待加载成功g console=tty root=/dev/sda1 quiet splash loglevel=0# 正常情况下，即等待进入桌面\n\n\n升级 Qt4.8.5适用系统版本：NeoKylin-Desktop-V6.0-Update4-Loongson-Release-Build050-20140124 (可用 cat /etc/.product_info 查看)。\n执行如下命令：\n123456789101112$ sudo rpm -Uvh qt-4.8.6-10.ND6.2.mipsel.rpm \\qt-x11-4.8.6-10.ND6.2.mipsel.rpm \\qt-devel-4.8.6-10.ND6.2.mipsel.rpm \\qt-demos-4.8.6-10.ND6.2.mipsel.rpm \\qt-examples-4.8.6-10.ND6.2.mipsel.rpm \\qt-odbc-4.8.6-10.ND6.2.mipsel.rpm \\qt-doc-4.8.6-10.ND6.2.noarch.rpm \\qt-assistant-4.8.6-10.ND6.2.mipsel.rpm \\qtwebkit-2.2-3.20110513.ND6.3.mipsel.rpm \\libjpeg-turbo-devel-1.2.90-2.ND6.mipsel.rpm \\libjpeg-turbo-1.2.90-2.ND6.mipsel.rpm \\libjpeg-turbo-static-1.2.90-2.ND6.mipsel.rpm\n","dateCreated":"2015-11-22T12:02:57+08:00","dateModified":"2015-12-05T21:03:21+08:00","datePublished":"2015-11-22T12:02:57+08:00","description":"","headline":"NeoKylin","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/22/NeoKylin/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"http://yoursite.com/2015/11/22/NeoKylin/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"},"articleBody":"x86 版安装NeoKylin-Personal-v6.0 安装方法更新 [UPDATE]使用 UltraISO 将镜像中的 images/boot.iso 提取出来，然后将其刻录到 U 盘中启动系统，按 TAB 键，将启动参数改为：\n1vmlinuz initrd=initrd.img repo=hd:/dev/sda4:/ quiet\n之后正常安装即可。\n中标麒麟除了 V5，V6 并没有更精确的版本号描述，目前手中共有两个 V6 的版本，只能以默认安装的内核版本进行区分。\n!!如果你能把中标麒麟的 iso 镜像文件刻录到光盘里的话，本文档就可以不用看了!!\n2.6.36 版本文档仅针对使用 U 盘安装系统的情况，目前共验证了两种方式，一种为本地安装，另一种为 FTP 安装。\n本地安装硬盘一个，U 盘一个，一个 Puppy Linux 系统。\nPuppy Linux 下载地址：http://distro.ibiblio.org/puppylinux/\n本测试选用 Puppy 5.6 目录下的 slacko-5.6-PAE.iso\n\n使用 puppy linux 为 U 盘安装 Grub4Dos，将 isolinux 文件夹从麒麟系统镜像中提取出来，并复制到 U 盘中，然后更改 U 盘中的 grub.conf 文件为如下内容：\n 1234root (hdx,y)kernel /isolinux/vmlinuzinitrd /isolinux/initrd.imgboot\n 其中 (hdx,y) 需要根据实际情况进行修改。\n\n对目标硬盘进行分区，注意需要多分出一个分区来，大小 5GB 即可，格式 FAT32/EXT4，用来存放麒麟的系统镜像和从镜像中提取出来的 images 文件夹。\n\n使用 U 盘引导系统，在选择镜像所在磁盘时，选择上一步那个多分出来的分区，这一步找的是 images/install.img 文件。\n\n在之后的安装方式上选择自定义磁盘分区，注意不要挂在最后一个分区，否则之后会出错。\n\n如果在接下来查找镜像时出现 device or resource busy 的错误，那么这种安装方式宣告失败，请换用下面的 FTP 安装方式。\n\n\nFTP 安装如果用的是 Mac 系统，可以选用，Rumpus FTP Server 进行 FTP 服务器搭建，如果用 Windows，可用 File zilla。\n\n同本地安装的第一步\n\n将 Packages, repodata, images 文件夹从系统镜像中提取出来并放到 ftp 服务器根目录中。\n\n用 U 盘启动系统，镜像存在位置选择 URL，然后在地址栏中输入 ftp://192.168.x.x/ 正常情况下，会显示 retrieving…，只有按部就班安装即可。\n\n\n3.3.4 版\n将 images/boot.iso 从镜像中提取出来\n\n用 UltraISO 将 boot.iso 写入 U 盘\n\n将麒麟系统镜像拷贝到 U 盘中\n\n用 U 盘引导系统，在出现安装菜单时按 TAB 键，将命令改为\n 1repo=hd:/dev/sdb4:/ quiet\n 如果在安装前检测硬盘时提示： “Disk sda contains BIOS RAID metadata, but is not part of any recognized BIOS RAID sets. Ignoring disk sda” 那么就需要改为：\n 1repo=hd:/dev/sdb4:/ quiet nodmraid\n\n之后按部就班安装即可。\n\n\n中标麒麟 RapidIO 安装指南磁盘规划总共 20GB\n\n\n\npartition\nsize\n\n\n\n\nbios-boot\n1MB\n\n\nboot\n500MB\n\n\nroot\n16GB\n\n\nswap\n3GB\n\n\n\n编译完内核的剩余空间为：3.8GB\n修改安装源提示：该步骤需要确保系统能够联网！\n首先删除 [/etc/yum.repo.d/] 下面的两个文件，然后新建名为 f17.repo 的文件并向其中添加如下内容：\n1234567891011121314151617[fedora]name=f17baseurl=http://archives.fedoraproject.org/pub/archive/fedora/linux/releases/17/Fedora/i386/os/enabled=1gpgcheck=0[everything]name=f17-everythingbaseurl=http://archives.fedoraproject.org/pub/archive/fedora/linux/releases/17/Everything/i386/os/enabled=1gpgcheck=0[updates]name=f17-updatesbaseurl=http://archives.fedoraproject.org/pub/archive/fedora/linux/updates/17/i386/enabled=1gpgcheck=0\n保存，退出。\n更新安装源1$ sudo yum list\n安装 ncurses 库（make menuconfig 的时候会用到）1$ sudo yum install ncurses-devel\n下载内核源代码123$ cd ~; curl -O https://www.kernel.org/pub/linux/kernel/v3.x/linux-3.3.4.tar.bz2# 等待下载完成后，解压刚刚下载的压缩包并移动到 /usr/src/kernels 目录下$ tar jxf linux-3.3.4.tar.bz2; sudo mv linux-3.3.4 /usr/src/kernels\n对内核进行配置12345678910111213141516$ cd ~/linux-3.3.4/; make mrproper; cp /boot/config-3.3.4-5.1.nk.i686.PAE .config$ make menuconfig# 下面进入内核配置界面# 将对两个地方进行配置# 1. 添加 RapidIO 支持#    进入 Bus options (PCI etc.)，选中 RapidIO support，将会弹出子菜单，根据硬件型号，选择前 4 项，即：##    IDT Tsi721 PCI Express SRIO Controller support#    Discovery timeout duration (seconds) 该值默认为 30#    Enable RapidIO Input/Output Ports#    RapidIO subsystem debug messages## 2. 去掉默认的启动图片，防止跟中标麒麟的默认开机画面相冲突，不改的话会出现一个小企鹅图片，但不影响 RapidIO 功能的实现：#    进入 Device Drivers -&gt; Graphics support，取消选中 Bootup logo 即可。## 确认修改后，退出保存即可。\n编译、安装新内核123# CPU 有几个核，下面的 -j 后面的 n 就改成几，这样可以加快编译速度$ make -j&lt;n&gt;; make modules; sudo make modules_install; sudo make install# 过程中会提示输入密码，请注意，安装完成后，重启系统，将会在启动菜单看到一个 RedHat Linux (3.3.4), 这就是我们的新内核，选这个进入系统就行了。\n小修改\n删除旧内核的相关文件\n 123$ sudo rm /boot/System.map* /boot/vmlinuz* /boot/config-3.3.4-5.1.nk.i686.PAE$ sudo rm -rf /lib/modules/3.3.4-5.1.nk.i686.PAE$ sudo rm -rf /usr/src/kernels/3.3.4-5.1.nk.i686.PAE\n\n生成新的 grub.cfg\n 12$ sudo grub2-mkconfig -o /boot/grub2/grub.cfg# 生成后再对文件进行进一步修改，将 menuentry 后面的 text 去掉\n 保存，退出。\n\n\n旧版本麒麟编译安装 2.6.35 版本内核需要卸载 VirtualBox，否则 make install 的时候会报错。\n使用如下命令：\n1$ rpm -qa | grep VirtualBox | xargs sudo rpm -e\n安装串口测试程序 xgcom 的方法这里讨论的是内核版本为 2.6.36 的中标麒麟\n\n在 https://code.google.com/p/xgcom/ 下载 xgcom-0.04.2 版本源码包\n\n删除系统自带的 vte，这个会同时删除 gnome-terminal 和 gnome-color-manager\n\n将下面的信息新建为文件 f13.repo，并放到 /etc/yum.repo.d/ 目录下\n 1234567891011[f13]name=f13baseurl=http://archives.fedoraproject.org/pub/archive/fedora/linux/releases/13/Fedora/i386/osgpgcheck=0enabled=1[f13-everything]name=f13-everythingbaseurl=http://archives.fedoraproject.org/pub/archive/fedora/linux/releases/13/Everything/i386/osgpgcheck=0enabled=1\n\n将其他源禁用掉\n\n安装 vte, vte-devel, gnome-terminal, gnome-color-manager\n\n进入 xgcom 的源码\n 123./autogen.shmakesudo make install\n\n\n龙芯版安装系统安装目前仅支持整盘复制安装\n\n需要一个可启动的 Linux 系统；\n在 Linux 系统下，重新对目标硬盘进行分区，要求为：整盘一个分区，可以启动，格式为 ext3；\n挂载目标硬盘，进行文件复制：\n12345# 假设 sda1 为目标硬盘的分区$ mount /dev/sda1 /mnt/$ tar --numeric-owner -xlpvf Neokylin-DT6-img.tar.gz -C /mnt --touch# 复制完成之后，卸载目标硬盘$ umount /dev/sda1\n\n启动系统\n123456# 开机进入 PMON 引导命令行，使用 devls 命令查看设备名称，# 假设得到的硬盘名称为 wd0load /dev/fs/ext2@wd0/boot/vmlinux.3a_newspec# 等待加载成功g console=tty root=/dev/sda1 quiet splash loglevel=0# 正常情况下，即等待进入桌面\n\n\n升级 Qt4.8.5适用系统版本：NeoKylin-Desktop-V6.0-Update4-Loongson-Release-Build050-20140124 (可用 cat /etc/.product_info 查看)。\n执行如下命令：\n123456789101112$ sudo rpm -Uvh qt-4.8.6-10.ND6.2.mipsel.rpm \\qt-x11-4.8.6-10.ND6.2.mipsel.rpm \\qt-devel-4.8.6-10.ND6.2.mipsel.rpm \\qt-demos-4.8.6-10.ND6.2.mipsel.rpm \\qt-examples-4.8.6-10.ND6.2.mipsel.rpm \\qt-odbc-4.8.6-10.ND6.2.mipsel.rpm \\qt-doc-4.8.6-10.ND6.2.noarch.rpm \\qt-assistant-4.8.6-10.ND6.2.mipsel.rpm \\qtwebkit-2.2-3.20110513.ND6.3.mipsel.rpm \\libjpeg-turbo-devel-1.2.90-2.ND6.mipsel.rpm \\libjpeg-turbo-1.2.90-2.ND6.mipsel.rpm \\libjpeg-turbo-static-1.2.90-2.ND6.mipsel.rpm\n","dateCreated":"2015-11-22T12:02:57+08:00","dateModified":"2015-12-05T21:03:21+08:00","datePublished":"2015-11-22T12:02:57+08:00","description":"","headline":"NeoKylin","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/22/NeoKylin/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"}},"url":"http://yoursite.com/2015/11/22/NeoKylin/"}</script>
     <meta name="description" content="x86 版安装NeoKylin-Personal-v6.0 安装方法更新 [UPDATE]使用 UltraISO 将镜像中的 images/boot.iso 提取出来，然后将其刻录到 U 盘中启动系统，按 TAB 键，将启动参数改为： 1vmlinuz initrd=initrd.img repo=hd:/dev/sda4:/ quiet 之后正常安装即可。 中标麒麟除了 V5，V6 并没有更精确">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="NeoKylin">
@@ -23,6 +23,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NeoKylin">
 <meta name="twitter:description" content="x86 版安装NeoKylin-Personal-v6.0 安装方法更新 [UPDATE]使用 UltraISO 将镜像中的 images/boot.iso 提取出来，然后将其刻录到 U 盘中启动系统，按 TAB 键，将启动参数改为： 1vmlinuz initrd=initrd.img repo=hd:/dev/sda4:/ quiet 之后正常安装即可。 中标麒麟除了 V5，V6 并没有更精确">
+<meta name="twitter:creator" content="@mapleaph">
     
     
         
@@ -91,11 +92,11 @@
                         <a  class="sidebar-button-link "
                              href="/all-categories"
                             
-                            title="Categories"
+                            title="Kategorien"
                         >
                     
                         <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Categories</span>
+                        <span class="sidebar-button-desc">Kategorien</span>
                     </a>
             </li>
             
@@ -117,11 +118,11 @@
                         <a  class="sidebar-button-link "
                              href="/all-archives"
                             
-                            title="Archives"
+                            title="Archiv"
                         >
                     
                         <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Archives</span>
+                        <span class="sidebar-button-desc">Archiv</span>
                     </a>
             </li>
             
@@ -130,11 +131,11 @@
                         <a  class="sidebar-button-link open-algolia-search"
                              href="#search"
                             
-                            title="Search"
+                            title="Suche"
                         >
                     
                         <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Search</span>
+                        <span class="sidebar-button-desc">Suche</span>
                     </a>
             </li>
             
@@ -143,11 +144,11 @@
                         <a  class="sidebar-button-link "
                              href="#about"
                             
-                            title="About"
+                            title="Über"
                         >
                     
                         <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
+                        <span class="sidebar-button-desc">Über</span>
                     </a>
             </li>
             
@@ -157,7 +158,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="https://github.com/" target="_blank" rel="noopener" title="GitHub">
+                        <a  class="sidebar-button-link " href="https://github.com/mapleaph" target="_blank" rel="noopener" title="GitHub">
                     
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">GitHub</span>
@@ -166,16 +167,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="http://stackoverflow.com/users" target="_blank" rel="noopener" title="Stack Overflow">
-                    
-                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Stack Overflow</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter">
+                        <a  class="sidebar-button-link " href="https://twitter.com/mapleaph" target="_blank" rel="noopener" title="Twitter">
                     
                         <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">Twitter</span>
@@ -184,57 +176,13 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
-                    
-                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Facebook</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://plus.google.com/" target="_blank" rel="noopener" title="Google +">
-                    
-                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Google +</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://www.linkedin.com/profile/" target="_blank" rel="noopener" title="LinkedIn">
-                    
-                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">LinkedIn</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
                         <a  class="sidebar-button-link "
-                             href="/mailto"
-                            title="Mail"
+                             href="/mapleaph@gmail.com"
+                            title="E-Mail"
                         >
                     
                         <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Mail</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/atom.xml"
-                            
-                            title="RSS"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">RSS</span>
+                        <span class="sidebar-button-desc">E-Mail</span>
                     </a>
             </li>
             
@@ -262,7 +210,7 @@
         <div class="post-meta">
     <time datetime="2015-11-22T12:02:57+08:00">
 	
-		    11月 22, 2015
+		    22 11月 2015
     	
     </time>
     
@@ -421,18 +369,18 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/26/Solaris/" data-tooltip="Solaris" aria-label="PREVIOUS: Solaris">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/26/Solaris/" data-tooltip="Solaris" aria-label="FRÜHER: Solaris">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
                 </a>
             </li>
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Windows-Power-Management/" data-tooltip="Windows Power Management" aria-label="NEXT: Windows Power Management">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Windows-Power-Management/" data-tooltip="Windows Power Management" aria-label="NÄCHSTER: Windows Power Management">
                 
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </a>
             </li>
@@ -440,7 +388,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -448,7 +396,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/NeoKylin/" title="Share on Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/NeoKylin/" title="Teilen auf Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -456,7 +404,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/NeoKylin/" title="Share on Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/NeoKylin/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -464,7 +412,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/NeoKylin/" title="Share on Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/NeoKylin/" title="Teilen auf Google Plus">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -474,7 +422,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -507,18 +455,18 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/26/Solaris/" data-tooltip="Solaris" aria-label="PREVIOUS: Solaris">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/26/Solaris/" data-tooltip="Solaris" aria-label="FRÜHER: Solaris">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
                 </a>
             </li>
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Windows-Power-Management/" data-tooltip="Windows Power Management" aria-label="NEXT: Windows Power Management">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Windows-Power-Management/" data-tooltip="Windows Power Management" aria-label="NÄCHSTER: Windows Power Management">
                 
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </a>
             </li>
@@ -526,7 +474,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -534,7 +482,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/NeoKylin/" title="Share on Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/NeoKylin/" title="Teilen auf Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -542,7 +490,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/NeoKylin/" title="Share on Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/NeoKylin/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -550,7 +498,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/NeoKylin/" title="Share on Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/NeoKylin/" title="Teilen auf Google Plus">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -560,7 +508,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -578,7 +526,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/NeoKylin/">
-                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Teilen auf Facebook</span>
                 </a>
             </li>
         
@@ -586,7 +534,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/NeoKylin/">
-                    <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    <i class="fab fa-twitter" aria-hidden="true"></i><span>Teilen auf Twitter</span>
                 </a>
             </li>
         
@@ -594,7 +542,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/NeoKylin/">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Teilen auf Google Plus</span>
                 </a>
             </li>
         
@@ -625,6 +573,12 @@
 
             </div>
         
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Tianjin, China
+            </div>
         
     </div>
 </div>

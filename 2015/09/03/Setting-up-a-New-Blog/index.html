@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"安装 Hexo请参照 Hexo 官方文档\n安装 git 支持不安装的话，在部署的时候，会提示找不到 git。\n1$ npm install hexo-deployer-git --save\n创建并初始化 Hexo1234$ mkdir /path/to/your/blogDir$ cd /path/to/your/blogDir$ hexo init$ npm install\n启动本地服务并查看12$ hexo generate$ hexo server\n接下来，打开浏览器，输入 localhost:4000，即可查看本地博客。\n将本地博客部署到 Github 上\n在 Github 上新建一个 repository，如果你的账号名称为 xyz，那么你的 repository 名称应该为 xyz.github.io。\n编辑 /path/to/your/blogDir 目录下的 _config.yml 文件：\n 1234deploy:  type: git  repository: git@github.com:xyz/xyz.github.io.git  branch: master\n\n执行部署命令\n 123$ hexo generate$ hexo deploy # 相当于 git 提交# 接下来需要输入你在 github 上的账号密码，以便进行提交，这里可以设置 SSH 免密码提交\n\n\nHexo 的一些常用快捷键123hexo g == hexo generatehexo d == hexo deployhexo n == hexo new\n目录结构\n/path/to/your/blogDir/source/ 目录用于存放博客相关的文件，如 _posts 目录存放所有文章，我们可以自己新建 assets 目录，用于存放一些图片之类的文件。\n/path/to/your/blogDir/themes/ 目录用于存放博客主题。\n\n配置编辑 /path/to/your/blogDir/_config.yml 文件：\n\n根据自己的情况，填写 title, subtitle, description, author, language 几项。\n自定义文章名称：\n 1new_post_name: :year-:month-:day-:title.md\n 假定今天是 2015 年 10 月 1 号，我们新建一篇文章，\n 1$ hexo new post \"my first post\"\n 该命令会在执行后，根据配置文件，自动在 /path/to/your/blogDir/source/_posts 目录下新建名称为 2015-10-01-my-first-post.md 的文件。\n\n\n自定义 404 页面github 无法对二级域名（xxx.github.io）提供 404 页面自定义功能。目前的做法是，使用其他站点提供的公共 404 页面做跳转，我使用的是腾讯公益页面，具体做法如下：\n在 source 目录下新建 404.html 页面，然后把从腾讯公益页面获得的代码加入其中，保存后重新部署即可，试试刷新页面看看，很方便。\n更换主题你可以到 https://github.com/hexojs/hexo/wiki/Themes 挑选你自己喜欢的主题。\n我选择的是 yilia，下面介绍如何安装和配置。\n123$ cd /path/to/your/blogDir$ git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia$ cd themes/yilia\n下面编辑 yilia 目录下的 _config.yml：\n\nsubnav 下面的每个链接都应该写上 http 或 https 前缀。\nmail 的前缀是 mailto。\n假定我把头像图片放在了 /path/to/your/blogDir/source/assets 目录下，名称为 pic.jpg，那么 avatar 头像的路径为 “/assets/pic.jpg”。\nduoshuo 评论需要先在 多说 注册自己的账号，注册之后会有自己的域名，假设域名为 xyz.duoshuo.com，那么配置文件中，将 duoshuo: true 改为 duoshuo: “xyz” 即可。\n\n通过 Instagram 获取图片首先，请参考 这篇文章。\n然后在文章中给出的 index.md 文件末尾添加如下的代码，否则，图片拉取将会失败：\n1&lt;script src=\"http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js\"&gt;&lt;/script&gt;\n常见问题找不到 hexo 命令hexo 的安装默认不会将环境变量添加到 .bashrc 中，我们需要手动更新，否则，在重新打开 terminal 执行 hexo 时，会提示找不到命令。具体命令的位置为：\n1~/.nvm/versions/node/v4.2.4/bin\n执行 hexo deploy 后，出现 error deployer not found:git 的错误1npm install hexo-deployer-git --save\n本地的博客文章被无意中删除了怎么办首先，通过 hexo 部署的文章可以放到 github 上，但是这个库并不能用来克隆后重新部署，如果本地文章不见了，就没有办法了，所以我们需要把本地的 hexo 博客再建立一个库保存起来，以后每次发布了新文章，需要作的就是两件事，使用 hexo 发布文章，push 代码库。\n","dateCreated":"2015-09-03T11:13:32+08:00","dateModified":"2018-09-14T08:59:28+08:00","datePublished":"2015-09-03T11:13:32+08:00","description":"","headline":"Setting up a New Blog","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/09/03/Setting-up-a-New-Blog/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"http://yoursite.com/2015/09/03/Setting-up-a-New-Blog/","keywords":"Hexo"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"},"articleBody":"安装 Hexo请参照 Hexo 官方文档\n安装 git 支持不安装的话，在部署的时候，会提示找不到 git。\n1$ npm install hexo-deployer-git --save\n创建并初始化 Hexo1234$ mkdir /path/to/your/blogDir$ cd /path/to/your/blogDir$ hexo init$ npm install\n启动本地服务并查看12$ hexo generate$ hexo server\n接下来，打开浏览器，输入 localhost:4000，即可查看本地博客。\n将本地博客部署到 Github 上\n在 Github 上新建一个 repository，如果你的账号名称为 xyz，那么你的 repository 名称应该为 xyz.github.io。\n编辑 /path/to/your/blogDir 目录下的 _config.yml 文件：\n 1234deploy:  type: git  repository: git@github.com:xyz/xyz.github.io.git  branch: master\n\n执行部署命令\n 123$ hexo generate$ hexo deploy # 相当于 git 提交# 接下来需要输入你在 github 上的账号密码，以便进行提交，这里可以设置 SSH 免密码提交\n\n\nHexo 的一些常用快捷键123hexo g == hexo generatehexo d == hexo deployhexo n == hexo new\n目录结构\n/path/to/your/blogDir/source/ 目录用于存放博客相关的文件，如 _posts 目录存放所有文章，我们可以自己新建 assets 目录，用于存放一些图片之类的文件。\n/path/to/your/blogDir/themes/ 目录用于存放博客主题。\n\n配置编辑 /path/to/your/blogDir/_config.yml 文件：\n\n根据自己的情况，填写 title, subtitle, description, author, language 几项。\n自定义文章名称：\n 1new_post_name: :year-:month-:day-:title.md\n 假定今天是 2015 年 10 月 1 号，我们新建一篇文章，\n 1$ hexo new post \"my first post\"\n 该命令会在执行后，根据配置文件，自动在 /path/to/your/blogDir/source/_posts 目录下新建名称为 2015-10-01-my-first-post.md 的文件。\n\n\n自定义 404 页面github 无法对二级域名（xxx.github.io）提供 404 页面自定义功能。目前的做法是，使用其他站点提供的公共 404 页面做跳转，我使用的是腾讯公益页面，具体做法如下：\n在 source 目录下新建 404.html 页面，然后把从腾讯公益页面获得的代码加入其中，保存后重新部署即可，试试刷新页面看看，很方便。\n更换主题你可以到 https://github.com/hexojs/hexo/wiki/Themes 挑选你自己喜欢的主题。\n我选择的是 yilia，下面介绍如何安装和配置。\n123$ cd /path/to/your/blogDir$ git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia$ cd themes/yilia\n下面编辑 yilia 目录下的 _config.yml：\n\nsubnav 下面的每个链接都应该写上 http 或 https 前缀。\nmail 的前缀是 mailto。\n假定我把头像图片放在了 /path/to/your/blogDir/source/assets 目录下，名称为 pic.jpg，那么 avatar 头像的路径为 “/assets/pic.jpg”。\nduoshuo 评论需要先在 多说 注册自己的账号，注册之后会有自己的域名，假设域名为 xyz.duoshuo.com，那么配置文件中，将 duoshuo: true 改为 duoshuo: “xyz” 即可。\n\n通过 Instagram 获取图片首先，请参考 这篇文章。\n然后在文章中给出的 index.md 文件末尾添加如下的代码，否则，图片拉取将会失败：\n1&lt;script src=\"http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js\"&gt;&lt;/script&gt;\n常见问题找不到 hexo 命令hexo 的安装默认不会将环境变量添加到 .bashrc 中，我们需要手动更新，否则，在重新打开 terminal 执行 hexo 时，会提示找不到命令。具体命令的位置为：\n1~/.nvm/versions/node/v4.2.4/bin\n执行 hexo deploy 后，出现 error deployer not found:git 的错误1npm install hexo-deployer-git --save\n本地的博客文章被无意中删除了怎么办首先，通过 hexo 部署的文章可以放到 github 上，但是这个库并不能用来克隆后重新部署，如果本地文章不见了，就没有办法了，所以我们需要把本地的 hexo 博客再建立一个库保存起来，以后每次发布了新文章，需要作的就是两件事，使用 hexo 发布文章，push 代码库。\n","dateCreated":"2015-09-03T11:13:32+08:00","dateModified":"2018-09-14T08:59:28+08:00","datePublished":"2015-09-03T11:13:32+08:00","description":"","headline":"Setting up a New Blog","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/09/03/Setting-up-a-New-Blog/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"}},"url":"http://yoursite.com/2015/09/03/Setting-up-a-New-Blog/","keywords":"Hexo"}</script>
     <meta name="description" content="安装 Hexo请参照 Hexo 官方文档 安装 git 支持不安装的话，在部署的时候，会提示找不到 git。 1$ npm install hexo-deployer-git --save 创建并初始化 Hexo1234$ mkdir /path/to/your/blogDir$ cd /path/to/your/blogDir$ hexo init$ npm install 启动本地服务并查看1">
 <meta name="keywords" content="Hexo">
 <meta property="og:type" content="blog">
@@ -24,6 +24,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Setting up a New Blog">
 <meta name="twitter:description" content="安装 Hexo请参照 Hexo 官方文档 安装 git 支持不安装的话，在部署的时候，会提示找不到 git。 1$ npm install hexo-deployer-git --save 创建并初始化 Hexo1234$ mkdir /path/to/your/blogDir$ cd /path/to/your/blogDir$ hexo init$ npm install 启动本地服务并查看1">
+<meta name="twitter:creator" content="@mapleaph">
     
     
         
@@ -92,11 +93,11 @@
                         <a  class="sidebar-button-link "
                              href="/all-categories"
                             
-                            title="Categories"
+                            title="Kategorien"
                         >
                     
                         <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Categories</span>
+                        <span class="sidebar-button-desc">Kategorien</span>
                     </a>
             </li>
             
@@ -118,11 +119,11 @@
                         <a  class="sidebar-button-link "
                              href="/all-archives"
                             
-                            title="Archives"
+                            title="Archiv"
                         >
                     
                         <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Archives</span>
+                        <span class="sidebar-button-desc">Archiv</span>
                     </a>
             </li>
             
@@ -131,11 +132,11 @@
                         <a  class="sidebar-button-link open-algolia-search"
                              href="#search"
                             
-                            title="Search"
+                            title="Suche"
                         >
                     
                         <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Search</span>
+                        <span class="sidebar-button-desc">Suche</span>
                     </a>
             </li>
             
@@ -144,11 +145,11 @@
                         <a  class="sidebar-button-link "
                              href="#about"
                             
-                            title="About"
+                            title="Über"
                         >
                     
                         <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
+                        <span class="sidebar-button-desc">Über</span>
                     </a>
             </li>
             
@@ -158,7 +159,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="https://github.com/" target="_blank" rel="noopener" title="GitHub">
+                        <a  class="sidebar-button-link " href="https://github.com/mapleaph" target="_blank" rel="noopener" title="GitHub">
                     
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">GitHub</span>
@@ -167,16 +168,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="http://stackoverflow.com/users" target="_blank" rel="noopener" title="Stack Overflow">
-                    
-                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Stack Overflow</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter">
+                        <a  class="sidebar-button-link " href="https://twitter.com/mapleaph" target="_blank" rel="noopener" title="Twitter">
                     
                         <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">Twitter</span>
@@ -185,57 +177,13 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
-                    
-                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Facebook</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://plus.google.com/" target="_blank" rel="noopener" title="Google +">
-                    
-                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Google +</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://www.linkedin.com/profile/" target="_blank" rel="noopener" title="LinkedIn">
-                    
-                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">LinkedIn</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
                         <a  class="sidebar-button-link "
-                             href="/mailto"
-                            title="Mail"
+                             href="/mapleaph@gmail.com"
+                            title="E-Mail"
                         >
                     
                         <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Mail</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/atom.xml"
-                            
-                            title="RSS"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">RSS</span>
+                        <span class="sidebar-button-desc">E-Mail</span>
                     </a>
             </li>
             
@@ -263,7 +211,7 @@
         <div class="post-meta">
     <time datetime="2015-09-03T11:13:32+08:00">
 	
-		    9月 03, 2015
+		    03 9月 2015
     	
     </time>
     
@@ -338,7 +286,7 @@
     <div id="post-footer" class="post-footer main-content-wrap">
         
             <div class="post-footer-tags">
-                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                <span class="text-color-light text-small">GETAGGT IN</span><br/>
                 
     <a class="tag tag--primary tag--small t-link" href="/tags/Hexo/">Hexo</a>
 
@@ -351,18 +299,18 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/21/Setting-up-Redmine/" data-tooltip="Setting up Redmine" aria-label="PREVIOUS: Setting up Redmine">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/21/Setting-up-Redmine/" data-tooltip="Setting up Redmine" aria-label="FRÜHER: Setting up Redmine">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
                 </a>
             </li>
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/09/02/picture-size-list/" data-tooltip="Picture Size List" aria-label="NEXT: Picture Size List">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/09/02/picture-size-list/" data-tooltip="Picture Size List" aria-label="NÄCHSTER: Picture Size List">
                 
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </a>
             </li>
@@ -370,7 +318,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -378,7 +326,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/09/03/Setting-up-a-New-Blog/" title="Share on Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/09/03/Setting-up-a-New-Blog/" title="Teilen auf Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -386,7 +334,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/09/03/Setting-up-a-New-Blog/" title="Share on Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/09/03/Setting-up-a-New-Blog/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -394,7 +342,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/09/03/Setting-up-a-New-Blog/" title="Share on Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/09/03/Setting-up-a-New-Blog/" title="Teilen auf Google Plus">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -404,7 +352,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -437,18 +385,18 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/21/Setting-up-Redmine/" data-tooltip="Setting up Redmine" aria-label="PREVIOUS: Setting up Redmine">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/21/Setting-up-Redmine/" data-tooltip="Setting up Redmine" aria-label="FRÜHER: Setting up Redmine">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
                 </a>
             </li>
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/09/02/picture-size-list/" data-tooltip="Picture Size List" aria-label="NEXT: Picture Size List">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/09/02/picture-size-list/" data-tooltip="Picture Size List" aria-label="NÄCHSTER: Picture Size List">
                 
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </a>
             </li>
@@ -456,7 +404,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -464,7 +412,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/09/03/Setting-up-a-New-Blog/" title="Share on Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/09/03/Setting-up-a-New-Blog/" title="Teilen auf Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -472,7 +420,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/09/03/Setting-up-a-New-Blog/" title="Share on Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/09/03/Setting-up-a-New-Blog/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -480,7 +428,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/09/03/Setting-up-a-New-Blog/" title="Share on Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/09/03/Setting-up-a-New-Blog/" title="Teilen auf Google Plus">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -490,7 +438,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -508,7 +456,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/09/03/Setting-up-a-New-Blog/">
-                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Teilen auf Facebook</span>
                 </a>
             </li>
         
@@ -516,7 +464,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/09/03/Setting-up-a-New-Blog/">
-                    <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    <i class="fab fa-twitter" aria-hidden="true"></i><span>Teilen auf Twitter</span>
                 </a>
             </li>
         
@@ -524,7 +472,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/09/03/Setting-up-a-New-Blog/">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Teilen auf Google Plus</span>
                 </a>
             </li>
         
@@ -555,6 +503,12 @@
 
             </div>
         
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Tianjin, China
+            </div>
         
     </div>
 </div>

@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"This guide is for the target of pci bus device and its sub-devices resources allocation.\nFor Bus DriverFirst you should design a customized data structure for storing the resource you gethered, let’s just called it DEVICE_EXTENSION:\n12345678910111213typedef structure &#123;  WDFDEVICE device;  ULONG port0Base;  ULONG port0Length;  ULONG port1Base;  ULONG port1Length;  ....&#125; DEVICE_EXTENSION, *PDEVICE_EXTENSION;\nsuppose your bus device has two io ports.\nthen you should register a callback function before calling WdfDeviceCreate:\n123456789101112131415161718192021222324252627282930EVT_WDF_DEVICE_RESOURCES_PREPARE_HARDWARE Bus_EvtDevicePrepareHardware;#ifdef ALLOC_PRAGMApragma alloc_text (PAGE, Bus_EvtDevicePrepareHardware);...#endifNTSTATUS xxxEvtDeviceAdd(IN WDFDRIVER Driver, IN PWDFDEVICE_INIT DeviceInit)&#123;    ...    WDF_PNPPOWER_EVENT_CALLBACKS pnpPowerCallbacks;    WDF_PNPPOWER_EVENT_CALLBACKS_INIT(&amp;pnpPowerCallbacks);    pnpPowerCallbacks.EvtDevicePrepareHardware = Bus_EvtDevicePrepareHardware;    WdfDeviceInitSetPnpPowerEventCallbacks(DeviceInit, &amp;pnpPowerCallbacks);    ....    // WdfDeviceCreate();&#125;NTSTATUS Bus_EvtDevicePrepareHardware(IN WDFDEVICE Device, IN WDFCMRESLIST ResourcesRaw, IN WDFCMRESLIST ResourcesTranslated)&#123;    // use WdfCmResourceListGetCount(ResourcesRaw) to get the number of resources.    // use WdfCmResourceListGetDescriptor(ResourcesRaw, i) to get the i-th PCM_PARTIAL_RESOURCE_DESCRIPTOR.    // use descriptor-&gt;Type to determine the resource type (CmResourceTypePort or CmResourceTypeInterrupt or something else).    // save the gethered resources to the DEVICE_EXTENSION structure    // that you previously defined.&#125;\nWhen enumerating the subdevices, the bus device’s ResourcesQuery callback and ResourceRequirementsQuery callback will be called.The callback registration should also before the invocation of WdfDeviceCreate of the PDO.\n1234567891011121314151617181920212223242526EVT_WDF_DEVICE_RESOURCES_QUERY Bus_EvtDeviceResourcesQuery;EVT_WDF_DEVICE_RESOURCE_REQUIREMENTS_QUERY Bus_EvtDeviceResourceRequirementsQuery;#ifdef ALLOC_PRAGMApragma alloc_text (PAGE, Bus_EvtDeviceResourcesQuery);pragma alloc_text (PAGE, Bus_EvtDeviceResourceRequirementsQuery);WDF_PDO_EVENT_CALLBACKS pdoCallbacks;WDF_PDO_EVENT_CALLBACK_INIT(&amp;pdoCallbacks);pdoCallbacks.EvtDeviceResourcesQuery = Bus_EvtDeviceResourcesQuery;pdoCallbacks.EvtDeviceResourceRequirementsQuery = Bus_EvtDeviceResourceRequirementsQuery;WdfPdoInitSetEventCallbacks(pDeviceInit, &amp;pdoCallbacks);NTSTATUS Bus_EvtDeviceResourcesQuery(IN WDFDEVICE Device, IN WDFIRESLIST Resources)&#123;    // assign the subdevice resources&#125;NTSTATUS Bus_EvtDeviceResourceRequirementsQuery(IN WDFDEVICE, IN WDFIORESREQLIST IoResourceRequirementsList)&#123;    // assign the subdevice resources&#125;// note that: the logic of the above two functions are almost the same\nFor Sub-device Driverthe subdevice should register the callback funtion prepareHardware like the bus driver, then do the additional step:\n1234567891011121314151617181920EVT_WDF_DEVICE_REMOVE_ADDED_RESOURCES Bus_EvtDeviceRemoveAddedResources;NTSTATUS xxxEvtDevicdAdd(IN WDFDRIVER Driver, IN PWDFDEVICE_INIT DeviceInit)&#123;    ....    WDF_FDO_EVENT_CALLBACKS fdoCallbacks;    WDF_FDO_EVENT_CALLBACKS_INIT(&amp;fdoCallbacks);    fdoCallbacks.EvtDeviceRemoveAddedResources = Bus_EvtDeviceRemoveAddedResources;    WdfFdoInitSetEventCallbacks(DeviceInit, &amp;fdoCallbacks);    ....&#125;NTSTATUS Bus_EvtDeviceRemoveAddedResources(IN WDFDEVICE Device, IN WDFCMRESLIST ResourcesRaw, IN WDFCMRESLIST ResourcesTranslated)&#123;    // just use WdfCmResourceListRemove(ResourcesRaw, i) and WdfCmResourceListRemove(ResourcesTranslated, i)    // to remove the subdevice's i-th resource so that the bus device will not use the resources.&#125;\ninf example123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110;; test.inf;整个配置文件安装成功后会在注册表生成一个实例子健 具体位置为：HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Enum;--------- Version Section ---------------------------------------------------[Version];可以是$Chicage$、$Windows NT$(含有一个空格)、$Windows 95$(含有一个空格)之一，定界符$必不可少，且这些串是不分大小写的。;如果Signature的值不是这些有效的串之一，该INF文件就被认为无效Signature=&quot;$WINDOWS NT$&quot;  ;INF文件的提供者Provider=drsn_Device    ;INF文件的版本信息，时间和版本不变的情况下，修改了SYS文件，重新安装INF文件是看不到SYS变化的;因为系统已经存根了此版本的INF和SYS,它会直接加载已有的文件,调试SYS特别要主要这个问题;如果使用VS2012编译,它会自动帮你填写这里,比较省心DriverVer=08/31/2013,8.33.48.258                  ;如果设备是一个标准类别，使用标准类的名称和GUID 否则创建一个自定义的类别名称，并自定义它的GUID;自定义的类别在注册表中 HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Class\\ 有显示Class=drsnDevice                  ClassGuid=&#123;BDC0EAC4-AC4B-46af-82EA-C4958B686515&#125;                              ;--------- SourceDiskNames and SourceDiskFiles Section -----------------------;这里两项的设置效果是 加载INF当前目录下的SYS文件[SourceDisksNames]          1 = %DiskName%,,,       [SourceDisksFiles]Name_Files_Driver = 1,,       ;--------- ClassInstall/ClassInstall32 Section -------------------------------;如果不是标准类别设备，这里的配置必须的[ClassInstall32]          Addreg=Class_AddReg;对应的注册表是 HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Class\\[Class_AddReg]  HKR,,,,%DeviceClassName%      HKR,,Icon,,&quot;-5&quot; ;--------- DestinationDirs Section -------------------------------------------;把文件呢复制到相应的目录下，在win2000及其以后系统，12表示%windir%/system32/drivers ;win98中12表示%windir%/system/IoSubsys 所以为了兼容大家都写成10,System32\\Drivers[DestinationDirs]         Name_Files_Driver = 12        ;--------- Manufacturer and Models Sections ----------------------------------  ;这里是设置模型相关的选项，注意这里VS默认生成的标准设备的配置 如：%ManufacturerName%=Standard,NT$ARCH$;如果不是标准类别设备这里必须修改，要不然最后加载的时候会出现259错误[Manufacturer]%ManufacturerName%=Mfg0               ;这里是模型节的节名，和硬件ID 这个ID可以自定义          [Mfg0]%DeviceDesc%=SysInstall, PCI\\VEN_8888&amp;DEV_8888    ;---------- DDInstall Sections -----------------------------------------------;这里需要注意WIN2000及其以上的系统这里有个.NT，如果是98这里是[SysInstall]，必须要正确设置[SysInstall.NT]           CopyFiles=Name_Files_Driver  AddReg=Install_NT_AddReg;这里的drsnWDM是注册表中的服务名 具体地址是 HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services[SysInstall.NT.Services]  Addservice = drsnWDM, 0x00000002, Sys_AddService  ;服务的具体选项[Sys_AddService]  DisplayName = %SvcDesc%               ServiceType = 1 ; SERVICE_KERNEL_DRIVER  StartType = 3 ; SERVICE_DEMAND_START  ErrorControl = 1 ; SERVICE_ERROR_NORMAL  ;这个地方虽然和[Name_Files_Driver]相同但是不能引用，所以只能照实来写ServiceBinary = %12%\\test.sys [Install_NT_AddReg]  HKLM, &quot;System\\CurrentControlSet\\Services\\drsnWDM\\Parameters&quot;,\\  &quot;BreakOnEntry&quot;, 0x00010001, 0 ; --------- Files (common) -------------  ;sys文件名 便于配置文件其它地方使用[Name_Files_Driver]                 test.sys;--------- Strings Section ---------------------------------------------------  ;字符串设置 便于配置文件其它地方使用[Strings]                     ProviderName=&quot;drsn&quot; ManufacturerName=&quot;drsn soft&quot;DiskName=&quot;test Source Disk&quot;DeviceDesc=&quot;test protect&quot; SvcDesc=&quot;drsn&quot; DeviceClassName=&quot;drsn_Device&quot;\n","dateCreated":"2015-11-22T11:26:52+08:00","dateModified":"2015-11-26T21:21:14+08:00","datePublished":"2015-11-22T11:26:52+08:00","description":"","headline":"Windows Device Driver","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/22/Windows-Device-Driver/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"http://yoursite.com/2015/11/22/Windows-Device-Driver/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"},"articleBody":"This guide is for the target of pci bus device and its sub-devices resources allocation.\nFor Bus DriverFirst you should design a customized data structure for storing the resource you gethered, let’s just called it DEVICE_EXTENSION:\n12345678910111213typedef structure &#123;  WDFDEVICE device;  ULONG port0Base;  ULONG port0Length;  ULONG port1Base;  ULONG port1Length;  ....&#125; DEVICE_EXTENSION, *PDEVICE_EXTENSION;\nsuppose your bus device has two io ports.\nthen you should register a callback function before calling WdfDeviceCreate:\n123456789101112131415161718192021222324252627282930EVT_WDF_DEVICE_RESOURCES_PREPARE_HARDWARE Bus_EvtDevicePrepareHardware;#ifdef ALLOC_PRAGMApragma alloc_text (PAGE, Bus_EvtDevicePrepareHardware);...#endifNTSTATUS xxxEvtDeviceAdd(IN WDFDRIVER Driver, IN PWDFDEVICE_INIT DeviceInit)&#123;    ...    WDF_PNPPOWER_EVENT_CALLBACKS pnpPowerCallbacks;    WDF_PNPPOWER_EVENT_CALLBACKS_INIT(&amp;pnpPowerCallbacks);    pnpPowerCallbacks.EvtDevicePrepareHardware = Bus_EvtDevicePrepareHardware;    WdfDeviceInitSetPnpPowerEventCallbacks(DeviceInit, &amp;pnpPowerCallbacks);    ....    // WdfDeviceCreate();&#125;NTSTATUS Bus_EvtDevicePrepareHardware(IN WDFDEVICE Device, IN WDFCMRESLIST ResourcesRaw, IN WDFCMRESLIST ResourcesTranslated)&#123;    // use WdfCmResourceListGetCount(ResourcesRaw) to get the number of resources.    // use WdfCmResourceListGetDescriptor(ResourcesRaw, i) to get the i-th PCM_PARTIAL_RESOURCE_DESCRIPTOR.    // use descriptor-&gt;Type to determine the resource type (CmResourceTypePort or CmResourceTypeInterrupt or something else).    // save the gethered resources to the DEVICE_EXTENSION structure    // that you previously defined.&#125;\nWhen enumerating the subdevices, the bus device’s ResourcesQuery callback and ResourceRequirementsQuery callback will be called.The callback registration should also before the invocation of WdfDeviceCreate of the PDO.\n1234567891011121314151617181920212223242526EVT_WDF_DEVICE_RESOURCES_QUERY Bus_EvtDeviceResourcesQuery;EVT_WDF_DEVICE_RESOURCE_REQUIREMENTS_QUERY Bus_EvtDeviceResourceRequirementsQuery;#ifdef ALLOC_PRAGMApragma alloc_text (PAGE, Bus_EvtDeviceResourcesQuery);pragma alloc_text (PAGE, Bus_EvtDeviceResourceRequirementsQuery);WDF_PDO_EVENT_CALLBACKS pdoCallbacks;WDF_PDO_EVENT_CALLBACK_INIT(&amp;pdoCallbacks);pdoCallbacks.EvtDeviceResourcesQuery = Bus_EvtDeviceResourcesQuery;pdoCallbacks.EvtDeviceResourceRequirementsQuery = Bus_EvtDeviceResourceRequirementsQuery;WdfPdoInitSetEventCallbacks(pDeviceInit, &amp;pdoCallbacks);NTSTATUS Bus_EvtDeviceResourcesQuery(IN WDFDEVICE Device, IN WDFIRESLIST Resources)&#123;    // assign the subdevice resources&#125;NTSTATUS Bus_EvtDeviceResourceRequirementsQuery(IN WDFDEVICE, IN WDFIORESREQLIST IoResourceRequirementsList)&#123;    // assign the subdevice resources&#125;// note that: the logic of the above two functions are almost the same\nFor Sub-device Driverthe subdevice should register the callback funtion prepareHardware like the bus driver, then do the additional step:\n1234567891011121314151617181920EVT_WDF_DEVICE_REMOVE_ADDED_RESOURCES Bus_EvtDeviceRemoveAddedResources;NTSTATUS xxxEvtDevicdAdd(IN WDFDRIVER Driver, IN PWDFDEVICE_INIT DeviceInit)&#123;    ....    WDF_FDO_EVENT_CALLBACKS fdoCallbacks;    WDF_FDO_EVENT_CALLBACKS_INIT(&amp;fdoCallbacks);    fdoCallbacks.EvtDeviceRemoveAddedResources = Bus_EvtDeviceRemoveAddedResources;    WdfFdoInitSetEventCallbacks(DeviceInit, &amp;fdoCallbacks);    ....&#125;NTSTATUS Bus_EvtDeviceRemoveAddedResources(IN WDFDEVICE Device, IN WDFCMRESLIST ResourcesRaw, IN WDFCMRESLIST ResourcesTranslated)&#123;    // just use WdfCmResourceListRemove(ResourcesRaw, i) and WdfCmResourceListRemove(ResourcesTranslated, i)    // to remove the subdevice's i-th resource so that the bus device will not use the resources.&#125;\ninf example123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110;; test.inf;整个配置文件安装成功后会在注册表生成一个实例子健 具体位置为：HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Enum;--------- Version Section ---------------------------------------------------[Version];可以是$Chicage$、$Windows NT$(含有一个空格)、$Windows 95$(含有一个空格)之一，定界符$必不可少，且这些串是不分大小写的。;如果Signature的值不是这些有效的串之一，该INF文件就被认为无效Signature=&quot;$WINDOWS NT$&quot;  ;INF文件的提供者Provider=drsn_Device    ;INF文件的版本信息，时间和版本不变的情况下，修改了SYS文件，重新安装INF文件是看不到SYS变化的;因为系统已经存根了此版本的INF和SYS,它会直接加载已有的文件,调试SYS特别要主要这个问题;如果使用VS2012编译,它会自动帮你填写这里,比较省心DriverVer=08/31/2013,8.33.48.258                  ;如果设备是一个标准类别，使用标准类的名称和GUID 否则创建一个自定义的类别名称，并自定义它的GUID;自定义的类别在注册表中 HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Class\\ 有显示Class=drsnDevice                  ClassGuid=&#123;BDC0EAC4-AC4B-46af-82EA-C4958B686515&#125;                              ;--------- SourceDiskNames and SourceDiskFiles Section -----------------------;这里两项的设置效果是 加载INF当前目录下的SYS文件[SourceDisksNames]          1 = %DiskName%,,,       [SourceDisksFiles]Name_Files_Driver = 1,,       ;--------- ClassInstall/ClassInstall32 Section -------------------------------;如果不是标准类别设备，这里的配置必须的[ClassInstall32]          Addreg=Class_AddReg;对应的注册表是 HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Class\\[Class_AddReg]  HKR,,,,%DeviceClassName%      HKR,,Icon,,&quot;-5&quot; ;--------- DestinationDirs Section -------------------------------------------;把文件呢复制到相应的目录下，在win2000及其以后系统，12表示%windir%/system32/drivers ;win98中12表示%windir%/system/IoSubsys 所以为了兼容大家都写成10,System32\\Drivers[DestinationDirs]         Name_Files_Driver = 12        ;--------- Manufacturer and Models Sections ----------------------------------  ;这里是设置模型相关的选项，注意这里VS默认生成的标准设备的配置 如：%ManufacturerName%=Standard,NT$ARCH$;如果不是标准类别设备这里必须修改，要不然最后加载的时候会出现259错误[Manufacturer]%ManufacturerName%=Mfg0               ;这里是模型节的节名，和硬件ID 这个ID可以自定义          [Mfg0]%DeviceDesc%=SysInstall, PCI\\VEN_8888&amp;DEV_8888    ;---------- DDInstall Sections -----------------------------------------------;这里需要注意WIN2000及其以上的系统这里有个.NT，如果是98这里是[SysInstall]，必须要正确设置[SysInstall.NT]           CopyFiles=Name_Files_Driver  AddReg=Install_NT_AddReg;这里的drsnWDM是注册表中的服务名 具体地址是 HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services[SysInstall.NT.Services]  Addservice = drsnWDM, 0x00000002, Sys_AddService  ;服务的具体选项[Sys_AddService]  DisplayName = %SvcDesc%               ServiceType = 1 ; SERVICE_KERNEL_DRIVER  StartType = 3 ; SERVICE_DEMAND_START  ErrorControl = 1 ; SERVICE_ERROR_NORMAL  ;这个地方虽然和[Name_Files_Driver]相同但是不能引用，所以只能照实来写ServiceBinary = %12%\\test.sys [Install_NT_AddReg]  HKLM, &quot;System\\CurrentControlSet\\Services\\drsnWDM\\Parameters&quot;,\\  &quot;BreakOnEntry&quot;, 0x00010001, 0 ; --------- Files (common) -------------  ;sys文件名 便于配置文件其它地方使用[Name_Files_Driver]                 test.sys;--------- Strings Section ---------------------------------------------------  ;字符串设置 便于配置文件其它地方使用[Strings]                     ProviderName=&quot;drsn&quot; ManufacturerName=&quot;drsn soft&quot;DiskName=&quot;test Source Disk&quot;DeviceDesc=&quot;test protect&quot; SvcDesc=&quot;drsn&quot; DeviceClassName=&quot;drsn_Device&quot;\n","dateCreated":"2015-11-22T11:26:52+08:00","dateModified":"2015-11-26T21:21:14+08:00","datePublished":"2015-11-22T11:26:52+08:00","description":"","headline":"Windows Device Driver","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/22/Windows-Device-Driver/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"}},"url":"http://yoursite.com/2015/11/22/Windows-Device-Driver/"}</script>
     <meta name="description" content="This guide is for the target of pci bus device and its sub-devices resources allocation. For Bus DriverFirst you should design a customized data structure for storing the resource you gethered, let’s">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Windows Device Driver">
@@ -23,6 +23,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Windows Device Driver">
 <meta name="twitter:description" content="This guide is for the target of pci bus device and its sub-devices resources allocation. For Bus DriverFirst you should design a customized data structure for storing the resource you gethered, let’s">
+<meta name="twitter:creator" content="@mapleaph">
     
     
         
@@ -91,11 +92,11 @@
                         <a  class="sidebar-button-link "
                              href="/all-categories"
                             
-                            title="Categories"
+                            title="Kategorien"
                         >
                     
                         <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Categories</span>
+                        <span class="sidebar-button-desc">Kategorien</span>
                     </a>
             </li>
             
@@ -117,11 +118,11 @@
                         <a  class="sidebar-button-link "
                              href="/all-archives"
                             
-                            title="Archives"
+                            title="Archiv"
                         >
                     
                         <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Archives</span>
+                        <span class="sidebar-button-desc">Archiv</span>
                     </a>
             </li>
             
@@ -130,11 +131,11 @@
                         <a  class="sidebar-button-link open-algolia-search"
                              href="#search"
                             
-                            title="Search"
+                            title="Suche"
                         >
                     
                         <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Search</span>
+                        <span class="sidebar-button-desc">Suche</span>
                     </a>
             </li>
             
@@ -143,11 +144,11 @@
                         <a  class="sidebar-button-link "
                              href="#about"
                             
-                            title="About"
+                            title="Über"
                         >
                     
                         <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
+                        <span class="sidebar-button-desc">Über</span>
                     </a>
             </li>
             
@@ -157,7 +158,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="https://github.com/" target="_blank" rel="noopener" title="GitHub">
+                        <a  class="sidebar-button-link " href="https://github.com/mapleaph" target="_blank" rel="noopener" title="GitHub">
                     
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">GitHub</span>
@@ -166,16 +167,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="http://stackoverflow.com/users" target="_blank" rel="noopener" title="Stack Overflow">
-                    
-                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Stack Overflow</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter">
+                        <a  class="sidebar-button-link " href="https://twitter.com/mapleaph" target="_blank" rel="noopener" title="Twitter">
                     
                         <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">Twitter</span>
@@ -184,57 +176,13 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
-                    
-                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Facebook</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://plus.google.com/" target="_blank" rel="noopener" title="Google +">
-                    
-                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Google +</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://www.linkedin.com/profile/" target="_blank" rel="noopener" title="LinkedIn">
-                    
-                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">LinkedIn</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
                         <a  class="sidebar-button-link "
-                             href="/mailto"
-                            title="Mail"
+                             href="/mapleaph@gmail.com"
+                            title="E-Mail"
                         >
                     
                         <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Mail</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/atom.xml"
-                            
-                            title="RSS"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">RSS</span>
+                        <span class="sidebar-button-desc">E-Mail</span>
                     </a>
             </li>
             
@@ -262,7 +210,7 @@
         <div class="post-meta">
     <time datetime="2015-11-22T11:26:52+08:00">
 	
-		    11月 22, 2015
+		    22 11月 2015
     	
     </time>
     
@@ -305,18 +253,18 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Windows-Power-Management/" data-tooltip="Windows Power Management" aria-label="PREVIOUS: Windows Power Management">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Windows-Power-Management/" data-tooltip="Windows Power Management" aria-label="FRÜHER: Windows Power Management">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
                 </a>
             </li>
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Windows-Embedded/" data-tooltip="Windows Embedded" aria-label="NEXT: Windows Embedded">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Windows-Embedded/" data-tooltip="Windows Embedded" aria-label="NÄCHSTER: Windows Embedded">
                 
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </a>
             </li>
@@ -324,7 +272,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -332,7 +280,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Windows-Device-Driver/" title="Share on Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Windows-Device-Driver/" title="Teilen auf Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -340,7 +288,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Windows-Device-Driver/" title="Share on Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Windows-Device-Driver/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -348,7 +296,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Windows-Device-Driver/" title="Share on Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Windows-Device-Driver/" title="Teilen auf Google Plus">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -358,7 +306,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -391,18 +339,18 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Windows-Power-Management/" data-tooltip="Windows Power Management" aria-label="PREVIOUS: Windows Power Management">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Windows-Power-Management/" data-tooltip="Windows Power Management" aria-label="FRÜHER: Windows Power Management">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
                 </a>
             </li>
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Windows-Embedded/" data-tooltip="Windows Embedded" aria-label="NEXT: Windows Embedded">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/22/Windows-Embedded/" data-tooltip="Windows Embedded" aria-label="NÄCHSTER: Windows Embedded">
                 
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </a>
             </li>
@@ -410,7 +358,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -418,7 +366,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Windows-Device-Driver/" title="Share on Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Windows-Device-Driver/" title="Teilen auf Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -426,7 +374,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Windows-Device-Driver/" title="Share on Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Windows-Device-Driver/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -434,7 +382,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Windows-Device-Driver/" title="Share on Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Windows-Device-Driver/" title="Teilen auf Google Plus">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -444,7 +392,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -462,7 +410,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Windows-Device-Driver/">
-                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Teilen auf Facebook</span>
                 </a>
             </li>
         
@@ -470,7 +418,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Windows-Device-Driver/">
-                    <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    <i class="fab fa-twitter" aria-hidden="true"></i><span>Teilen auf Twitter</span>
                 </a>
             </li>
         
@@ -478,7 +426,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Windows-Device-Driver/">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Teilen auf Google Plus</span>
                 </a>
             </li>
         
@@ -509,6 +457,12 @@
 
             </div>
         
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Tianjin, China
+            </div>
         
     </div>
 </div>

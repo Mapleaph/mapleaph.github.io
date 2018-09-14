@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"快捷键\n剪切\n Command + drag\n\n复制\n Option + drag\n\n创建符号链接\n Command + Option + drag\n\n\n安装 gdbMac OS X 从 10.9 开始选择 lldb 而不是 gdb 作为程序调试器，选用 clang 和 llvm 分别代替 gcc 和 ld。\n如果想要安装 gdb，可以通过如下命令实现：\n1brew install homebrew/dupes/gdb\nsystem_profiler (同 lsusb 命令)1system_profiler SPUSBDataType\nSSH打开终端使用 SSH 成功连接服务器后，出现\n1warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory\n的问题，解决方法如下：\n将 /etc/ssh_config 文件的\n1SendEnv LANG LC_*\n一行注释掉，然后保存并重启终端即可。\n如何在 Mac 下关闭指定端口对应进程123lsof -i:&lt;port&gt;#上面的命令会列出占用端口的进程，可能不止一个，然后根据进程号 kill 掉对应进程kill &lt;pid&gt;\nDoxygen\nbrew install graphviz\n\nchange the configuration LATEX_CMD_NAME to pdflatex\n\nchange the configuration DOT_PATH to /path/to/dot\n\nin the Diagrams Topics of the Wizard tab, change the Diagrams to generate to Use dot tool from the GraphViz package and check all the boxes\n\nin the Mode Topics of the Wizard tab, change the Select the desired extraction mode to All Entities and check the Include cross-referenced source code in the output\n\n\n命令行下用 Sublime Text 打开文件该方法同样适用于其他类似软件，如 MacDown。\n\n方法一\n  12# 其中 Sublime\\ Text 是应用程序的名称$ open -a Sublime\\ Text &lt;file&gt;\n\n方法二\n  1234# 先建立软链接$ sudo ln -s /Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl# 此后直接用命令打开，更加方便$ subl &lt;file&gt;\n\n\n","dateCreated":"2015-11-26T21:10:55+08:00","dateModified":"2015-11-26T21:20:37+08:00","datePublished":"2015-11-26T21:10:55+08:00","description":"","headline":"Things Need to Know about Mac OS X","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/26/Things-Need-to-Know-about-Mac-OSX/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"http://yoursite.com/2015/11/26/Things-Need-to-Know-about-Mac-OSX/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"},"articleBody":"快捷键\n剪切\n Command + drag\n\n复制\n Option + drag\n\n创建符号链接\n Command + Option + drag\n\n\n安装 gdbMac OS X 从 10.9 开始选择 lldb 而不是 gdb 作为程序调试器，选用 clang 和 llvm 分别代替 gcc 和 ld。\n如果想要安装 gdb，可以通过如下命令实现：\n1brew install homebrew/dupes/gdb\nsystem_profiler (同 lsusb 命令)1system_profiler SPUSBDataType\nSSH打开终端使用 SSH 成功连接服务器后，出现\n1warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory\n的问题，解决方法如下：\n将 /etc/ssh_config 文件的\n1SendEnv LANG LC_*\n一行注释掉，然后保存并重启终端即可。\n如何在 Mac 下关闭指定端口对应进程123lsof -i:&lt;port&gt;#上面的命令会列出占用端口的进程，可能不止一个，然后根据进程号 kill 掉对应进程kill &lt;pid&gt;\nDoxygen\nbrew install graphviz\n\nchange the configuration LATEX_CMD_NAME to pdflatex\n\nchange the configuration DOT_PATH to /path/to/dot\n\nin the Diagrams Topics of the Wizard tab, change the Diagrams to generate to Use dot tool from the GraphViz package and check all the boxes\n\nin the Mode Topics of the Wizard tab, change the Select the desired extraction mode to All Entities and check the Include cross-referenced source code in the output\n\n\n命令行下用 Sublime Text 打开文件该方法同样适用于其他类似软件，如 MacDown。\n\n方法一\n  12# 其中 Sublime\\ Text 是应用程序的名称$ open -a Sublime\\ Text &lt;file&gt;\n\n方法二\n  1234# 先建立软链接$ sudo ln -s /Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl# 此后直接用命令打开，更加方便$ subl &lt;file&gt;\n\n\n","dateCreated":"2015-11-26T21:10:55+08:00","dateModified":"2015-11-26T21:20:37+08:00","datePublished":"2015-11-26T21:10:55+08:00","description":"","headline":"Things Need to Know about Mac OS X","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/26/Things-Need-to-Know-about-Mac-OSX/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"}},"url":"http://yoursite.com/2015/11/26/Things-Need-to-Know-about-Mac-OSX/"}</script>
     <meta name="description" content="快捷键 剪切  Command + drag  复制  Option + drag  创建符号链接  Command + Option + drag   安装 gdbMac OS X 从 10.9 开始选择 lldb 而不是 gdb 作为程序调试器，选用 clang 和 llvm 分别代替 gcc 和 ld。 如果想要安装 gdb，可以通过如下命令实现： 1brew install homebre">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Things Need to Know about Mac OS X">
@@ -23,6 +23,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Things Need to Know about Mac OS X">
 <meta name="twitter:description" content="快捷键 剪切  Command + drag  复制  Option + drag  创建符号链接  Command + Option + drag   安装 gdbMac OS X 从 10.9 开始选择 lldb 而不是 gdb 作为程序调试器，选用 clang 和 llvm 分别代替 gcc 和 ld。 如果想要安装 gdb，可以通过如下命令实现： 1brew install homebre">
+<meta name="twitter:creator" content="@mapleaph">
     
     
         
@@ -91,11 +92,11 @@
                         <a  class="sidebar-button-link "
                              href="/all-categories"
                             
-                            title="Categories"
+                            title="Kategorien"
                         >
                     
                         <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Categories</span>
+                        <span class="sidebar-button-desc">Kategorien</span>
                     </a>
             </li>
             
@@ -117,11 +118,11 @@
                         <a  class="sidebar-button-link "
                              href="/all-archives"
                             
-                            title="Archives"
+                            title="Archiv"
                         >
                     
                         <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Archives</span>
+                        <span class="sidebar-button-desc">Archiv</span>
                     </a>
             </li>
             
@@ -130,11 +131,11 @@
                         <a  class="sidebar-button-link open-algolia-search"
                              href="#search"
                             
-                            title="Search"
+                            title="Suche"
                         >
                     
                         <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Search</span>
+                        <span class="sidebar-button-desc">Suche</span>
                     </a>
             </li>
             
@@ -143,11 +144,11 @@
                         <a  class="sidebar-button-link "
                              href="#about"
                             
-                            title="About"
+                            title="Über"
                         >
                     
                         <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
+                        <span class="sidebar-button-desc">Über</span>
                     </a>
             </li>
             
@@ -157,7 +158,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="https://github.com/" target="_blank" rel="noopener" title="GitHub">
+                        <a  class="sidebar-button-link " href="https://github.com/mapleaph" target="_blank" rel="noopener" title="GitHub">
                     
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">GitHub</span>
@@ -166,16 +167,7 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="http://stackoverflow.com/users" target="_blank" rel="noopener" title="Stack Overflow">
-                    
-                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Stack Overflow</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://twitter.com/" target="_blank" rel="noopener" title="Twitter">
+                        <a  class="sidebar-button-link " href="https://twitter.com/mapleaph" target="_blank" rel="noopener" title="Twitter">
                     
                         <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">Twitter</span>
@@ -184,57 +176,13 @@
             
                 <li class="sidebar-button">
                     
-                        <a  class="sidebar-button-link " href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook">
-                    
-                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Facebook</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://plus.google.com/" target="_blank" rel="noopener" title="Google +">
-                    
-                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Google +</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://www.linkedin.com/profile/" target="_blank" rel="noopener" title="LinkedIn">
-                    
-                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">LinkedIn</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
                         <a  class="sidebar-button-link "
-                             href="/mailto"
-                            title="Mail"
+                             href="/mapleaph@gmail.com"
+                            title="E-Mail"
                         >
                     
                         <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Mail</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/atom.xml"
-                            
-                            title="RSS"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">RSS</span>
+                        <span class="sidebar-button-desc">E-Mail</span>
                     </a>
             </li>
             
@@ -262,7 +210,7 @@
         <div class="post-meta">
     <time datetime="2015-11-26T21:10:55+08:00">
 	
-		    11月 26, 2015
+		    26 11月 2015
     	
     </time>
     
@@ -337,18 +285,18 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/26/My-Software-List/" data-tooltip="My Software List" aria-label="PREVIOUS: My Software List">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/26/My-Software-List/" data-tooltip="My Software List" aria-label="FRÜHER: My Software List">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
                 </a>
             </li>
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/26/Solaris/" data-tooltip="Solaris" aria-label="NEXT: Solaris">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/26/Solaris/" data-tooltip="Solaris" aria-label="NÄCHSTER: Solaris">
                 
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </a>
             </li>
@@ -356,7 +304,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -364,7 +312,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/26/Things-Need-to-Know-about-Mac-OSX/" title="Share on Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/26/Things-Need-to-Know-about-Mac-OSX/" title="Teilen auf Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -372,7 +320,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/26/Things-Need-to-Know-about-Mac-OSX/" title="Share on Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/26/Things-Need-to-Know-about-Mac-OSX/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -380,7 +328,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/26/Things-Need-to-Know-about-Mac-OSX/" title="Share on Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/26/Things-Need-to-Know-about-Mac-OSX/" title="Teilen auf Google Plus">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -390,7 +338,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -423,18 +371,18 @@
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/26/My-Software-List/" data-tooltip="My Software List" aria-label="PREVIOUS: My Software List">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/26/My-Software-List/" data-tooltip="My Software List" aria-label="FRÜHER: My Software List">
                 
                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    <span class="hide-xs hide-sm text-small icon-ml">FRÜHER</span>
                 </a>
             </li>
             <li class="post-action">
                 
                     
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/26/Solaris/" data-tooltip="Solaris" aria-label="NEXT: Solaris">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/26/Solaris/" data-tooltip="Solaris" aria-label="NÄCHSTER: Solaris">
                 
-                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <span class="hide-xs hide-sm text-small icon-mr">NÄCHSTER</span>
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                 </a>
             </li>
@@ -442,7 +390,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -450,7 +398,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/26/Things-Need-to-Know-about-Mac-OSX/" title="Share on Facebook">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/26/Things-Need-to-Know-about-Mac-OSX/" title="Teilen auf Facebook">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -458,7 +406,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/26/Things-Need-to-Know-about-Mac-OSX/" title="Share on Twitter">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/26/Things-Need-to-Know-about-Mac-OSX/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -466,7 +414,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/26/Things-Need-to-Know-about-Mac-OSX/" title="Share on Google+">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/26/Things-Need-to-Know-about-Mac-OSX/" title="Teilen auf Google Plus">
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
             </li>
@@ -476,7 +424,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -494,7 +442,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/26/Things-Need-to-Know-about-Mac-OSX/">
-                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Teilen auf Facebook</span>
                 </a>
             </li>
         
@@ -502,7 +450,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/26/Things-Need-to-Know-about-Mac-OSX/">
-                    <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    <i class="fab fa-twitter" aria-hidden="true"></i><span>Teilen auf Twitter</span>
                 </a>
             </li>
         
@@ -510,7 +458,7 @@
             
             <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/26/Things-Need-to-Know-about-Mac-OSX/">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Teilen auf Google Plus</span>
                 </a>
             </li>
         
@@ -541,6 +489,12 @@
 
             </div>
         
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Tianjin, China
+            </div>
         
     </div>
 </div>
