@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Set up RaspberryPi | DreamLand</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Installation最新的系统镜像可以从官网上取得，将解压后得到的 img 文件写入到 TF 卡中。 dd 命令 Mac 下出现了写入不结束的情况，失败。 Linux 下写入正常，但写入后的 TF 卡无法挂载，提示重新格式化。  Win32DiskImager目前仅能够通过这种方法进行写入。使用过程很简单，这里不做描述。 Boot Configuration目前采用的环境是利用 HDMI 转">
+  <meta name="description" content="Installation最新的系统镜像可以从官网上取得，将解压后得到的 img 文件写入到 TF 卡中。 dd 命令 Mac 下出现了写入不结束的情况，失败。 Linux 下写入正常，但写入后的 TF 卡无法挂载，提示重新格式化。  Win32DiskImager目前仅能够通过这种方法进行写入。使用过程很简单，这里不做描述。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Set up RaspberryPi">
 <meta property="og:url" content="http://yoursite.com/2016/01/28/Set-up-RaspberryPi/index.html">
 <meta property="og:site_name" content="DreamLand">
-<meta property="og:description" content="Installation最新的系统镜像可以从官网上取得，将解压后得到的 img 文件写入到 TF 卡中。 dd 命令 Mac 下出现了写入不结束的情况，失败。 Linux 下写入正常，但写入后的 TF 卡无法挂载，提示重新格式化。  Win32DiskImager目前仅能够通过这种方法进行写入。使用过程很简单，这里不做描述。 Boot Configuration目前采用的环境是利用 HDMI 转">
+<meta property="og:description" content="Installation最新的系统镜像可以从官网上取得，将解压后得到的 img 文件写入到 TF 卡中。 dd 命令 Mac 下出现了写入不结束的情况，失败。 Linux 下写入正常，但写入后的 TF 卡无法挂载，提示重新格式化。  Win32DiskImager目前仅能够通过这种方法进行写入。使用过程很简单，这里不做描述。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2016-01-28T06:04:28.000Z">
+<meta property="og:updated_time" content="2018-09-14T07:48:17.452Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Set up RaspberryPi">
-<meta name="twitter:description" content="Installation最新的系统镜像可以从官网上取得，将解压后得到的 img 文件写入到 TF 卡中。 dd 命令 Mac 下出现了写入不结束的情况，失败。 Linux 下写入正常，但写入后的 TF 卡无法挂载，提示重新格式化。  Win32DiskImager目前仅能够通过这种方法进行写入。使用过程很简单，这里不做描述。 Boot Configuration目前采用的环境是利用 HDMI 转">
+<meta name="twitter:description" content="Installation最新的系统镜像可以从官网上取得，将解压后得到的 img 文件写入到 TF 卡中。 dd 命令 Mac 下出现了写入不结束的情况，失败。 Linux 下写入正常，但写入后的 TF 卡无法挂载，提示重新格式化。  Win32DiskImager目前仅能够通过这种方法进行写入。使用过程很简单，这里不做描述。">
   
     <link rel="alternative" href="/atom.xml" title="DreamLand" type="application/atom+xml">
   
@@ -184,6 +184,7 @@
 <li>Linux 下写入正常，但写入后的 TF 卡无法挂载，提示重新格式化。</li>
 </ol>
 <h3 id="Win32DiskImager"><a href="#Win32DiskImager" class="headerlink" title="Win32DiskImager"></a>Win32DiskImager</h3><p>目前仅能够通过这种方法进行写入。使用过程很简单，这里不做描述。</p>
+<a id="more"></a>
 <h2 id="Boot-Configuration"><a href="#Boot-Configuration" class="headerlink" title="Boot Configuration"></a>Boot Configuration</h2><p>目前采用的环境是利用 HDMI 转 DVI 线缆链接树梅派和显示器，但默认情况下显示器是没有输出的，需要我们先利用读卡器将 TF 卡挂载到其他系统中，然后编辑 /config.txt 文件，需要去掉几句话的注释，如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">disable_overscan=1</span><br><span class="line">hdmi_force_hotplug=1</span><br><span class="line">hdmi_group=1</span><br><span class="line">hdmi_mode=1</span><br><span class="line">hdmi_driver=2</span><br><span class="line">config_hdmi_boost=4</span><br></pre></td></tr></table></figure>
 <p>如果你发现现实分辨率不对，那么需要更改其中的两项：</p>
@@ -321,6 +322,19 @@
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Installation"><span class="toc-number">1.</span> <span class="toc-text">Installation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#dd-命令"><span class="toc-number">1.1.</span> <span class="toc-text">dd 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Win32DiskImager"><span class="toc-number">1.2.</span> <span class="toc-text">Win32DiskImager</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Boot-Configuration"><span class="toc-number">2.</span> <span class="toc-text">Boot Configuration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apt-get-Configuration"><span class="toc-number">3.</span> <span class="toc-text">apt-get Configuration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chinese-Support"><span class="toc-number">4.</span> <span class="toc-text">Chinese Support</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Choose-the-Correct-Keyboard-Layout"><span class="toc-number">5.</span> <span class="toc-text">Choose the Correct Keyboard Layout</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Expand-the-Available-Space"><span class="toc-number">6.</span> <span class="toc-text">Expand the Available Space</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
@@ -338,6 +352,30 @@
 
 <!-- 目录内容 -->
 
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+	<div id="toc-article" class="toc-article">
+	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+		<strong class="toc-title">文章目录</strong>
+           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Installation"><span class="toc-number">1.</span> <span class="toc-text">Installation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#dd-命令"><span class="toc-number">1.1.</span> <span class="toc-text">dd 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Win32DiskImager"><span class="toc-number">1.2.</span> <span class="toc-text">Win32DiskImager</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Boot-Configuration"><span class="toc-number">2.</span> <span class="toc-text">Boot Configuration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apt-get-Configuration"><span class="toc-number">3.</span> <span class="toc-text">apt-get Configuration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chinese-Support"><span class="toc-number">4.</span> <span class="toc-text">Chinese Support</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Choose-the-Correct-Keyboard-Layout"><span class="toc-number">5.</span> <span class="toc-text">Choose the Correct Keyboard Layout</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Expand-the-Available-Space"><span class="toc-number">6.</span> <span class="toc-text">Expand the Available Space</span></a></li></ol>
+         </div>
+   <script type="text/javascript">
+	function showToc(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:block");
+		show_toc_btn.setAttribute("style","display:none");
+		};
+	function showBtn(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:none");
+		show_toc_btn.setAttribute("style","display:block");
+		};
+   </script>
+      		
 <!-- 目录内容结束 -->
 
           </div>
