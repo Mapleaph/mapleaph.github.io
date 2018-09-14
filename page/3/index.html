@@ -43,7 +43,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/assets/images/avatar.jpg" class="js-avatar">
+			<img src="" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Michael Wu</a></h1>
@@ -59,16 +59,6 @@
 	        
 				<li><a href="/tags/随笔/">随笔</a></li>
 	        
-				<li><a href="/archives">所有文章</a></li>
-	        
-				<li><a href="/categories/Encyclopedia">杂七杂八</a></li>
-	        
-				<li><a href="/categories/linux">Linux</a></li>
-	        
-				<li><a href="/categories/Techniques">技术</a></li>
-	        
-				<li><a href="/instagram">相册</a></li>
-	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -77,6 +67,8 @@
     			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
     			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
     			
             
     			
@@ -87,11 +79,13 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="https://github.com/mapleaph" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="mail" target="_blank" href="mailto:mapleaph@gmail.com" title="mail"><i class="icon-mail"></i></a>
+					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="twitter" target="_blank" href="https://twitter.com/mapleaph" title="twitter"><i class="icon-twitter"></i></a>
+					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
 			</div>
 		</nav>
@@ -109,7 +103,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/assets/images/avatar.jpg" class="js-avatar">
+				<img src="" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Michael Wu</h1>
@@ -123,47 +117,29 @@
 			
 				
 			
-				
-			
-				
-			
-				
-			
-				
-			
-				
-			
 			
 			
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="https://github.com/mapleaph" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="mail" target="_blank" href="mailto:mapleaph@gmail.com" title="mail"><i class="icon-mail"></i></a>
+						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="twitter" target="_blank" href="https://twitter.com/mapleaph" title="twitter"><i class="icon-twitter"></i></a>
+						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 				</div>
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 70%">
+				<ul style="width: 50%">
 				
 				
-					<li style="width: 14.285714285714286%"><a href="/">主页</a></li>
+					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/tags/随笔/">随笔</a></li>
-		        
-					<li style="width: 14.285714285714286%"><a href="/archives">所有文章</a></li>
-		        
-					<li style="width: 14.285714285714286%"><a href="/categories/Encyclopedia">杂七杂八</a></li>
-		        
-					<li style="width: 14.285714285714286%"><a href="/categories/linux">Linux</a></li>
-		        
-					<li style="width: 14.285714285714286%"><a href="/categories/Techniques">技术</a></li>
-		        
-					<li style="width: 14.285714285714286%"><a href="/instagram">相册</a></li>
+					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -201,7 +177,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install proftpd</span><br><span class="line"><span class="comment"># choose standalone mode</span></span><br></pre></td></tr></table></figure>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/proftpd/proftpd.conf</span><br><span class="line"></span><br><span class="line">1. change ServerName to your specified name</span><br><span class="line">2. uncomment DefaultRoot ~ to jail all users to their homes</span><br><span class="line"><span class="comment"># following is an example, we want /ftp_pool/pub to be the home directory of the ftp server.</span></span><br><span class="line"><span class="comment"># so you should ensure that the permission of the /ftp_pool/pub is 777.</span></span><br><span class="line">&lt;Anonymous /ftp_pool/pub&gt;</span><br><span class="line">   User                     ftp</span><br><span class="line">   Group                    ftp</span><br><span class="line">   <span class="comment"># We want clients to be able to login with "anonymous" as well as "ftp"</span></span><br><span class="line">   UserAlias                anonymous ftp</span><br><span class="line">   <span class="comment"># Cosmetic changes, all files belongs to ftp user</span></span><br><span class="line">   DirFakeUser  on ftp</span><br><span class="line">   DirFakeGroup on ftp</span><br><span class="line">   RequireValidShell        off</span><br><span class="line">   <span class="comment"># Limit the maximum number of anonymous logins</span></span><br><span class="line">   MaxClients               10</span><br><span class="line">   <span class="comment"># We want 'welcome.msg' displayed at login, and '.message' displayed</span></span><br><span class="line">   <span class="comment"># in each newly chdired directory.</span></span><br><span class="line">   DisplayLogin             welcome.msg</span><br><span class="line">   DisplayChdir             .message</span><br><span class="line">   <span class="comment"># Limit WRITE everywhere in the anonymous chroot</span></span><br><span class="line">   &lt;Directory *&gt;</span><br><span class="line">     &lt;Limit WRITE&gt;</span><br><span class="line">        AllowAll <span class="comment"># currently, all users can download and upload anything.</span></span><br><span class="line">     &lt;/Limit&gt;</span><br><span class="line">   &lt;/Directory&gt;</span><br><span class="line">&lt;/anonymous&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/proftpd/proftpd.conf</span><br></pre></td></tr></table></figure>
+<ol>
+<li>change ServerName to your specified name</li>
+<li>uncomment DefaultRoot ~ to jail all users to their homes</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># following is an example, we want /ftp_pool/pub to be the home directory of the ftp server.</span></span><br><span class="line"><span class="comment"># so you should ensure that the permission of the /ftp_pool/pub is 777.</span></span><br><span class="line">&lt;Anonymous /ftp_pool/pub&gt;</span><br><span class="line">   User                     ftp</span><br><span class="line">   Group                    ftp</span><br><span class="line">   <span class="comment"># We want clients to be able to login with "anonymous" as well as "ftp"</span></span><br><span class="line">   UserAlias                anonymous ftp</span><br><span class="line">   <span class="comment"># Cosmetic changes, all files belongs to ftp user</span></span><br><span class="line">   DirFakeUser  on ftp</span><br><span class="line">   DirFakeGroup on ftp</span><br><span class="line">   RequireValidShell        off</span><br><span class="line">   <span class="comment"># Limit the maximum number of anonymous logins</span></span><br><span class="line">   MaxClients               10</span><br><span class="line">   <span class="comment"># We want 'welcome.msg' displayed at login, and '.message' displayed</span></span><br><span class="line">   <span class="comment"># in each newly chdired directory.</span></span><br><span class="line">   DisplayLogin             welcome.msg</span><br><span class="line">   DisplayChdir             .message</span><br><span class="line">   <span class="comment"># Limit WRITE everywhere in the anonymous chroot</span></span><br><span class="line">   &lt;Directory *&gt;</span><br><span class="line">     &lt;Limit WRITE&gt;</span><br><span class="line">        AllowAll <span class="comment"># currently, all users can download and upload anything.</span></span><br><span class="line">     &lt;/Limit&gt;</span><br><span class="line">   &lt;/Directory&gt;</span><br><span class="line">&lt;/anonymous&gt;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -253,6 +234,9 @@
 
 
 
+<!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
 
   
     <article id="post-Things-Need-to-Know-about-Git" class="article article-type-post  article-index" itemscope itemprop="blogPost">
@@ -366,6 +350,9 @@
 
 
 
+<!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
 
   
     <article id="post-Setting-up-Redmine" class="article article-type-post  article-index" itemscope itemprop="blogPost">
@@ -467,6 +454,9 @@
 
 
 
+<!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
 
   
     <article id="post-Setting-up-a-New-Blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
@@ -600,6 +590,9 @@
 
 
 
+<!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
 
   
     <article id="post-picture-size-list" class="article article-type-post  article-index" itemscope itemprop="blogPost">
@@ -721,6 +714,9 @@
 
 
 
+<!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
 
   
   
@@ -778,6 +774,8 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
     
       
+      
+      
     
       
       
@@ -789,13 +787,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     
       
-      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      
         
       
-      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -863,11 +863,43 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
 
     
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
 
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">80 后空巢老人</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
   	  	
     	</section>
     
