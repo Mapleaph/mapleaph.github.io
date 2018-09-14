@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"Website","@id":"http://yoursite.com","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"},"name":"DreamLand","description":null,"url":"http://yoursite.com"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"Website","@id":"http://yoursite.com","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"avatar.jpg"},"name":"DreamLand","description":null,"url":"http://yoursite.com"}</script>
     <meta name="description" content="图片来自instagram，正在加载中…">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="相册">
@@ -28,6 +28,8 @@
     
         
     
+    
+        <meta property="og:image" content="http://yoursite.com/assets/images/avatar.jpg"/>
     
     
     
@@ -49,6 +51,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="1">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -61,6 +67,8 @@
                 href="#about">
         
         
+            <img class="header-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
+        
         </a>
     
 </header>
@@ -68,8 +76,23 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="1">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
+                </a>
+                <h4 class="sidebar-profile-name">Michael Wu</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -265,14 +288,6 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/instagram/index.html" title="Teilen auf Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
                 <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/instagram/index.html" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
@@ -281,8 +296,8 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/instagram/index.html" title="Teilen auf Google Plus">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/instagram/index.html" title="Share on Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
         
@@ -321,11 +336,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
         
             <h4 id="about-card-name">Michael Wu</h4>
         

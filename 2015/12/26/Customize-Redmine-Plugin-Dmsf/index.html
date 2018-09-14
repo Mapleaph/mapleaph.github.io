@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"},"articleBody":"Add a Hook in the Redmine SourceThis official redmine source doesn’t provide a hook if I what to do something just after a project created. So I’m gonna write a hook on my own.\nIn the file /path/to/redmine/app/controllers/projects_controller.rb, we just add a one-line code like this:\n1234567891011def create    @issue_custom_fields = IssueCustomField.sorted.to_a    @trackers = Tracker.sorted.to_a    @project = Project.new    @project.safe_attributes = params[:project]    if @project.save      unless User.current.admin?        @project.add_default_member(User.current)      end      call_hook(:controller_project_new_after_save, &#123;:params =&gt; params, :project =&gt; @project&#125;)\nThe call_hook line is what the functionality takes place. Notice that we should add the line inside the create function not new function.\nNext, we can actually do something nice by adding a file /path/to/redmine/plugins/redmine_dmsf/lib/redmine_dmsf/hooks/controller_project_new_after_save.rb\n123456789101112module RedmineDmsf    module Hooks        include Redmine::Hook        class ControllerProjectNewAfterSaveHook &lt; Redmine::Hook::ViewListener            def controller_project_new_after_save(context=&#123; &#125;)                params = context[:params]                project = context[:project]                # then you can add code whatever you like.\nFinally, we should add the file path to the redmine_dmsf.rb file under /path/to/redmine/plugins/redmine_dmsf/lib.\n1require 'redmine_dmsf/hooks/controller_project_new_after_save_hook'\nUpdate DatabaseIf we want to update the database by just one command, you can add a ruby file called seeds.rb under the folder /path/to/redmine/db/, then execute the command in the redmine command line environment.\n1rake db:seed RAILS_ENV=production\n","dateCreated":"2015-12-26T17:35:49+08:00","dateModified":"2015-12-26T19:06:24+08:00","datePublished":"2015-12-26T17:35:49+08:00","description":"","headline":"Customize Redmine Plugin Dmsf","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/12/26/Customize-Redmine-Plugin-Dmsf/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"}},"url":"http://yoursite.com/2015/12/26/Customize-Redmine-Plugin-Dmsf/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"avatar.jpg"},"articleBody":"Add a Hook in the Redmine SourceThis official redmine source doesn’t provide a hook if I what to do something just after a project created. So I’m gonna write a hook on my own.\nIn the file /path/to/redmine/app/controllers/projects_controller.rb, we just add a one-line code like this:\n1234567891011def create    @issue_custom_fields = IssueCustomField.sorted.to_a    @trackers = Tracker.sorted.to_a    @project = Project.new    @project.safe_attributes = params[:project]    if @project.save      unless User.current.admin?        @project.add_default_member(User.current)      end      call_hook(:controller_project_new_after_save, &#123;:params =&gt; params, :project =&gt; @project&#125;)\nThe call_hook line is what the functionality takes place. Notice that we should add the line inside the create function not new function.\nNext, we can actually do something nice by adding a file /path/to/redmine/plugins/redmine_dmsf/lib/redmine_dmsf/hooks/controller_project_new_after_save.rb\n123456789101112module RedmineDmsf    module Hooks        include Redmine::Hook        class ControllerProjectNewAfterSaveHook &lt; Redmine::Hook::ViewListener            def controller_project_new_after_save(context=&#123; &#125;)                params = context[:params]                project = context[:project]                # then you can add code whatever you like.\nFinally, we should add the file path to the redmine_dmsf.rb file under /path/to/redmine/plugins/redmine_dmsf/lib.\n1require 'redmine_dmsf/hooks/controller_project_new_after_save_hook'\nUpdate DatabaseIf we want to update the database by just one command, you can add a ruby file called seeds.rb under the folder /path/to/redmine/db/, then execute the command in the redmine command line environment.\n1rake db:seed RAILS_ENV=production\n","dateCreated":"2015-12-26T17:35:49+08:00","dateModified":"2015-12-26T19:06:24+08:00","datePublished":"2015-12-26T17:35:49+08:00","description":"","headline":"Customize Redmine Plugin Dmsf","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/12/26/Customize-Redmine-Plugin-Dmsf/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"avatar.jpg","logo":{"@type":"ImageObject","url":"avatar.jpg"}},"url":"http://yoursite.com/2015/12/26/Customize-Redmine-Plugin-Dmsf/"}</script>
     <meta name="description" content="Add a Hook in the Redmine SourceThis official redmine source doesn’t provide a hook if I what to do something just after a project created. So I’m gonna write a hook on my own. In the file /path/to/re">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Customize Redmine Plugin Dmsf">
@@ -28,6 +28,8 @@
     
         
     
+    
+        <meta property="og:image" content="http://yoursite.com/assets/images/avatar.jpg"/>
     
     
     
@@ -49,6 +51,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -61,6 +67,8 @@
                 href="#about">
         
         
+            <img class="header-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
+        
         </a>
     
 </header>
@@ -68,8 +76,23 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="4">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
+                </a>
+                <h4 class="sidebar-profile-name">Michael Wu</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -279,14 +302,6 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/12/26/Customize-Redmine-Plugin-Dmsf/" title="Teilen auf Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
                 <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/12/26/Customize-Redmine-Plugin-Dmsf/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
@@ -295,8 +310,8 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/12/26/Customize-Redmine-Plugin-Dmsf/" title="Teilen auf Google Plus">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2015/12/26/Customize-Redmine-Plugin-Dmsf/" title="Share on Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
         
@@ -365,14 +380,6 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/12/26/Customize-Redmine-Plugin-Dmsf/" title="Teilen auf Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
                 <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/12/26/Customize-Redmine-Plugin-Dmsf/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
@@ -381,8 +388,8 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/12/26/Customize-Redmine-Plugin-Dmsf/" title="Teilen auf Google Plus">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2015/12/26/Customize-Redmine-Plugin-Dmsf/" title="Share on Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
         
@@ -408,14 +415,6 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/12/26/Customize-Redmine-Plugin-Dmsf/">
-                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Teilen auf Facebook</span>
-                </a>
-            </li>
-        
-            
-            
-            <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/12/26/Customize-Redmine-Plugin-Dmsf/">
                     <i class="fab fa-twitter" aria-hidden="true"></i><span>Teilen auf Twitter</span>
                 </a>
@@ -424,8 +423,8 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/12/26/Customize-Redmine-Plugin-Dmsf/">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Teilen auf Google Plus</span>
+                <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2015/12/26/Customize-Redmine-Plugin-Dmsf/">
+                    <i class="fab fa-weibo" aria-hidden="true"></i><span>Share on Weibo</span>
                 </a>
             </li>
         
@@ -437,11 +436,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
         
             <h4 id="about-card-name">Michael Wu</h4>
         

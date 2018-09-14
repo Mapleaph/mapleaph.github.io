@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"},"articleBody":"Installation最新的系统镜像可以从官网上取得，将解压后得到的 img 文件写入到 TF 卡中。\ndd 命令\nMac 下出现了写入不结束的情况，失败。\nLinux 下写入正常，但写入后的 TF 卡无法挂载，提示重新格式化。\n\nWin32DiskImager目前仅能够通过这种方法进行写入。使用过程很简单，这里不做描述。\nBoot Configuration目前采用的环境是利用 HDMI 转 DVI 线缆链接树梅派和显示器，但默认情况下显示器是没有输出的，需要我们先利用读卡器将 TF 卡挂载到其他系统中，然后编辑 /config.txt 文件，需要去掉几句话的注释，如下：\n123456disable_overscan=1hdmi_force_hotplug=1hdmi_group=1hdmi_mode=1hdmi_driver=2config_hdmi_boost=4\n如果你发现现实分辨率不对，那么需要更改其中的两项：\n12hdmi_group=2hdmi_mode=x\n其中 x 的值为下表中的编号：\n1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586hdmi_mode=1 640x350 85Hzhdmi_mode=2 640x400 85Hzhdmi_mode=3 720x400 85Hzhdmi_mode=4 640x480 60Hzhdmi_mode=5 640x480 72Hzhdmi_mode=6 640x480 75Hzhdmi_mode=7 640x480 85Hzhdmi_mode=8 800x600 56Hzhdmi_mode=9 800x600 60Hzhdmi_mode=10 800x600 72Hzhdmi_mode=11 800x600 75Hzhdmi_mode=12 800x600 85Hzhdmi_mode=13 800x600 120Hzhdmi_mode=14 848x480 60Hzhdmi_mode=15 1024x768 43Hz DO NOT USEhdmi_mode=16 1024x768 60Hzhdmi_mode=17 1024x768 70Hzhdmi_mode=18 1024x768 75Hzhdmi_mode=19 1024x768 85Hzhdmi_mode=20 1024x768 120Hzhdmi_mode=21 1152x864 75Hzhdmi_mode=22 1280x768 reduced blankinghdmi_mode=23 1280x768 60Hzhdmi_mode=24 1280x768 75Hzhdmi_mode=25 1280x768 85Hzhdmi_mode=26 1280x768 120Hz reduced blankinghdmi_mode=27 1280x800 reduced blankinghdmi_mode=28 1280x800 60Hzhdmi_mode=29 1280x800 75Hzhdmi_mode=30 1280x800 85Hzhdmi_mode=31 1280x800 120Hz reduced blankinghdmi_mode=32 1280x960 60Hzhdmi_mode=33 1280x960 85Hzhdmi_mode=34 1280x960 120Hz reduced blankinghdmi_mode=35 1280x1024 60Hzhdmi_mode=36 1280x1024 75Hzhdmi_mode=37 1280x1024 85Hzhdmi_mode=38 1280x1024 120Hz reduced blankinghdmi_mode=39 1360x768 60Hzhdmi_mode=40 1360x768 120Hz reduced blankinghdmi_mode=41 1400x1050 reduced blankinghdmi_mode=42 1400x1050 60Hzhdmi_mode=43 1400x1050 75Hzhdmi_mode=44 1400x1050 85Hzhdmi_mode=45 1400x1050 120Hz reduced blankinghdmi_mode=46 1440x900 reduced blankinghdmi_mode=47 1440x900 60Hzhdmi_mode=48 1440x900 75Hzhdmi_mode=49 1440x900 85Hzhdmi_mode=50 1440x900 120Hz reduced blankinghdmi_mode=51 1600x1200 60Hzhdmi_mode=52 1600x1200 65Hzhdmi_mode=53 1600x1200 70Hzhdmi_mode=54 1600x1200 75Hzhdmi_mode=55 1600x1200 85Hzhdmi_mode=56 1600x1200 120Hz reduced blankinghdmi_mode=57 1680x1050 reduced blankinghdmi_mode=58 1680x1050 60Hzhdmi_mode=59 1680x1050 75Hzhdmi_mode=60 1680x1050 85Hzhdmi_mode=61 1680x1050 120Hz reduced blankinghdmi_mode=62 1792x1344 60Hzhdmi_mode=63 1792x1344 75Hzhdmi_mode=64 1792x1344 120Hz reduced blankinghdmi_mode=65 1856x1392 60Hzhdmi_mode=66 1856x1392 75Hzhdmi_mode=67 1856x1392 120Hz reduced blankinghdmi_mode=68 1920x1200 reduced blankinghdmi_mode=69 1920x1200 60Hzhdmi_mode=70 1920x1200 75Hzhdmi_mode=71 1920x1200 85Hzhdmi_mode=72 1920x1200 120Hz reduced blankinghdmi_mode=73 1920x1440 60Hzhdmi_mode=74 1920x1440 75Hzhdmi_mode=75 1920x1440 120Hz reduced blankinghdmi_mode=76 2560x1600 reduced blankinghdmi_mode=77 2560x1600 60Hzhdmi_mode=78 2560x1600 75Hzhdmi_mode=79 2560x1600 85Hzhdmi_mode=80 2560x1600 120Hz reduced blankinghdmi_mode=81 1366x768 60Hzhdmi_mode=82 1080p 60Hzhdmi_mode=83 1600x900 reduced blankinghdmi_mode=84 2048x1152 reduced blankinghdmi_mode=85 720p 60Hzhdmi_mode=86 1366x768 reduced blanking\napt-get Configuration12345change the line of /etc/apt/sources.list todeb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian jessie main contrib non-free rpithen comment the line of /etc/apt/sources.list.d/raspi.listdeb http://archive.raspberrypi.org/debian jessie main ui\nChinese SupportOtherwise, square characters will be displayed in the web browser.\n1sudo apt-get install ttf-wqy-zenhei scim-pinyin\nChoose the Correct Keyboard LayoutGoto Menu -&gt; Preferences -&gt; Raspberry Pi Configuration: Localisation,\nSet Keyboard: choose United States, English(US).Set Locale: en(English), US(USA), UTF-8.\nExpand the Available SpaceOtherwise, you cannot use the whole disk space of your TF card.\nOpen the terminal, type: sudo raspi-config, then select Expand Filesystem.\n","dateCreated":"2016-01-28T13:25:25+08:00","dateModified":"2016-01-28T14:04:28+08:00","datePublished":"2016-01-28T13:25:25+08:00","description":"","headline":"Set up RaspberryPi","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2016/01/28/Set-up-RaspberryPi/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"}},"url":"http://yoursite.com/2016/01/28/Set-up-RaspberryPi/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"avatar.jpg"},"articleBody":"Installation最新的系统镜像可以从官网上取得，将解压后得到的 img 文件写入到 TF 卡中。\ndd 命令\nMac 下出现了写入不结束的情况，失败。\nLinux 下写入正常，但写入后的 TF 卡无法挂载，提示重新格式化。\n\nWin32DiskImager目前仅能够通过这种方法进行写入。使用过程很简单，这里不做描述。\nBoot Configuration目前采用的环境是利用 HDMI 转 DVI 线缆链接树梅派和显示器，但默认情况下显示器是没有输出的，需要我们先利用读卡器将 TF 卡挂载到其他系统中，然后编辑 /config.txt 文件，需要去掉几句话的注释，如下：\n123456disable_overscan=1hdmi_force_hotplug=1hdmi_group=1hdmi_mode=1hdmi_driver=2config_hdmi_boost=4\n如果你发现现实分辨率不对，那么需要更改其中的两项：\n12hdmi_group=2hdmi_mode=x\n其中 x 的值为下表中的编号：\n1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586hdmi_mode=1 640x350 85Hzhdmi_mode=2 640x400 85Hzhdmi_mode=3 720x400 85Hzhdmi_mode=4 640x480 60Hzhdmi_mode=5 640x480 72Hzhdmi_mode=6 640x480 75Hzhdmi_mode=7 640x480 85Hzhdmi_mode=8 800x600 56Hzhdmi_mode=9 800x600 60Hzhdmi_mode=10 800x600 72Hzhdmi_mode=11 800x600 75Hzhdmi_mode=12 800x600 85Hzhdmi_mode=13 800x600 120Hzhdmi_mode=14 848x480 60Hzhdmi_mode=15 1024x768 43Hz DO NOT USEhdmi_mode=16 1024x768 60Hzhdmi_mode=17 1024x768 70Hzhdmi_mode=18 1024x768 75Hzhdmi_mode=19 1024x768 85Hzhdmi_mode=20 1024x768 120Hzhdmi_mode=21 1152x864 75Hzhdmi_mode=22 1280x768 reduced blankinghdmi_mode=23 1280x768 60Hzhdmi_mode=24 1280x768 75Hzhdmi_mode=25 1280x768 85Hzhdmi_mode=26 1280x768 120Hz reduced blankinghdmi_mode=27 1280x800 reduced blankinghdmi_mode=28 1280x800 60Hzhdmi_mode=29 1280x800 75Hzhdmi_mode=30 1280x800 85Hzhdmi_mode=31 1280x800 120Hz reduced blankinghdmi_mode=32 1280x960 60Hzhdmi_mode=33 1280x960 85Hzhdmi_mode=34 1280x960 120Hz reduced blankinghdmi_mode=35 1280x1024 60Hzhdmi_mode=36 1280x1024 75Hzhdmi_mode=37 1280x1024 85Hzhdmi_mode=38 1280x1024 120Hz reduced blankinghdmi_mode=39 1360x768 60Hzhdmi_mode=40 1360x768 120Hz reduced blankinghdmi_mode=41 1400x1050 reduced blankinghdmi_mode=42 1400x1050 60Hzhdmi_mode=43 1400x1050 75Hzhdmi_mode=44 1400x1050 85Hzhdmi_mode=45 1400x1050 120Hz reduced blankinghdmi_mode=46 1440x900 reduced blankinghdmi_mode=47 1440x900 60Hzhdmi_mode=48 1440x900 75Hzhdmi_mode=49 1440x900 85Hzhdmi_mode=50 1440x900 120Hz reduced blankinghdmi_mode=51 1600x1200 60Hzhdmi_mode=52 1600x1200 65Hzhdmi_mode=53 1600x1200 70Hzhdmi_mode=54 1600x1200 75Hzhdmi_mode=55 1600x1200 85Hzhdmi_mode=56 1600x1200 120Hz reduced blankinghdmi_mode=57 1680x1050 reduced blankinghdmi_mode=58 1680x1050 60Hzhdmi_mode=59 1680x1050 75Hzhdmi_mode=60 1680x1050 85Hzhdmi_mode=61 1680x1050 120Hz reduced blankinghdmi_mode=62 1792x1344 60Hzhdmi_mode=63 1792x1344 75Hzhdmi_mode=64 1792x1344 120Hz reduced blankinghdmi_mode=65 1856x1392 60Hzhdmi_mode=66 1856x1392 75Hzhdmi_mode=67 1856x1392 120Hz reduced blankinghdmi_mode=68 1920x1200 reduced blankinghdmi_mode=69 1920x1200 60Hzhdmi_mode=70 1920x1200 75Hzhdmi_mode=71 1920x1200 85Hzhdmi_mode=72 1920x1200 120Hz reduced blankinghdmi_mode=73 1920x1440 60Hzhdmi_mode=74 1920x1440 75Hzhdmi_mode=75 1920x1440 120Hz reduced blankinghdmi_mode=76 2560x1600 reduced blankinghdmi_mode=77 2560x1600 60Hzhdmi_mode=78 2560x1600 75Hzhdmi_mode=79 2560x1600 85Hzhdmi_mode=80 2560x1600 120Hz reduced blankinghdmi_mode=81 1366x768 60Hzhdmi_mode=82 1080p 60Hzhdmi_mode=83 1600x900 reduced blankinghdmi_mode=84 2048x1152 reduced blankinghdmi_mode=85 720p 60Hzhdmi_mode=86 1366x768 reduced blanking\napt-get Configuration12345change the line of /etc/apt/sources.list todeb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian jessie main contrib non-free rpithen comment the line of /etc/apt/sources.list.d/raspi.listdeb http://archive.raspberrypi.org/debian jessie main ui\nChinese SupportOtherwise, square characters will be displayed in the web browser.\n1sudo apt-get install ttf-wqy-zenhei scim-pinyin\nChoose the Correct Keyboard LayoutGoto Menu -&gt; Preferences -&gt; Raspberry Pi Configuration: Localisation,\nSet Keyboard: choose United States, English(US).Set Locale: en(English), US(USA), UTF-8.\nExpand the Available SpaceOtherwise, you cannot use the whole disk space of your TF card.\nOpen the terminal, type: sudo raspi-config, then select Expand Filesystem.\n","dateCreated":"2016-01-28T13:25:25+08:00","dateModified":"2016-01-28T14:04:28+08:00","datePublished":"2016-01-28T13:25:25+08:00","description":"","headline":"Set up RaspberryPi","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2016/01/28/Set-up-RaspberryPi/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"avatar.jpg","logo":{"@type":"ImageObject","url":"avatar.jpg"}},"url":"http://yoursite.com/2016/01/28/Set-up-RaspberryPi/"}</script>
     <meta name="description" content="Installation最新的系统镜像可以从官网上取得，将解压后得到的 img 文件写入到 TF 卡中。 dd 命令 Mac 下出现了写入不结束的情况，失败。 Linux 下写入正常，但写入后的 TF 卡无法挂载，提示重新格式化。  Win32DiskImager目前仅能够通过这种方法进行写入。使用过程很简单，这里不做描述。 Boot Configuration目前采用的环境是利用 HDMI 转">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Set up RaspberryPi">
@@ -28,6 +28,8 @@
     
         
     
+    
+        <meta property="og:image" content="http://yoursite.com/assets/images/avatar.jpg"/>
     
     
     
@@ -49,6 +51,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -61,6 +67,8 @@
                 href="#about">
         
         
+            <img class="header-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
+        
         </a>
     
 </header>
@@ -68,8 +76,23 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="4">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
+                </a>
+                <h4 class="sidebar-profile-name">Michael Wu</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -282,14 +305,6 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2016/01/28/Set-up-RaspberryPi/" title="Teilen auf Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
                 <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2016/01/28/Set-up-RaspberryPi/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
@@ -298,8 +313,8 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2016/01/28/Set-up-RaspberryPi/" title="Teilen auf Google Plus">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2016/01/28/Set-up-RaspberryPi/" title="Share on Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
         
@@ -368,14 +383,6 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2016/01/28/Set-up-RaspberryPi/" title="Teilen auf Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
                 <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2016/01/28/Set-up-RaspberryPi/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
@@ -384,8 +391,8 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2016/01/28/Set-up-RaspberryPi/" title="Teilen auf Google Plus">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2016/01/28/Set-up-RaspberryPi/" title="Share on Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
         
@@ -411,14 +418,6 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2016/01/28/Set-up-RaspberryPi/">
-                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Teilen auf Facebook</span>
-                </a>
-            </li>
-        
-            
-            
-            <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2016/01/28/Set-up-RaspberryPi/">
                     <i class="fab fa-twitter" aria-hidden="true"></i><span>Teilen auf Twitter</span>
                 </a>
@@ -427,8 +426,8 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2016/01/28/Set-up-RaspberryPi/">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Teilen auf Google Plus</span>
+                <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2016/01/28/Set-up-RaspberryPi/">
+                    <i class="fab fa-weibo" aria-hidden="true"></i><span>Share on Weibo</span>
                 </a>
             </li>
         
@@ -440,11 +439,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
         
             <h4 id="about-card-name">Michael Wu</h4>
         

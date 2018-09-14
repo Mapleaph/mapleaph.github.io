@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"},"articleBody":"系统电源状态\n\n\nStatus\nDescription\n\n\n\n\nS0(Working)\nCPU 全功率运行\n\n\nS4(Hibernate)\n系统停止，RAM 被保存到磁盘\n\n\nS5(Shutdown)\n系统停止并关闭，需要完全引导以恢复操作\n\n\nS1(Sleeping)\nCPU 停止，RAM 被刷新\n\n\nS2(Sleeping)\nCPU 不通电，RAM 被刷新\n\n\nS3(Sleeping)\nCPU 不通电，RAM 处于低速刷新模式，电源功率输出降低\n\n\n\n设备电源状态\n\n\nStatus\nDescription\n\n\n\n\nD0\n设备全功率运行\n\n\nD3\n设备没有电，环境丢失\n\n\nD1\n设备处于低功率运行模式，设备环境可能被保留\n\n\nD2\n设备处于低功率运行模式，设备环境可能无效\n\n\n\n操作系统不直接处理设备的电源状态，而是由驱动程序专门来处理。设备至少要支持 D0 和 D3 两种状态。\n","dateCreated":"2015-11-22T11:52:36+08:00","dateModified":"2015-11-22T11:59:51+08:00","datePublished":"2015-11-22T11:52:36+08:00","description":"","headline":"Windows Power Management","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/22/Windows-Power-Management/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"}},"url":"http://yoursite.com/2015/11/22/Windows-Power-Management/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"avatar.jpg"},"articleBody":"系统电源状态\n\n\nStatus\nDescription\n\n\n\n\nS0(Working)\nCPU 全功率运行\n\n\nS4(Hibernate)\n系统停止，RAM 被保存到磁盘\n\n\nS5(Shutdown)\n系统停止并关闭，需要完全引导以恢复操作\n\n\nS1(Sleeping)\nCPU 停止，RAM 被刷新\n\n\nS2(Sleeping)\nCPU 不通电，RAM 被刷新\n\n\nS3(Sleeping)\nCPU 不通电，RAM 处于低速刷新模式，电源功率输出降低\n\n\n\n设备电源状态\n\n\nStatus\nDescription\n\n\n\n\nD0\n设备全功率运行\n\n\nD3\n设备没有电，环境丢失\n\n\nD1\n设备处于低功率运行模式，设备环境可能被保留\n\n\nD2\n设备处于低功率运行模式，设备环境可能无效\n\n\n\n操作系统不直接处理设备的电源状态，而是由驱动程序专门来处理。设备至少要支持 D0 和 D3 两种状态。\n","dateCreated":"2015-11-22T11:52:36+08:00","dateModified":"2015-11-22T11:59:51+08:00","datePublished":"2015-11-22T11:52:36+08:00","description":"","headline":"Windows Power Management","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/22/Windows-Power-Management/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"avatar.jpg","logo":{"@type":"ImageObject","url":"avatar.jpg"}},"url":"http://yoursite.com/2015/11/22/Windows-Power-Management/"}</script>
     <meta name="description" content="系统电源状态   Status Description     S0(Working) CPU 全功率运行   S4(Hibernate) 系统停止，RAM 被保存到磁盘   S5(Shutdown) 系统停止并关闭，需要完全引导以恢复操作   S1(Sleeping) CPU 停止，RAM 被刷新   S2(Sleeping) CPU 不通电，RAM 被刷新   S3(Sleeping) CPU">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Windows Power Management">
@@ -28,6 +28,8 @@
     
         
     
+    
+        <meta property="og:image" content="http://yoursite.com/assets/images/avatar.jpg"/>
     
     
     
@@ -49,6 +51,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -61,6 +67,8 @@
                 href="#about">
         
         
+            <img class="header-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
+        
         </a>
     
 </header>
@@ -68,8 +76,23 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="4">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
+                </a>
+                <h4 class="sidebar-profile-name">Michael Wu</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -330,14 +353,6 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Windows-Power-Management/" title="Teilen auf Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
                 <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Windows-Power-Management/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
@@ -346,8 +361,8 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Windows-Power-Management/" title="Teilen auf Google Plus">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2015/11/22/Windows-Power-Management/" title="Share on Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
         
@@ -416,14 +431,6 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Windows-Power-Management/" title="Teilen auf Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
                 <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Windows-Power-Management/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
@@ -432,8 +439,8 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Windows-Power-Management/" title="Teilen auf Google Plus">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2015/11/22/Windows-Power-Management/" title="Share on Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
         
@@ -459,14 +466,6 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Windows-Power-Management/">
-                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Teilen auf Facebook</span>
-                </a>
-            </li>
-        
-            
-            
-            <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Windows-Power-Management/">
                     <i class="fab fa-twitter" aria-hidden="true"></i><span>Teilen auf Twitter</span>
                 </a>
@@ -475,8 +474,8 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Windows-Power-Management/">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Teilen auf Google Plus</span>
+                <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2015/11/22/Windows-Power-Management/">
+                    <i class="fab fa-weibo" aria-hidden="true"></i><span>Share on Weibo</span>
                 </a>
             </li>
         
@@ -488,11 +487,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
         
             <h4 id="about-card-name">Michael Wu</h4>
         

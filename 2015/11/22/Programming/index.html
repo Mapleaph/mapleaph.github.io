@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"},"articleBody":"读取文件内容，每次处理一行12345#!/bin/bashwhile read &lt;line&gt;do    echo $&lt;line&gt; # or something else you want to dodone &lt; &lt;filename&gt;\n同时打开两个新终端并执行程序源代码\n12345678910111213141516171819202122232425262728293031/* * test.c */ #include &lt;pthread.h&gt;void* func1(void* args)&#123;    system(\"gnome-terminal -e ./test1\");        return NULL;&#125;void* func2(void* args)&#123;    system(\"gnome-terminal -e ./test2\");        return NULL;&#125;int main()&#123;    pthread_t thread1, thread2;    pthread_create(&amp;thread1, NULL, func1, NULL);    pthread_create(&amp;thread1, NULL, func1, NULL);        pthread_join(thread1, NULL);    pthread_join(thread2, NULL);        return 0;&#125;\n生成可执行程序\n1$ gcc test.c -o test -lpthread\n为新线程传递参数源代码\n123456789101112131415161718192021222324252627282930313233#include &lt;stdio.h&gt;#include &lt;pthread.h&gt;struct thread_args &#123;    int arg1;    int arg2;&#125;;/* 无论是否传递参数，线程所执行的函数都应该具有如下声明 */void* func(void* args)&#123;    struct thread_args* myargs = (struct thread_args*) args;        printf(\"arg1 is %d, arg2 is %d\\n\", myargs-&gt;arg1, myargs-&gt;arg2);        return NULL;&#125;int main()&#123;    pthread_t mythread;    struct thread_args myargs;        myargs.arg1 = 100;    myargs.arg2 = 200;        /* 必须以结构体的形式，将参数传递给新线程 */    pthread_create(&amp;mythread, NULL, func, &amp;myargs);        pthread_join(mythread, NULL);        return 0;&#125;\nwarning: address of stack memory…如果我写了一个返回指针的函数，而在函数体的 return 后面返回的是变量的地址，编译器就会给出警告，说这样是不安全的，所以我们再增加一个指针变量，将那个变量的地址赋给指针变量，最后再返回就好了。\n即：应返回指针，而不是变量地址。\nSimple Intro to GDB123456789101112131415161718// this is a really simple program called fact.c // to calculate the factorial of 4// the expecting result is 24#include &lt;stdio.h&gt;int main()&#123;    int i, j;        for (j=1; j&lt;5; j++) &#123;        i = i * j;    &#125;        printf(\"the result is %d\\n\", i);        return 0;&#125;\n123456# we use gcc to compile it$ gcc -o fact fact.c# then run it$ ./factthe result is 0# that is not what we expeted!\nSo we use gdb to check what is going on~~~\nTo use gdb, we should add -ggdb to the gcc command line to include information for debugging.\n1$ gcc -ggdb -o fact fact.c\nThen, We just run the following command to start gdb.\n1$ gdb ./fact\nand you will get a prompt like this,\n1(gdb)\nNext, type r or run and hit enter, you will get the entire program running just like what running the fact executable.\n1(gdb) r\nWhat if we want to stop the program somewhere, just type b fact.c:5 or break fact.c:5 to stop the program at line 5 in the source code, or type b fact.c:main to stop the program from the very beginning.\n1(gdb) b fact.c: main\nIf you want to see the source code to determine which line you should break, just type l to show a piece of the source code, then another l, you will get another piece, also l 12 will get you to the line 12.\n1(gdb) l 12\nSuppose now you are at the for loop line, and you want to check the value of i, you can simply type p i or print i to print the current value of the variable i, further more, if you want to show all the variables, just type info locals.\n1(gdb) info locals\nIf you want to change the value of some variable, say change the value of i from nothing to 1, you can type p i = 1, then hit enter, then c or continue to continue the rest of the program or n to run just the next line of code, if we want to execute the program line by line, you can save you typing by just hit enter, the enter will execute the previous command which is n.\n1(gdb) p i = 1\nIf you want to quit the gdb, just type q or quit.\n1(gdb) q\nC redifinition error如果工程中有多个头文件，并且有的会互相包含，那么有可能会在编译的时候报出重复定义的错误，因为有的头文件被包含了不止一次，可以通过如下方式解决这个问题：\n123456789#ifndef __SOMEFILE\\_H__#define __SOMEFILE\\_H__/* * * things in the file * */#endif\n头文件只会在变量未定义的情况下被包含一次，这样就很好的避免了重复定义的错误。\n如何编写并使用 DLL生成 DLL首先在 VC++ 6.0 中新建 Win32 Dynamic-Link Library 工程 testDLL，然后新建如下两个文件，EXPORT.h 和 testDLL.cpp。\n12345678910111213141516171819202122/* * EXPORT.h */#ifdef EXPORTING_DLLextern \"C\" __declspec (dllexport) int add(int a, int b);#elseextern \"C\" __declspec (dllimport) int add(int a, int b);#endif/* * testDLL.cpp */#define EXPORTING_DLL#include \"EXPORT.h\"int add(int a, int b)&#123;    return a + b;&#125;\n编译之后，会生成两个文件 testDLL.dll 和 testDLL.lib。\n使用 DLL\n新建一个 Win32 Console Application 工程 test，将 testDLL.lib 添加到Project->Settings->Link 选项卡下的 Object/library modules 中。\n\n将刚才生成的 testDLL.dll，testDLL.lib 以及 EXPORT.h 复制到 test 的工程目录中。\n\n在 test 工程中新建文件 test.c 并添加如下内容\n\n\n1234567891011/* * test.c */#include \"EXPORT.h\"int main()&#123;    printf(\"the result of 1+2 is %d\\n\", add(1, 2));    return 0;&#125;\n使用 vs2013 需要注意的地方让 vs2013 生成兼容 XP 的应用程序默认是不兼容 XP 的。\n右键单击工程-&gt;Properties-&gt;General-&gt;General-&gt;Platform Toolset: Visual Studio 2013 - Windows XP (v120_xp)\n字符集设置默认情况下，使用双引号字符串会报错，采用下面的方法避免这个错误的产生。\n右键单击工程-&gt;Properties-&gt;General-&gt;Project Defaults-&gt;Character Set: Not Set/Use Multi-Byte Character Set\n动态库使用问题右键单击工程-&gt;Properties-&gt;Linker-&gt;Input-&gt;Additional Dependencies，然后添加自己的 DLL。\n修改 MFC 默认工程的图标ico 文件一般可以通过 png 文件转换得到。直接将做好的 ico 文件替换到工程中的 res 目录，然后重新编译即可。\nDeviceIoControl如果想要使用 IOCTL 的特定控制字，需要调用 DeviceIoControl 函数，该函数需要头文件 windows.h。\nastyle Code Formatting Toolastyle 是一个开源的代码格式化工具，现在将常用选项列在下面：\n\n\n\n选项\n描述\n\n\n\n\n–style=kr / -A3\n采用 K&amp;R 代码格式\n\n\n–preserve-date / -Z\n不改变文件修改时间\n\n\n–unpad-paren / -U\n将括号内侧空格去掉\n\n\n–pad-header / -H\n在 if/else 等后面添加空格\n\n\n–align-pointer=type / -k1\n将指针前的星号和指针类型连在一起\n\n\n–align-reference=name / -W3\n将&amp;符号同所引用的变量连在一起 ｜\n\n\n–convert-tabs / -c\n将 tab 转换为 space\n\n\n–indent=spaces=4 / -s4\n采用空格进行缩紧，一个单位为 4 个空格\n\n\n–break-blocks / -f\n在不相关的代码块间插入空格\n\n\n–add-brackets / -j\n在单行条件代码外添加大括号\n\n\n–errors-to-stdout / -X\n将错误输出到标准输出上\n\n\n\nreferencing an external css file1&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"stylesheet.css\"\\&gt;\nmodule object has no attribute ‘OrderedDict’OrderedDict 在 Python2.7 才开始加入了该支持，所以如果 Python 的当前版本低于 2.7，就会报这个错误。\n","dateCreated":"2015-11-22T10:47:47+08:00","dateModified":"2015-11-24T20:18:55+08:00","datePublished":"2015-11-22T10:47:47+08:00","description":"","headline":"Programming","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/22/Programming/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"}},"url":"http://yoursite.com/2015/11/22/Programming/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"avatar.jpg"},"articleBody":"读取文件内容，每次处理一行12345#!/bin/bashwhile read &lt;line&gt;do    echo $&lt;line&gt; # or something else you want to dodone &lt; &lt;filename&gt;\n同时打开两个新终端并执行程序源代码\n12345678910111213141516171819202122232425262728293031/* * test.c */ #include &lt;pthread.h&gt;void* func1(void* args)&#123;    system(\"gnome-terminal -e ./test1\");        return NULL;&#125;void* func2(void* args)&#123;    system(\"gnome-terminal -e ./test2\");        return NULL;&#125;int main()&#123;    pthread_t thread1, thread2;    pthread_create(&amp;thread1, NULL, func1, NULL);    pthread_create(&amp;thread1, NULL, func1, NULL);        pthread_join(thread1, NULL);    pthread_join(thread2, NULL);        return 0;&#125;\n生成可执行程序\n1$ gcc test.c -o test -lpthread\n为新线程传递参数源代码\n123456789101112131415161718192021222324252627282930313233#include &lt;stdio.h&gt;#include &lt;pthread.h&gt;struct thread_args &#123;    int arg1;    int arg2;&#125;;/* 无论是否传递参数，线程所执行的函数都应该具有如下声明 */void* func(void* args)&#123;    struct thread_args* myargs = (struct thread_args*) args;        printf(\"arg1 is %d, arg2 is %d\\n\", myargs-&gt;arg1, myargs-&gt;arg2);        return NULL;&#125;int main()&#123;    pthread_t mythread;    struct thread_args myargs;        myargs.arg1 = 100;    myargs.arg2 = 200;        /* 必须以结构体的形式，将参数传递给新线程 */    pthread_create(&amp;mythread, NULL, func, &amp;myargs);        pthread_join(mythread, NULL);        return 0;&#125;\nwarning: address of stack memory…如果我写了一个返回指针的函数，而在函数体的 return 后面返回的是变量的地址，编译器就会给出警告，说这样是不安全的，所以我们再增加一个指针变量，将那个变量的地址赋给指针变量，最后再返回就好了。\n即：应返回指针，而不是变量地址。\nSimple Intro to GDB123456789101112131415161718// this is a really simple program called fact.c // to calculate the factorial of 4// the expecting result is 24#include &lt;stdio.h&gt;int main()&#123;    int i, j;        for (j=1; j&lt;5; j++) &#123;        i = i * j;    &#125;        printf(\"the result is %d\\n\", i);        return 0;&#125;\n123456# we use gcc to compile it$ gcc -o fact fact.c# then run it$ ./factthe result is 0# that is not what we expeted!\nSo we use gdb to check what is going on~~~\nTo use gdb, we should add -ggdb to the gcc command line to include information for debugging.\n1$ gcc -ggdb -o fact fact.c\nThen, We just run the following command to start gdb.\n1$ gdb ./fact\nand you will get a prompt like this,\n1(gdb)\nNext, type r or run and hit enter, you will get the entire program running just like what running the fact executable.\n1(gdb) r\nWhat if we want to stop the program somewhere, just type b fact.c:5 or break fact.c:5 to stop the program at line 5 in the source code, or type b fact.c:main to stop the program from the very beginning.\n1(gdb) b fact.c: main\nIf you want to see the source code to determine which line you should break, just type l to show a piece of the source code, then another l, you will get another piece, also l 12 will get you to the line 12.\n1(gdb) l 12\nSuppose now you are at the for loop line, and you want to check the value of i, you can simply type p i or print i to print the current value of the variable i, further more, if you want to show all the variables, just type info locals.\n1(gdb) info locals\nIf you want to change the value of some variable, say change the value of i from nothing to 1, you can type p i = 1, then hit enter, then c or continue to continue the rest of the program or n to run just the next line of code, if we want to execute the program line by line, you can save you typing by just hit enter, the enter will execute the previous command which is n.\n1(gdb) p i = 1\nIf you want to quit the gdb, just type q or quit.\n1(gdb) q\nC redifinition error如果工程中有多个头文件，并且有的会互相包含，那么有可能会在编译的时候报出重复定义的错误，因为有的头文件被包含了不止一次，可以通过如下方式解决这个问题：\n123456789#ifndef __SOMEFILE\\_H__#define __SOMEFILE\\_H__/* * * things in the file * */#endif\n头文件只会在变量未定义的情况下被包含一次，这样就很好的避免了重复定义的错误。\n如何编写并使用 DLL生成 DLL首先在 VC++ 6.0 中新建 Win32 Dynamic-Link Library 工程 testDLL，然后新建如下两个文件，EXPORT.h 和 testDLL.cpp。\n12345678910111213141516171819202122/* * EXPORT.h */#ifdef EXPORTING_DLLextern \"C\" __declspec (dllexport) int add(int a, int b);#elseextern \"C\" __declspec (dllimport) int add(int a, int b);#endif/* * testDLL.cpp */#define EXPORTING_DLL#include \"EXPORT.h\"int add(int a, int b)&#123;    return a + b;&#125;\n编译之后，会生成两个文件 testDLL.dll 和 testDLL.lib。\n使用 DLL\n新建一个 Win32 Console Application 工程 test，将 testDLL.lib 添加到Project->Settings->Link 选项卡下的 Object/library modules 中。\n\n将刚才生成的 testDLL.dll，testDLL.lib 以及 EXPORT.h 复制到 test 的工程目录中。\n\n在 test 工程中新建文件 test.c 并添加如下内容\n\n\n1234567891011/* * test.c */#include \"EXPORT.h\"int main()&#123;    printf(\"the result of 1+2 is %d\\n\", add(1, 2));    return 0;&#125;\n使用 vs2013 需要注意的地方让 vs2013 生成兼容 XP 的应用程序默认是不兼容 XP 的。\n右键单击工程-&gt;Properties-&gt;General-&gt;General-&gt;Platform Toolset: Visual Studio 2013 - Windows XP (v120_xp)\n字符集设置默认情况下，使用双引号字符串会报错，采用下面的方法避免这个错误的产生。\n右键单击工程-&gt;Properties-&gt;General-&gt;Project Defaults-&gt;Character Set: Not Set/Use Multi-Byte Character Set\n动态库使用问题右键单击工程-&gt;Properties-&gt;Linker-&gt;Input-&gt;Additional Dependencies，然后添加自己的 DLL。\n修改 MFC 默认工程的图标ico 文件一般可以通过 png 文件转换得到。直接将做好的 ico 文件替换到工程中的 res 目录，然后重新编译即可。\nDeviceIoControl如果想要使用 IOCTL 的特定控制字，需要调用 DeviceIoControl 函数，该函数需要头文件 windows.h。\nastyle Code Formatting Toolastyle 是一个开源的代码格式化工具，现在将常用选项列在下面：\n\n\n\n选项\n描述\n\n\n\n\n–style=kr / -A3\n采用 K&amp;R 代码格式\n\n\n–preserve-date / -Z\n不改变文件修改时间\n\n\n–unpad-paren / -U\n将括号内侧空格去掉\n\n\n–pad-header / -H\n在 if/else 等后面添加空格\n\n\n–align-pointer=type / -k1\n将指针前的星号和指针类型连在一起\n\n\n–align-reference=name / -W3\n将&amp;符号同所引用的变量连在一起 ｜\n\n\n–convert-tabs / -c\n将 tab 转换为 space\n\n\n–indent=spaces=4 / -s4\n采用空格进行缩紧，一个单位为 4 个空格\n\n\n–break-blocks / -f\n在不相关的代码块间插入空格\n\n\n–add-brackets / -j\n在单行条件代码外添加大括号\n\n\n–errors-to-stdout / -X\n将错误输出到标准输出上\n\n\n\nreferencing an external css file1&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"stylesheet.css\"\\&gt;\nmodule object has no attribute ‘OrderedDict’OrderedDict 在 Python2.7 才开始加入了该支持，所以如果 Python 的当前版本低于 2.7，就会报这个错误。\n","dateCreated":"2015-11-22T10:47:47+08:00","dateModified":"2015-11-24T20:18:55+08:00","datePublished":"2015-11-22T10:47:47+08:00","description":"","headline":"Programming","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/22/Programming/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"avatar.jpg","logo":{"@type":"ImageObject","url":"avatar.jpg"}},"url":"http://yoursite.com/2015/11/22/Programming/"}</script>
     <meta name="description" content="读取文件内容，每次处理一行12345#!/bin/bashwhile read &amp;lt;line&amp;gt;do    echo $&amp;lt;line&amp;gt; # or something else you want to dodone &amp;lt; &amp;lt;filename&amp;gt; 同时打开两个新终端并执行程序源代码 12345678910111213141516171819202122232425262">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Programming">
@@ -28,6 +28,8 @@
     
         
     
+    
+        <meta property="og:image" content="http://yoursite.com/assets/images/avatar.jpg"/>
     
     
     
@@ -49,6 +51,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -61,6 +67,8 @@
                 href="#about">
         
         
+            <img class="header-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
+        
         </a>
     
 </header>
@@ -68,8 +76,23 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="4">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
+                </a>
+                <h4 class="sidebar-profile-name">Michael Wu</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -378,14 +401,6 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Programming/" title="Teilen auf Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
                 <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Programming/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
@@ -394,8 +409,8 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Programming/" title="Teilen auf Google Plus">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2015/11/22/Programming/" title="Share on Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
         
@@ -464,14 +479,6 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Programming/" title="Teilen auf Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
                 <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Programming/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
@@ -480,8 +487,8 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Programming/" title="Teilen auf Google Plus">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2015/11/22/Programming/" title="Share on Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
         
@@ -507,14 +514,6 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Programming/">
-                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Teilen auf Facebook</span>
-                </a>
-            </li>
-        
-            
-            
-            <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Programming/">
                     <i class="fab fa-twitter" aria-hidden="true"></i><span>Teilen auf Twitter</span>
                 </a>
@@ -523,8 +522,8 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Programming/">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Teilen auf Google Plus</span>
+                <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2015/11/22/Programming/">
+                    <i class="fab fa-weibo" aria-hidden="true"></i><span>Share on Weibo</span>
                 </a>
             </li>
         
@@ -536,11 +535,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
         
             <h4 id="about-card-name">Michael Wu</h4>
         

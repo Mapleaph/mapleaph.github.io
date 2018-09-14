@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"},"articleBody":"安装12$ sudo apt-get install proftpd# choose standalone mode\n配置12345678910111213141516171819202122232425262728$ sudo vim /etc/proftpd/proftpd.conf1. change ServerName to your specified name2. uncomment DefaultRoot ~ to jail all users to their homes# following is an example, we want /ftp_pool/pub to be the home directory of the ftp server.# so you should ensure that the permission of the /ftp_pool/pub is 777.&lt;Anonymous /ftp_pool/pub&gt;   User                     ftp   Group                    ftp   # We want clients to be able to login with \"anonymous\" as well as \"ftp\"   UserAlias                anonymous ftp   # Cosmetic changes, all files belongs to ftp user   DirFakeUser  on ftp   DirFakeGroup on ftp   RequireValidShell        off   # Limit the maximum number of anonymous logins   MaxClients               10   # We want 'welcome.msg' displayed at login, and '.message' displayed   # in each newly chdired directory.   DisplayLogin             welcome.msg   DisplayChdir             .message   # Limit WRITE everywhere in the anonymous chroot   &lt;Directory *&gt;     &lt;Limit WRITE&gt;        AllowAll # currently, all users can download and upload anything.     &lt;/Limit&gt;   &lt;/Directory&gt;&lt;/anonymous&gt;\n","dateCreated":"2015-11-21T22:26:58+08:00","dateModified":"2015-11-21T22:27:31+08:00","datePublished":"2015-11-21T22:26:58+08:00","description":"","headline":"Proftpd","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/21/Proftpd/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"}},"url":"http://yoursite.com/2015/11/21/Proftpd/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"avatar.jpg"},"articleBody":"安装12$ sudo apt-get install proftpd# choose standalone mode\n配置12345678910111213141516171819202122232425262728$ sudo vim /etc/proftpd/proftpd.conf1. change ServerName to your specified name2. uncomment DefaultRoot ~ to jail all users to their homes# following is an example, we want /ftp_pool/pub to be the home directory of the ftp server.# so you should ensure that the permission of the /ftp_pool/pub is 777.&lt;Anonymous /ftp_pool/pub&gt;   User                     ftp   Group                    ftp   # We want clients to be able to login with \"anonymous\" as well as \"ftp\"   UserAlias                anonymous ftp   # Cosmetic changes, all files belongs to ftp user   DirFakeUser  on ftp   DirFakeGroup on ftp   RequireValidShell        off   # Limit the maximum number of anonymous logins   MaxClients               10   # We want 'welcome.msg' displayed at login, and '.message' displayed   # in each newly chdired directory.   DisplayLogin             welcome.msg   DisplayChdir             .message   # Limit WRITE everywhere in the anonymous chroot   &lt;Directory *&gt;     &lt;Limit WRITE&gt;        AllowAll # currently, all users can download and upload anything.     &lt;/Limit&gt;   &lt;/Directory&gt;&lt;/anonymous&gt;\n","dateCreated":"2015-11-21T22:26:58+08:00","dateModified":"2015-11-21T22:27:31+08:00","datePublished":"2015-11-21T22:26:58+08:00","description":"","headline":"Proftpd","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/21/Proftpd/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"avatar.jpg","logo":{"@type":"ImageObject","url":"avatar.jpg"}},"url":"http://yoursite.com/2015/11/21/Proftpd/"}</script>
     <meta name="description" content="安装12$ sudo apt-get install proftpd# choose standalone mode 配置12345678910111213141516171819202122232425262728$ sudo vim /etc/proftpd/proftpd.conf1. change ServerName to your specified name2. uncomment">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Proftpd">
@@ -28,6 +28,8 @@
     
         
     
+    
+        <meta property="og:image" content="http://yoursite.com/assets/images/avatar.jpg"/>
     
     
     
@@ -49,6 +51,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -61,6 +67,8 @@
                 href="#about">
         
         
+            <img class="header-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
+        
         </a>
     
 </header>
@@ -68,8 +76,23 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="4">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
+                </a>
+                <h4 class="sidebar-profile-name">Michael Wu</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -271,14 +294,6 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/21/Proftpd/" title="Teilen auf Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
                 <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/21/Proftpd/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
@@ -287,8 +302,8 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/21/Proftpd/" title="Teilen auf Google Plus">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2015/11/21/Proftpd/" title="Share on Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
         
@@ -357,14 +372,6 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/21/Proftpd/" title="Teilen auf Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
                 <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/21/Proftpd/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
@@ -373,8 +380,8 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/21/Proftpd/" title="Teilen auf Google Plus">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2015/11/21/Proftpd/" title="Share on Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
         
@@ -400,14 +407,6 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/21/Proftpd/">
-                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Teilen auf Facebook</span>
-                </a>
-            </li>
-        
-            
-            
-            <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/21/Proftpd/">
                     <i class="fab fa-twitter" aria-hidden="true"></i><span>Teilen auf Twitter</span>
                 </a>
@@ -416,8 +415,8 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/21/Proftpd/">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Teilen auf Google Plus</span>
+                <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2015/11/21/Proftpd/">
+                    <i class="fab fa-weibo" aria-hidden="true"></i><span>Share on Weibo</span>
                 </a>
             </li>
         
@@ -429,11 +428,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
         
             <h4 id="about-card-name">Michael Wu</h4>
         

@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"},"articleBody":"Reinstall grubWhen you get a grub prompt:\n1find /multiboot\nsuppose you get a result of (hd0,0), then\n1234root (hd0,0)kernel /platform/i86pc/multibootmodule /platform/i86pc/boot_archiveboot\nIf you don’t know what the above command is, type:\n1cat /boot/grub/menu.lst\nWhen you enter the OS, open a terminal and type:\n123format -e # you will get a device id related to the boot diskinstallgrub -m /boot/grub/stage1 /boot/grub/stage2 /dev/rdks/&lt;device-id&gt;reboot\nNon-cdrom installation for Solaris-u8 Non-cdrom installation for Solaris-u8\nExtract “multiboot” and “x86.miniroot” file from “sol-10-u8-ga-x86-dvd.iso”, put those two files into a usb flash disk;\n\nUse “grub” to boot the system, then press “c” to enter the grub shell menu;\n\nType the following commands:\n 12345find /multiboot# Use the result \"(hdx,y)\" of the first command, thenkernel (hdx,y)/multiboot kernel/unix -B install_media=dskmodule (hdx,y)/x86.minirootboot\n\nIf the above step succeded, then you will see Solaris is starting to boot, after you select 1, you will be given a “sh” shell prompt;\n\nIn the shell, you should type the following commands:\n 12345# the actual string after dsk, maybe different on your own systemmount -F pcfs /dev/dsk/c0d0p0:1 /mntlofiadm -a /mnt/sol-10-u8-ga-x86-dvd.isomount -F hsfs /dev/lofi/1 /cdromexit\n\nAfter all these steps, the Solaris installation process is starting.\n\n\nCannot enter into GUI when booting SolarisEnter into FailSafe mode, then type:\n1bootadm update-archive -R /a\nSolaris 10-u8 在家目录下新建目录的方法默认情况下，root 用户不能在 /home 下新建目录，因为 /home 目录是由 automounter 管理的，我们可以手动修改，让可以在 root 在 /home 下新建目录。\n\n将 /etc/auto_master 中的 /home 一行注释掉\n\n运行 automounter -v 使修改生效。\n\n\n","dateCreated":"2015-11-26T21:08:48+08:00","dateModified":"2015-11-26T21:20:14+08:00","datePublished":"2015-11-26T21:08:48+08:00","description":"","headline":"Solaris","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/26/Solaris/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"}},"url":"http://yoursite.com/2015/11/26/Solaris/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"avatar.jpg"},"articleBody":"Reinstall grubWhen you get a grub prompt:\n1find /multiboot\nsuppose you get a result of (hd0,0), then\n1234root (hd0,0)kernel /platform/i86pc/multibootmodule /platform/i86pc/boot_archiveboot\nIf you don’t know what the above command is, type:\n1cat /boot/grub/menu.lst\nWhen you enter the OS, open a terminal and type:\n123format -e # you will get a device id related to the boot diskinstallgrub -m /boot/grub/stage1 /boot/grub/stage2 /dev/rdks/&lt;device-id&gt;reboot\nNon-cdrom installation for Solaris-u8 Non-cdrom installation for Solaris-u8\nExtract “multiboot” and “x86.miniroot” file from “sol-10-u8-ga-x86-dvd.iso”, put those two files into a usb flash disk;\n\nUse “grub” to boot the system, then press “c” to enter the grub shell menu;\n\nType the following commands:\n 12345find /multiboot# Use the result \"(hdx,y)\" of the first command, thenkernel (hdx,y)/multiboot kernel/unix -B install_media=dskmodule (hdx,y)/x86.minirootboot\n\nIf the above step succeded, then you will see Solaris is starting to boot, after you select 1, you will be given a “sh” shell prompt;\n\nIn the shell, you should type the following commands:\n 12345# the actual string after dsk, maybe different on your own systemmount -F pcfs /dev/dsk/c0d0p0:1 /mntlofiadm -a /mnt/sol-10-u8-ga-x86-dvd.isomount -F hsfs /dev/lofi/1 /cdromexit\n\nAfter all these steps, the Solaris installation process is starting.\n\n\nCannot enter into GUI when booting SolarisEnter into FailSafe mode, then type:\n1bootadm update-archive -R /a\nSolaris 10-u8 在家目录下新建目录的方法默认情况下，root 用户不能在 /home 下新建目录，因为 /home 目录是由 automounter 管理的，我们可以手动修改，让可以在 root 在 /home 下新建目录。\n\n将 /etc/auto_master 中的 /home 一行注释掉\n\n运行 automounter -v 使修改生效。\n\n\n","dateCreated":"2015-11-26T21:08:48+08:00","dateModified":"2015-11-26T21:20:14+08:00","datePublished":"2015-11-26T21:08:48+08:00","description":"","headline":"Solaris","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/26/Solaris/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"avatar.jpg","logo":{"@type":"ImageObject","url":"avatar.jpg"}},"url":"http://yoursite.com/2015/11/26/Solaris/"}</script>
     <meta name="description" content="Reinstall grubWhen you get a grub prompt: 1find /multiboot suppose you get a result of (hd0,0), then 1234root (hd0,0)kernel /platform/i86pc/multibootmodule /platform/i86pc/boot_archiveboot If you don’">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Solaris">
@@ -28,6 +28,8 @@
     
         
     
+    
+        <meta property="og:image" content="http://yoursite.com/assets/images/avatar.jpg"/>
     
     
     
@@ -49,6 +51,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -61,6 +67,8 @@
                 href="#about">
         
         
+            <img class="header-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
+        
         </a>
     
 </header>
@@ -68,8 +76,23 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="4">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
+                </a>
+                <h4 class="sidebar-profile-name">Michael Wu</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -302,14 +325,6 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/26/Solaris/" title="Teilen auf Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
                 <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/26/Solaris/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
@@ -318,8 +333,8 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/26/Solaris/" title="Teilen auf Google Plus">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2015/11/26/Solaris/" title="Share on Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
         
@@ -388,14 +403,6 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/26/Solaris/" title="Teilen auf Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
                 <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/26/Solaris/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
@@ -404,8 +411,8 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/26/Solaris/" title="Teilen auf Google Plus">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2015/11/26/Solaris/" title="Share on Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
         
@@ -431,14 +438,6 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/26/Solaris/">
-                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Teilen auf Facebook</span>
-                </a>
-            </li>
-        
-            
-            
-            <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/26/Solaris/">
                     <i class="fab fa-twitter" aria-hidden="true"></i><span>Teilen auf Twitter</span>
                 </a>
@@ -447,8 +446,8 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/26/Solaris/">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Teilen auf Google Plus</span>
+                <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2015/11/26/Solaris/">
+                    <i class="fab fa-weibo" aria-hidden="true"></i><span>Share on Weibo</span>
                 </a>
             </li>
         
@@ -460,11 +459,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
         
             <h4 id="about-card-name">Michael Wu</h4>
         

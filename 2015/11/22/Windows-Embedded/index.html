@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"},"articleBody":"自定义 Shell默认情况下，构建 XPE 时，我们都选择 Explorer Shell，可如果我们想要在进入系统后，默认打开其他的应用程序呢？这里可以使用Component Designer 来建立自定义 Shell 组件，之后在检查依赖性的时候，就可以只选择我们自定义的 Shell 而不选择 Explorer Shell 了。\n最小化 XPE在最小化 XPE 的过程中，类似 Networking 这样的组件，虽然我们用不到，可是也需要添加到系统中，否则无法通过依赖性检查。\nEWF (Enhanced Write Filter)介绍EWF 是 Windows 提供的一种针对磁盘分区的保护机制，将所有对分区的更改都只保留在内存中，并不向磁盘进行任何的数据写入，在系统重启之后，分区能够保持未更改的状态，我们可以用这种方法来防病毒。\nXPE 下 EWF 的安装\n在 Target Designer 中添加一下四个组件：\n\nEWF NTLDR\n\nEnhanced Write Filter\n\nEnhanced Write Filter API (EWF API)\n\nEWF Manager Console application\n\n\n\n需要删除一个组件：\n\nNT Loader\n\n\n在 Enhanced Write Filter 组件的 Settings 中，做如下设定：\n\n取消 Start EWF Enabled 勾选\n\n在 Partition Number 一项中填写合适的值，默认是 1，表示保护第一个分区（即 C 盘），用户可以根据实际情况进行选择\n\nOverlay Type 一项，选择 RAM\n\n\n\n检查组件依赖性并编译系统镜像\n\n\n使用FBA 之后的第一次启动，如果在命令行中用 ewfmgr : 来查看现在的 EWF 保护情况，会出现错误，需要将下面的代码制作成 .reg 注册表文件，双击运行并重启系统，之后再用命令 ewfmgr : 查看 EWF 的保护状态，就会给出正常的结果了，当前的状态应该是 Enable。\n12345678910111213141516Windows Registry Editor Version 5.00[HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\ewf]&quot;ErrorControl&quot;=dword:00000001&quot;Group&quot;=&quot;System Bus Extender&quot;&quot;Start&quot;=dword:00000000&quot;Type&quot;=dword:00000001[HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Class\\&#123;71A27CDD-812A-11D0-BEC7-08002BE2092F&#125;]&quot;UpperFilters&quot;=&quot;Ewf&quot;[HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\ewf\\Parameters][HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\ewf\\Parameters\\Protected][HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\ewf\\Parameters\\Protected\\Volume0]&quot;VolumeID&quot;=&quot;&#123;1EA414D1-6760-4625-8CBE-4F9F85A48E15&#125;&quot;&quot;Type&quot;=dword:00000001&quot;ArcName&quot;=&quot;multi(0)disk(0)rdisk(0)partition(1)&quot;\n注意：ArcName 最后的 partition(n) 应该和 Enhanced Write Filter 中 Partition Number 的值保持一致。\n采用上述系统 Ghost 出来的新系统，需要正常启动两次，才能使用 EWF 功能。\n注：Ghost 软件应使用 DOS 下的纯净 Ghost，Laomaotao 下的 Ghost 工具会在镜像里面添加广告文件。\n常用命令123456781. 查看状态ewfmgr &lt;n&gt;:2. 启用保护，重启后生效ewfmgr &lt;n&gt;: -enable3. 撤销保护，立即生效ewfmgr &lt;n&gt;: -commitanddisable -live\nHORM (Hibernate Once Resume Many)HORM 是 EWF 当中的一项技术，在系统首次启动后，如果进入休眠状态，之后的关机，无论是正常关机还是异常关机，都会直接从休眠状态中恢复回来，这样可以显著缩短系统启动的时间。\n","dateCreated":"2015-11-22T11:23:28+08:00","dateModified":"2015-11-22T11:23:56+08:00","datePublished":"2015-11-22T11:23:28+08:00","description":"","headline":"Windows Embedded","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/22/Windows-Embedded/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/dc759726c439ed6592af3194955f370d"}},"url":"http://yoursite.com/2015/11/22/Windows-Embedded/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"avatar.jpg"},"articleBody":"自定义 Shell默认情况下，构建 XPE 时，我们都选择 Explorer Shell，可如果我们想要在进入系统后，默认打开其他的应用程序呢？这里可以使用Component Designer 来建立自定义 Shell 组件，之后在检查依赖性的时候，就可以只选择我们自定义的 Shell 而不选择 Explorer Shell 了。\n最小化 XPE在最小化 XPE 的过程中，类似 Networking 这样的组件，虽然我们用不到，可是也需要添加到系统中，否则无法通过依赖性检查。\nEWF (Enhanced Write Filter)介绍EWF 是 Windows 提供的一种针对磁盘分区的保护机制，将所有对分区的更改都只保留在内存中，并不向磁盘进行任何的数据写入，在系统重启之后，分区能够保持未更改的状态，我们可以用这种方法来防病毒。\nXPE 下 EWF 的安装\n在 Target Designer 中添加一下四个组件：\n\nEWF NTLDR\n\nEnhanced Write Filter\n\nEnhanced Write Filter API (EWF API)\n\nEWF Manager Console application\n\n\n\n需要删除一个组件：\n\nNT Loader\n\n\n在 Enhanced Write Filter 组件的 Settings 中，做如下设定：\n\n取消 Start EWF Enabled 勾选\n\n在 Partition Number 一项中填写合适的值，默认是 1，表示保护第一个分区（即 C 盘），用户可以根据实际情况进行选择\n\nOverlay Type 一项，选择 RAM\n\n\n\n检查组件依赖性并编译系统镜像\n\n\n使用FBA 之后的第一次启动，如果在命令行中用 ewfmgr : 来查看现在的 EWF 保护情况，会出现错误，需要将下面的代码制作成 .reg 注册表文件，双击运行并重启系统，之后再用命令 ewfmgr : 查看 EWF 的保护状态，就会给出正常的结果了，当前的状态应该是 Enable。\n12345678910111213141516Windows Registry Editor Version 5.00[HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\ewf]&quot;ErrorControl&quot;=dword:00000001&quot;Group&quot;=&quot;System Bus Extender&quot;&quot;Start&quot;=dword:00000000&quot;Type&quot;=dword:00000001[HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Class\\&#123;71A27CDD-812A-11D0-BEC7-08002BE2092F&#125;]&quot;UpperFilters&quot;=&quot;Ewf&quot;[HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\ewf\\Parameters][HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\ewf\\Parameters\\Protected][HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\ewf\\Parameters\\Protected\\Volume0]&quot;VolumeID&quot;=&quot;&#123;1EA414D1-6760-4625-8CBE-4F9F85A48E15&#125;&quot;&quot;Type&quot;=dword:00000001&quot;ArcName&quot;=&quot;multi(0)disk(0)rdisk(0)partition(1)&quot;\n注意：ArcName 最后的 partition(n) 应该和 Enhanced Write Filter 中 Partition Number 的值保持一致。\n采用上述系统 Ghost 出来的新系统，需要正常启动两次，才能使用 EWF 功能。\n注：Ghost 软件应使用 DOS 下的纯净 Ghost，Laomaotao 下的 Ghost 工具会在镜像里面添加广告文件。\n常用命令123456781. 查看状态ewfmgr &lt;n&gt;:2. 启用保护，重启后生效ewfmgr &lt;n&gt;: -enable3. 撤销保护，立即生效ewfmgr &lt;n&gt;: -commitanddisable -live\nHORM (Hibernate Once Resume Many)HORM 是 EWF 当中的一项技术，在系统首次启动后，如果进入休眠状态，之后的关机，无论是正常关机还是异常关机，都会直接从休眠状态中恢复回来，这样可以显著缩短系统启动的时间。\n","dateCreated":"2015-11-22T11:23:28+08:00","dateModified":"2015-11-22T11:23:56+08:00","datePublished":"2015-11-22T11:23:28+08:00","description":"","headline":"Windows Embedded","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://yoursite.com/2015/11/22/Windows-Embedded/"},"publisher":{"@type":"Organization","name":"Michael Wu","sameAs":["https://github.com/mapleaph","https://twitter.com/mapleaph","mapleaph@gmail.com"],"image":"avatar.jpg","logo":{"@type":"ImageObject","url":"avatar.jpg"}},"url":"http://yoursite.com/2015/11/22/Windows-Embedded/"}</script>
     <meta name="description" content="自定义 Shell默认情况下，构建 XPE 时，我们都选择 Explorer Shell，可如果我们想要在进入系统后，默认打开其他的应用程序呢？这里可以使用Component Designer 来建立自定义 Shell 组件，之后在检查依赖性的时候，就可以只选择我们自定义的 Shell 而不选择 Explorer Shell 了。 最小化 XPE在最小化 XPE 的过程中，类似 Networkin">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Windows Embedded">
@@ -28,6 +28,8 @@
     
         
     
+    
+        <meta property="og:image" content="http://yoursite.com/assets/images/avatar.jpg"/>
     
     
     
@@ -49,6 +51,10 @@
 
 
     
+        
+            
+        
+    
 
 <header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -61,6 +67,8 @@
                 href="#about">
         
         
+            <img class="header-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
+        
         </a>
     
 </header>
@@ -68,8 +76,23 @@
             <!-- Define author's picture -->
 
 
+
+        
+    
+
 <nav id="sidebar" data-behavior="4">
     <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
+                </a>
+                <h4 class="sidebar-profile-name">Michael Wu</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+                
+            </div>
         
         
             <ul class="sidebar-buttons">
@@ -310,14 +333,6 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Windows-Embedded/" title="Teilen auf Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
                 <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Windows-Embedded/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
@@ -326,8 +341,8 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Windows-Embedded/" title="Teilen auf Google Plus">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2015/11/22/Windows-Embedded/" title="Share on Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
         
@@ -396,14 +411,6 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Windows-Embedded/" title="Teilen auf Facebook">
-                    <i class="fab fa-facebook" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
                 <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Windows-Embedded/" title="Teilen auf Twitter">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
@@ -412,8 +419,8 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Windows-Embedded/" title="Teilen auf Google Plus">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2015/11/22/Windows-Embedded/" title="Share on Weibo">
+                    <i class="fab fa-weibo" aria-hidden="true"></i>
                 </a>
             </li>
         
@@ -439,14 +446,6 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2015/11/22/Windows-Embedded/">
-                    <i class="fab fa-facebook" aria-hidden="true"></i><span>Teilen auf Facebook</span>
-                </a>
-            </li>
-        
-            
-            
-            <li class="share-option">
                 <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2015/11/22/Windows-Embedded/">
                     <i class="fab fa-twitter" aria-hidden="true"></i><span>Teilen auf Twitter</span>
                 </a>
@@ -455,8 +454,8 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2015/11/22/Windows-Embedded/">
-                    <i class="fab fa-google-plus" aria-hidden="true"></i><span>Teilen auf Google Plus</span>
+                <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://yoursite.com/2015/11/22/Windows-Embedded/">
+                    <i class="fab fa-weibo" aria-hidden="true"></i><span>Share on Weibo</span>
                 </a>
             </li>
         
@@ -468,11 +467,17 @@
         
 
 
+    
+        
+    
+
 <div id="about">
     <div id="about-card">
         <div id="about-btn-close">
             <i class="fa fa-times"></i>
         </div>
+        
+            <img id="about-card-picture" src="/assets/images/avatar.jpg" alt="Bild des Autors"/>
         
             <h4 id="about-card-name">Michael Wu</h4>
         
